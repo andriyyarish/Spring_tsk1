@@ -9,10 +9,15 @@
 
     <bean id="UserService" class="Services.UserService"/>
 
-    <bean id="event" class="Entities.Event">
+    <bean id="event" class="Entities.Event" scope="prototype">
         <property name="name" value="Matrix"/>
         <property name="price" value="125.50"/>
         <property name="rating" value="mid"/>
     </bean>
+
+    <bean id="eventService" class="Services.EventService">
+
+    </bean>
+
 
 </beans>
