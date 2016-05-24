@@ -5,9 +5,18 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="user" class="Entities.User"/>
+    <bean id="user1" class="Entities.User">
+        <constructor-arg value="andriy" />
+        <constructor-arg value="andriy@com"/>
+    </bean>
 
-    <bean id="UserService" class="Services.UserService"/>
+    <bean id="user2" class="Entities.User">
+        <constructor-arg value="mike" />
+        <constructor-arg value="mike@com"/>
+    </bean>
+
+
+    <bean id="userService" class="Services.UserService"/>
 
     <bean id="event" class="Entities.Event" scope="prototype">
         <property name="name" value="Matrix"/>

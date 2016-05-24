@@ -26,7 +26,5 @@ public class EventService {
         if(eventList.remove(index)==null)
             System.out.println("!!! Caution - remove operation failed. There are no value mapped to this key");
 
-
-
     }
 }
