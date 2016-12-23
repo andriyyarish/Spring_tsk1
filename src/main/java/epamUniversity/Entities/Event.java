@@ -11,7 +11,6 @@ public class Event {
         this.name=name;
         this.price=price;
         this.rating=rating;
-
     }
     public Event(){
 
