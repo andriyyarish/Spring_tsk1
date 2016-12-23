@@ -11,12 +11,11 @@ import springPuzzlers.quoters.TerminatorQuoter;
 public class App {
 
     public static void main(String[] args) throws InterruptedException {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
 
-        while (true) {
-            Thread.sleep(1000);
-            context.getBean(Quoter.class).sayQuote();
-        }
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
+        context.getBean(Quoter.class).sayQuote();
+
+
 
     }
 
