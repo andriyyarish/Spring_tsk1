@@ -1,5 +1,7 @@
-import Entities.Event;
-import Services.EventService;
+package epamUniversity;
+
+import epamUniversity.Entities.Event;
+import epamUniversity.Services.EventService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,7 +12,7 @@ public class App {
 static Event event;
 static EventService service;
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("SpringOld.xml");
         event = (Event) context.getBean("event");
         service = (EventService) context.getBean("eventService");
         service.addEvent(event);

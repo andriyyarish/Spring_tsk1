@@ -1,6 +1,6 @@
-package Services;
+package epamUniversity.Services;
 
-import Entities.User;
+import epamUniversity.Entities.User;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

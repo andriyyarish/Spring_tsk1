@@ -1,6 +1,6 @@
-package Services;
+package epamUniversity.Services;
 
-import Entities.Event;
+import epamUniversity.Entities.Event;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

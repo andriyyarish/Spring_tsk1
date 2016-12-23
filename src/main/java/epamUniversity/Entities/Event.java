@@ -1,6 +1,6 @@
-package Entities;
+package epamUniversity.Entities;
 
-import Services.EventService;
+import epamUniversity.Services.EventService;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
