@@ -1,4 +1,4 @@
-package springPuzzlers.quoters;
+package springPuzzlers.quoters.postProcessors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -11,9 +11,10 @@ import springPuzzlers.quoters.anotations.PostProxy;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-/**
- * Created by Newman on 12/23/16.
- */
+
+//  All beans are already created when application listener starts
+
+
 public class PostProxyInvokerContextListener implements ApplicationListener<ContextRefreshedEvent> {
 
     @Autowired

@@ -15,8 +15,13 @@ public class App {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
         context.getBean(Quoter.class).sayQuote();
 
-
-
     }
+
+    // create bin
+    // define bean in spring xml
+    // beanFactoryPostProcessor could change bean class before creation
+    // Algoritm xml -> bean definitions created -> BeanFactoryPostProcessor works on beanDefinitions ->
+    // BeanPostProcessors creates -> Beans creates -> IOC container became ready
+
 
 }

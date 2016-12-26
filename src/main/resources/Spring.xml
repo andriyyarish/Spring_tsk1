@@ -16,8 +16,8 @@
     <bean class = "springPuzzlers.quoters.postProcessors.ProfilingHandlerBeanPostProcessor"></bean>
     <bean class = "org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
     <bean class = "springPuzzlers.quoters.postProcessors.InjectRandomIntAnnotationBeanPostProcessor"/>
-    <bean class = "springPuzzlers.quoters.PostProxyInvokerContextListener"/>
-    <bean class="springPuzzlers.quoters.DeprecationHandlerBeanFactoryPostProcessor"/>
+    <bean class = "springPuzzlers.quoters.postProcessors.PostProxyInvokerContextListener"/>
+    <bean class="springPuzzlers.quoters.postProcessors.DeprecationHandlerBeanFactoryPostProcessor"/>
 
 
 </beans>

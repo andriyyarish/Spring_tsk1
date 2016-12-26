@@ -1,5 +1,6 @@
 package epamUniversity;
 
+import epamUniversity.Entities.Auditorium;
 import epamUniversity.Entities.Event;
 import epamUniversity.Services.EventService;
 import org.springframework.context.ApplicationContext;
@@ -23,5 +24,9 @@ static EventService service;
 
         System.out.println(event.toString());
         System.out.println(service.getEventMap().toString());
+
+        System.out.println("Auditoriums .........");
+        Auditorium a =  (Auditorium) context.getBean("auditorium");
+        System.out.println(a.toString());
     }
 }

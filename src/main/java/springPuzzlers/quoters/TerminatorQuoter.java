@@ -44,4 +44,9 @@ public class TerminatorQuoter implements Quoter {
         this.message = message;
         return this;
     }
+
+    public void setRepeat(int i){
+        this.repeat = i;
+    }
+
 }

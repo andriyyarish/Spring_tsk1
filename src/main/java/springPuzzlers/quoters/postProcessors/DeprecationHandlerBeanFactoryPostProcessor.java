@@ -1,4 +1,4 @@
-package springPuzzlers.quoters;
+package springPuzzlers.quoters.postProcessors;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -6,9 +6,8 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import springPuzzlers.quoters.anotations.DeprecatedClass;
 
-/**
- * Created by Newman on 12/23/16.
- */
+
+// Works on BeanDefinition creation
 public class DeprecationHandlerBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     @Override
@@ -21,7 +20,7 @@ public class DeprecationHandlerBeanFactoryPostProcessor implements BeanFactoryPo
                 Class<?> beanClass = Class.forName(beanClassName);
                 DeprecatedClass annotation = beanClass.getAnnotation(DeprecatedClass.class);
                 if (annotation != null) {
-                    beanDefinition.setBeanClassName(annotation.newImpl().getName());
+                    beanDefinition.setBeanClassName(annotation.newImpl().getName()); // substitute old class with new class
                 }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
