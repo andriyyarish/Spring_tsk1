@@ -10,16 +10,15 @@ import java.util.Map;
  */
 public class UserService {
 
-    private  Map<Integer,User> userList = new LinkedHashMap<Integer, User>();
+    private static Map<Integer,User> userList = new LinkedHashMap<Integer, User>();
     User user;
 
-
-    public void registerUser(User u){
-        userList.put(u.getId(),u);
+    public void registerUser(User usr){
+        userList.put(usr.getId(),usr);
     }
 
-    public void removeUser(Integer key){
-        userList.remove(key);
+    public void removeUser(Integer usrId){
+        userList.remove(usrId);
     }
 
     public User getUserById(int Id){
@@ -36,12 +35,16 @@ public class UserService {
     }
 
     public User getUserByName(String name) throws Exception {
-        User usr;
+        User usr = null;
         for(User u: userList.values()) {
             if (u.getName().equals(name))
-                return u;
+                usr = u;
         }
-        return new User();
+        return usr ;
+    }
+
+    public Map<Integer, User> getUserList(){
+        return userList;
     }
 
     public void getBookedTicket(){

@@ -18,11 +18,13 @@ import java.util.Date;
  */
 public class BookingService {
 
-    EventService eventService;
-    UserService userService;
-    DiscountService discountService;
+    private EventService eventService;
+    private UserService userService;
+    private DiscountService discountService;
 
     public int getTicketPrice(Event event, Date date, int seat, User usr){
         return 0;
     }
+
+
 }

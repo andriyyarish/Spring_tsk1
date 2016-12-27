@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd" >
+    <context:annotation-config/>
+    <context:component-scan base-package="epamUniversity"/>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:auditorium.properties</value>
+            </list>
+        </property>
+        <property name="ignoreResourceNotFound" value="true"/>
+        <property name="systemPropertiesMode">
+            <util:constant
+                    static-field="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer.SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        </property>
+    </bean>
+
+    <bean id="usr1" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
+        <constructor-arg index="0" value="Andriy"/>
+        <constructor-arg index="1" value="andy@gmail.com"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="usr2" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
+        <constructor-arg index="0" value="Ivan"/>
+        <constructor-arg index="1" value="ivan@gmail.com"/>
+    </bean>
+    <bean id="usr3" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
+        <constructor-arg index="0" value="Maxim"/>
+        <constructor-arg index="1" value="Maxim@gmail.com"/>
+    </bean>
+
+    <bean id="userService" class="epamUniversity.Services.UserService"/>
+
+    <bean id="event1" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
+        <constructor-arg value="Matrix"/>
+        <constructor-arg value="125.50"/>
+        <constructor-arg value="mid"/>
+        <constructor-arg>
+            <bean class="org.joda.time.DateTime" scope="Prototype"/>
+        </constructor-arg>
+    </bean>
+    <bean id="event2" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
+        <constructor-arg value="OE"/>
+        <constructor-arg value="250.50"/>
+        <constructor-arg value="high"/>
+        <constructor-arg>
+            <bean class="org.joda.time.DateTime" scope="Prototype"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="auditorium" class="epamUniversity.Entities.Auditorium">
+        <constructor-arg index="0" value="${name}"/>
+        <constructor-arg index="1" value="${adress}"/>
+        <constructor-arg index="2" value="${seats}"/>
+        <constructor-arg index="3" value="${vipSeatsList}"/>
+    </bean>
+
+    <bean id="eventService" class="epamUniversity.Services.EventService">
+
+    </bean>
+
+</beans>
