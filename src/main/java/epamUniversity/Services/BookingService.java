@@ -1,13 +1,8 @@
-package epamUniversity.Services;
+package epamUniversity.services;
 
-import epamUniversity.Entities.*;
+import epamUniversity.entities.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.Date;
-
-import static epamUniversity.Entities.Rating.LOW;
 
 /**
  * BookingService - Manages tickets, prices, bookings

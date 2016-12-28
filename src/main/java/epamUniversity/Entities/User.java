@@ -1,9 +1,9 @@
-package epamUniversity.Entities;
+package epamUniversity.entities;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import epamUniversity.Services.UserService;
+import epamUniversity.services.UserService;
 
 import java.util.LinkedList;
 import java.util.List;

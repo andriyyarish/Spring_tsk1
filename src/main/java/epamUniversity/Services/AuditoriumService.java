@@ -1,6 +1,6 @@
-package epamUniversity.Services;
+package epamUniversity.services;
 
-import epamUniversity.Entities.Auditorium;
+import epamUniversity.entities.Auditorium;
 
 import java.util.LinkedList;
 import java.util.List;

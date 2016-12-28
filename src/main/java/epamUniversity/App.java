@@ -1,7 +1,7 @@
 package epamUniversity;
 
-import epamUniversity.Entities.Event;
-import epamUniversity.Services.EventService;
+import epamUniversity.entities.Event;
+import epamUniversity.services.EventService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

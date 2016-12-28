@@ -1,16 +1,13 @@
-package epamUniversity.Services;
+package epamUniversity.services;
 
 import org.joda.time.DateTime;
 
-import epamUniversity.Entities.Auditorium;
-import epamUniversity.Entities.Event;
+import epamUniversity.entities.Auditorium;
+import epamUniversity.entities.Event;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.

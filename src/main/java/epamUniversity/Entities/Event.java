@@ -1,11 +1,11 @@
-package epamUniversity.Entities;
+package epamUniversity.entities;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 
-import epamUniversity.Services.EventService;
+import epamUniversity.services.EventService;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.

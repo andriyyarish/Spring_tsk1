@@ -24,38 +24,38 @@
         </property>
     </bean>
 
-    <bean id="usr1" class="epamUniversity.Entities.User" scope="prototype">
+    <bean id="usr1" class="epamUniversity.entities.User" scope="prototype">
         <constructor-arg index="0" value="Andriy"/>
         <constructor-arg index="1" value="andy@gmail.com"/>
         <property name="userService" ref="userService"/>
     </bean>
 
-    <bean id="usr2" class="epamUniversity.Entities.User" scope="prototype">
+    <bean id="usr2" class="epamUniversity.entities.User" scope="prototype">
         <constructor-arg index="0" value="Ivan"/>
         <constructor-arg index="1" value="ivan@gmail.com"/>
     </bean>
 
-    <bean id="userService" class="epamUniversity.Services.UserService"/>
+    <bean id="userService" class="epamUniversity.services.UserService"/>
 
-    <bean id="event1" class="epamUniversity.Entities.Event" scope="prototype">
+    <bean id="event1" class="epamUniversity.entities.Event" scope="prototype">
         <property name="name" value="Matrix"/>
         <property name="price" value="125.50"/>
         <property name="rating" value="mid"/>
     </bean>
-    <bean id="event2" class="epamUniversity.Entities.Event" scope="prototype">
+    <bean id="event2" class="epamUniversity.entities.Event" scope="prototype">
         <property name="name" value="OE"/>
         <property name="price" value="250.50"/>
         <property name="rating" value="high"/>
     </bean>
 
-    <bean id="auditorium" class="epamUniversity.Entities.Auditorium">
+    <bean id="auditorium" class="epamUniversity.entities.Auditorium">
         <constructor-arg index="0" value="${name}"/>
         <constructor-arg index="1" value="${adress}"/>
         <constructor-arg index="2" value="${seats}"/>
         <constructor-arg index="3" value="${vipSeatsList}"/>
     </bean>
 
-    <bean id="eventService" class="epamUniversity.Services.EventService">
+    <bean id="eventService" class="epamUniversity.services.EventService">
 
     </bean>
 

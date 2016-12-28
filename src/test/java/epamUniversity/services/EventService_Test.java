@@ -12,14 +12,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Map;
 
-import epamUniversity.Entities.Auditorium;
-import epamUniversity.Entities.Event;
-import epamUniversity.Services.EventService;
+import epamUniversity.entities.Auditorium;
+import epamUniversity.entities.Event;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;

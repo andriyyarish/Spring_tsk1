@@ -1,6 +1,6 @@
-package epamUniversity.Entities;
+package epamUniversity.entities;
 
-import epamUniversity.Services.AuditoriumService;
+import epamUniversity.services.AuditoriumService;
 
 import java.util.Arrays;
 import java.util.HashMap;

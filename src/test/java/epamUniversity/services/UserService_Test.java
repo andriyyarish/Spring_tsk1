@@ -1,9 +1,6 @@
 package epamUniversity.services;
 
-import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -12,8 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import epamUniversity.Entities.User;
-import epamUniversity.Services.UserService;
+import epamUniversity.entities.User;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -52,8 +48,8 @@ public class UserService_Test {
 
     @Test
     public void getById(){
-        //userService.registerUser(user);
-       // userService.registerUser(user2);
+        userService.registerUser(user);
+        userService.registerUser(user2);
         System.out.println(userService.getUserById(1));
         assertThat(userService.getUserById(1).getName(), equalToIgnoringCase("andriy"));
     }
