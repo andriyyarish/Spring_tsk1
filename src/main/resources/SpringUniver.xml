@@ -26,21 +26,20 @@
         </property>
     </bean>
 
-    <bean id="usr1" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
+    <bean id="usr1" class="epamUniversity.Entities.User" scope="prototype" >
         <constructor-arg index="0" value="Andriy"/>
         <constructor-arg index="1" value="andy@gmail.com"/>
-        <property name="userService" ref="userService"/>
     </bean>
-    <bean id="usr2" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
-        <constructor-arg index="0" value="Ivan"/>
-        <constructor-arg index="1" value="ivan@gmail.com"/>
+    <bean id="usr2" class="epamUniversity.Entities.User" scope="prototype" >
+        <constructor-arg value="Ivan"/>
+        <constructor-arg value="ivan@gmail.com"/>
     </bean>
-    <bean id="usr3" class="epamUniversity.Entities.User" scope="prototype" init-method="init">
-        <constructor-arg index="0" value="Maxim"/>
-        <constructor-arg index="1" value="Maxim@gmail.com"/>
+    <bean id="usr3" class="epamUniversity.Entities.User" scope="prototype" >
+        <constructor-arg value="Maxim"/>
+        <constructor-arg value="Maxim@gmail.com"/>
     </bean>
 
-    <bean id="userService" class="epamUniversity.Services.UserService"/>
+    <bean id="userService" name="userService" class="epamUniversity.Services.UserService"/>
 
     <bean id="event1" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
         <constructor-arg value="Matrix"/>
@@ -53,9 +52,9 @@
     <bean id="event2" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
         <constructor-arg value="OE"/>
         <constructor-arg value="250.50"/>
-        <constructor-arg value="high"/>
+        <constructor-arg value="HIGH"/>
         <constructor-arg>
-            <bean class="org.joda.time.DateTime" scope="Prototype"/>
+            <bean class="org.joda.time.DateTime" scope="prototype"/>
         </constructor-arg>
     </bean>
 

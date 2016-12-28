@@ -16,13 +16,13 @@ public class Event {
     private Auditorium auditorium;
     private String name;
     private double price;
-    private String rating;
+    private Rating rating;
     private DateTime date;
 
     public Event(String name, double price, String rating, DateTime date) {
         this.name = name;
         this.price = price;
-        this.rating = rating;
+        this.rating = Rating.valueOf(rating);
         this.date = date;
     }
 
@@ -42,12 +42,12 @@ public class Event {
         this.price = price;
     }
 
-    public String getRating() {
+    public Rating getRating() {
         return rating;
     }
 
     public void setRating(String rating) {
-        this.rating = rating;
+        this.rating = Rating.valueOf(rating);
     }
 
     public DateTime getDate() {

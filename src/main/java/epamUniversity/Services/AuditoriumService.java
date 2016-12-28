@@ -4,6 +4,7 @@ import epamUniversity.Entities.Auditorium;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * AuditoriumService - Returns info about auditoriums and places
@@ -17,7 +18,8 @@ import java.util.List;
  getAuditoriums(), getSeatsNumber(), getVipSeats()
  */
 public class AuditoriumService {
-    List<Auditorium> auditoriumList;
+    private List<Auditorium> auditoriumList;
+    private Map<String, List<Integer>> bookedSeats;
 
     public AuditoriumService(){
         auditoriumList = new LinkedList<>();
@@ -36,6 +38,14 @@ public class AuditoriumService {
 
     public void setAuditorium(Auditorium auditorium){
         auditoriumList.add(auditorium);
+    }
+
+    public void bookSeat(Auditorium auditorium, int seat){
+        bookedSeats.get(auditorium.getName()).add(seat);
+    }
+
+    public boolean isSeatBooked(Auditorium auditorium, int seat){
+        return bookedSeats.get(auditorium.getName()).contains(seat);
     }
 
 

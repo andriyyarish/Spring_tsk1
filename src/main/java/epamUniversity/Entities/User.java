@@ -1,10 +1,12 @@
 package epamUniversity.Entities;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Date;
-
 import epamUniversity.Services.UserService;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -17,16 +19,18 @@ public class User {
     private int id;
     private String email;
     private String name;
-    private Date dateOfBirth;
+    private DateTime dateOfBirth;
+    private List<Ticket> bookingHistory;
 
     public User (String name, String email){
-        id = ++index;
+        this();
         this.name = name;
         this.email = email;
     }
 
     public User (){
-
+        bookingHistory = new LinkedList<>();
+        id = index++;
     }
 
     public UserService getUserService() {
@@ -48,6 +52,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public DateTime getDateOfBirth(){
+        return dateOfBirth;
     }
 
     public User setId(int id) {
@@ -73,8 +81,20 @@ public class User {
         return this;
     }
 
+    public void setDateOfBirth(DateTime dateOfBirth){
+        this.dateOfBirth = dateOfBirth;
+    }
+
     public void init(){
         userService.registerUser(this);
+    }
+
+    public List<Ticket> getBookingHistory(){
+        return bookingHistory;
+    }
+
+    public void addToBookingHistory(Ticket ticket){
+        bookingHistory.add(ticket);
     }
 
     @Override
