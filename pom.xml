@@ -20,12 +20,9 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>springAdvLect</module>
-    </modules>
 
     <properties>
-        <spring.ver>4.3.5.RELEASE</spring.ver>
+        <spring.ver>4.2.5.RELEASE</spring.ver>
         <aspectj.ver>1.8.8</aspectj.ver>
     </properties>
 
@@ -38,6 +35,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
+            <version>${spring.ver}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
             <version>${spring.ver}</version>
         </dependency>
         <dependency>

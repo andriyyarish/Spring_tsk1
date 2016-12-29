@@ -26,6 +26,11 @@
         </property>
     </bean>
 
+    <bean id="userService" class="epamUniversity.Services.UserService"/>
+    <bean id="eventService" class="epamUniversity.Services.EventService"/>
+    <bean id="bookingService" class="epamUniversity.Services.BookingService"/>
+    <bean id="discountService" class="epamUniversity.Services.DiscountService"/>
+
     <bean id="usr1" class="epamUniversity.Entities.User" scope="prototype" >
         <constructor-arg index="0" value="Andriy"/>
         <constructor-arg index="1" value="andy@gmail.com"/>
@@ -39,14 +44,14 @@
         <constructor-arg value="Maxim@gmail.com"/>
     </bean>
 
-    <bean id="userService" name="userService" class="epamUniversity.Services.UserService"/>
+    <bean id = "ticket" class="epamUniversity.Entities.Ticket" scope="prototype"/>
 
     <bean id="event1" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
         <constructor-arg value="Matrix"/>
         <constructor-arg value="125.50"/>
-        <constructor-arg value="mid"/>
+        <constructor-arg value="MEDIUM"/>
         <constructor-arg>
-            <bean class="org.joda.time.DateTime" scope="Prototype"/>
+            <bean class="org.joda.time.DateTime" scope="prototype"/>
         </constructor-arg>
     </bean>
     <bean id="event2" class="epamUniversity.Entities.Event" scope="prototype" init-method="init">
@@ -63,10 +68,6 @@
         <constructor-arg index="1" value="${adress}"/>
         <constructor-arg index="2" value="${seats}"/>
         <constructor-arg index="3" value="${vipSeatsList}"/>
-    </bean>
-
-    <bean id="eventService" class="epamUniversity.Services.EventService">
-
     </bean>
 
 </beans>

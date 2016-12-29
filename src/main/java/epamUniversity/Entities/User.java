@@ -7,6 +7,7 @@ import epamUniversity.Services.UserService;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -30,6 +31,8 @@ public class User {
 
     public User (){
         bookingHistory = new LinkedList<>();
+        int y = new Random().nextInt(20) + 10;
+        dateOfBirth = new DateTime().minusYears(y);
         id = index++;
     }
 

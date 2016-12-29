@@ -13,6 +13,7 @@ import epamUniversity.Services.EventService;
 public class Event {
     @Autowired
     private EventService eventService;
+    @Autowired
     private Auditorium auditorium;
     private String name;
     private double price;

@@ -10,6 +10,10 @@ public class Ticket {
     private Event event;
     private String owner;
 
+    public Ticket(){
+
+    }
+
     public double getPrice() {
         return price;
     }
@@ -48,5 +52,16 @@ public class Ticket {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "price=" + price +
+                ", seat=" + seat +
+                ", seatType=" + seatType +
+                ", event=" + event +
+                ", owner='" + owner + '\'' +
+                '}';
     }
 }

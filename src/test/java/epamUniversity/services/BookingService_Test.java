@@ -1,9 +1,11 @@
 package epamUniversity.services;
 
 import epamUniversity.Entities.Event;
+import epamUniversity.Entities.Ticket;
 import epamUniversity.Entities.User;
 import epamUniversity.Services.BookingService;
 import epamUniversity.Services.UserService;
+import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 /**
@@ -31,16 +35,34 @@ public class BookingService_Test {
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringUniver.xml");
         user = (User) context.getBean("usr3");
         event = (Event) context.getBean("event1");
-        bookingService = new BookingService();
+
+        bookingService = context.getBean(BookingService.class);
         userService = context.getBean(UserService.class);
         userService.registerUser(user);
         date = new DateTime();
     }
 
     @Test
-    public void test(){
+    public void testGetPriceMethod(){
 
         double price = bookingService.getTicketPrice(event,date,4,user);
         System.out.println(price);
     }
+
+    @Test
+    public void testGenerateTicketMethod(){
+        Ticket ticket = bookingService.getTicket(event,date,4,user);
+        double expectedPrice = bookingService.getTicketPrice(event,date,4,user);
+        assertThat(expectedPrice, Matchers.equalTo(ticket.getPrice()));
+    }
+
+    // price for the same event and vip and regular
+    @Test
+    public void testGenerateTicketMethodNegative(){
+        double expectedPrice = bookingService.getTicketPrice(event,date,17,user);
+        Ticket ticket = bookingService.getTicket(event,date,4,user);
+
+        assertThat("Should be greater because of vip place",expectedPrice, Matchers.greaterThan(ticket.getPrice()));
+    }
+
 }
