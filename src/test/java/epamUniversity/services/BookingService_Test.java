@@ -1,10 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.Entities.Event;
-import epamUniversity.Entities.Ticket;
-import epamUniversity.Entities.User;
-import epamUniversity.Services.BookingService;
-import epamUniversity.Services.UserService;
+
 import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -14,6 +10,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import epamUniversity.entities.Event;
+import epamUniversity.entities.Ticket;
+import epamUniversity.entities.User;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -64,5 +64,7 @@ public class BookingService_Test {
 
         assertThat("Should be greater because of vip place",expectedPrice, Matchers.greaterThan(ticket.getPrice()));
     }
+
+
 
 }
