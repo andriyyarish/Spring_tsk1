@@ -23,10 +23,10 @@ public class UsersController {
 
     @RequestMapping (value = "/users",method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<String> getAllUsers(){
+    public ModelAndView getAllUsers(){
         List<String> l = new ArrayList<>();
         l.add("Andriy");
         l.add("John");
-        return l;
+        return new ModelAndView("users", "message", l.toString());
     }
 }

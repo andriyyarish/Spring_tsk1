@@ -18,6 +18,7 @@
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/welcome.jsp</url-pattern>
+        <url-pattern>/users.jsp</url-pattern>
         <url-pattern>/welcome.html</url-pattern>
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
