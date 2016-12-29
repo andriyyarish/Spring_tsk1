@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class App {
 static Event event;
 static EventService service;
-    public static void main(String[] args) throws Exception, BeansException {
+    public static void main(String[] args) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringUniver.xml");
 
     }

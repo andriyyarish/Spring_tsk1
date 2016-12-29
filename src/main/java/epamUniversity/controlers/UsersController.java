@@ -9,7 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import epamUniversity.entities.User;
 import epamUniversity.services.UserService;
 
 /**
@@ -18,15 +20,13 @@ import epamUniversity.services.UserService;
 
 @Controller
 public class UsersController {
-
+    @Autowired
     UserService userService;
 
     @RequestMapping (value = "/users",method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ModelAndView getAllUsers(){
-        List<String> l = new ArrayList<>();
-        l.add("Andriy");
-        l.add("John");
-        return new ModelAndView("users", "message", l.toString());
+        Map<Integer, User> userList = userService.getUserList();
+        return new ModelAndView("users", "message", userList.toString());
     }
 }
