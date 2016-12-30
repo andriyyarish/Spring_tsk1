@@ -14,13 +14,13 @@ import java.util.Random;
  */
 public class User {
 
-    @Autowired
-    private UserService userService;
     private static int index;
+    @Autowired
+    private transient UserService userService;
+    private transient DateTime dateOfBirth;
     private int id;
     private String email;
     private String name;
-    private DateTime dateOfBirth;
     private List<Ticket> bookingHistory;
 
     public User (String name, String email){
@@ -88,16 +88,16 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void init(){
-        userService.registerUser(this);
-    }
-
     public List<Ticket> getBookingHistory(){
         return bookingHistory;
     }
 
     public void addToBookingHistory(Ticket ticket){
         bookingHistory.add(ticket);
+    }
+
+    public void init(){
+        userService.registerUser(this);
     }
 
     @Override

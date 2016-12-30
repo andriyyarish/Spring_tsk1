@@ -19,7 +19,14 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean id="viewResolver2"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+
+    </bean>
+
+
     <mvc:default-servlet-handler />
 
     <import resource="SpringUniver.xml"/>
+
 </beans>

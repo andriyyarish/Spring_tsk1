@@ -9,10 +9,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.Map;
+
 import epamUniversity.entities.User;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -52,6 +55,12 @@ public class UserService_Test {
         userService.registerUser(user2);
         System.out.println(userService.getUserById(1));
         assertThat(userService.getUserById(1).getName(), equalToIgnoringCase("andriy"));
+    }
+
+    @Test
+    public void checkThatInitMethodOdUserWorks(){
+        Map<Integer, User> userList = userService.getUserList();
+        assertThat(userList.size(),greaterThanOrEqualTo(2));
     }
 
 

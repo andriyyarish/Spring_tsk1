@@ -1,6 +1,7 @@
 package epamUniversity.services;
 
 import epamUniversity.entities.User;
+import org.springframework.beans.factory.InitializingBean;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -8,10 +9,10 @@ import java.util.Map;
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
-public class UserService {
+public class UserService  implements InitializingBean {
 
     private static Map<Integer,User> userList = new LinkedHashMap<Integer, User>();
-    User user;
+
 
     public void registerUser(User usr){
         userList.put(usr.getId(),usr);
@@ -52,7 +53,8 @@ public class UserService {
     }
 
 
-
-
-
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        toString();
+    }
 }
