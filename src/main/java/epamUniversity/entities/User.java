@@ -103,9 +103,11 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                ", id=" + id +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", bookingHistory=" + bookingHistory +
                 '}';
     }
 }
