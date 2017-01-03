@@ -1,60 +1,23 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.User;
-import org.springframework.beans.factory.InitializingBean;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 /**
- * Created by Andriy_Yarish on 3/9/2016.
+ * Created by Andriy_Yarish on 1/3/2017.
  */
-public class UserService  implements InitializingBean {
+import epamUniversity.entities.User;
 
-    private static Map<Integer,User> userList = new LinkedHashMap<Integer, User>();
-
-
-    public void registerUser(User usr){
-        userList.put(usr.getId(),usr);
-    }
-
-    public void removeUser(Integer usrId){
-        userList.remove(usrId);
-    }
-
-    public User getUserById(int Id){
-        return userList.get(Id);
-    }
-
-    public User getUserByEmail(String email){
-        User usr = null;
-        for(User u: userList.values()) {
-            if (u.getEmail() == email)
-                usr = u;
-        }
-        return usr;
-    }
-
-    public User getUserByName(String name) throws Exception {
-        User usr = null;
-        for(User u: userList.values()) {
-            if (u.getName().equals(name))
-                usr = u;
-        }
-        return usr ;
-    }
-
-    public Map<Integer, User> getUserList(){
-        return userList;
-    }
-
-    public void getBookedTicket(){
-
-    }
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        toString();
-    }
+public interface UserService extends AbstractDomainObjectService<User> {
+
+    /**
+     * Finding user by email
+     *
+     * @param email
+     *            Email of the user
+     * @return found user or <code>null</code>
+     */
+    public @Nullable User getUserByEmail(@Nonnull String email);
+
 }

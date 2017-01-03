@@ -1,6 +1,6 @@
 package epamUniversity.entities;
 
-import epamUniversity.services.AuditoriumService;
+import epamUniversity.services.AuditoriumServiceImpl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by Newman on 12/26/16.
  */
 public class Auditorium {
-    AuditoriumService auditoriumService;
+    AuditoriumServiceImpl auditoriumService;
     String name;
     String adress;
     int seats;

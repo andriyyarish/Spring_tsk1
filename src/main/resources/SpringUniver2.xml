@@ -27,7 +27,7 @@
     <bean id="usr1" class="epamUniversity.entities.User" scope="prototype">
         <constructor-arg index="0" value="Andriy"/>
         <constructor-arg index="1" value="andy@gmail.com"/>
-        <property name="userService" ref="userService"/>
+        <property name="userServiceImpl" ref="userServiceImpl"/>
     </bean>
 
     <bean id="usr2" class="epamUniversity.entities.User" scope="prototype">
@@ -35,17 +35,17 @@
         <constructor-arg index="1" value="ivan@gmail.com"/>
     </bean>
 
-    <bean id="userService" class="epamUniversity.services.UserService"/>
+    <bean id="userServiceImpl" class="epamUniversity.services.UserServiceImpl"/>
 
     <bean id="event1" class="epamUniversity.entities.Event" scope="prototype">
         <property name="name" value="Matrix"/>
-        <property name="price" value="125.50"/>
-        <property name="rating" value="mid"/>
+        <property name="basePrice" value="125.50"/>
+        <property name="eventRating" value="mid"/>
     </bean>
     <bean id="event2" class="epamUniversity.entities.Event" scope="prototype">
         <property name="name" value="OE"/>
-        <property name="price" value="250.50"/>
-        <property name="rating" value="high"/>
+        <property name="basePrice" value="250.50"/>
+        <property name="eventRating" value="high"/>
     </bean>
 
     <bean id="auditorium" class="epamUniversity.entities.Auditorium">
@@ -55,7 +55,7 @@
         <constructor-arg index="3" value="${vipSeatsList}"/>
     </bean>
 
-    <bean id="eventService" class="epamUniversity.services.EventService">
+    <bean id="eventService" class="epamUniversity.services.EventServiceImpl">
 
     </bean>
 

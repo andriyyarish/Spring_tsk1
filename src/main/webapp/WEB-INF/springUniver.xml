@@ -27,10 +27,10 @@
     </bean>
     <bean id = "gsonBuilder" class="com.google.gson.GsonBuilder"/>
 
-    <bean id="userService" class="epamUniversity.services.UserService"/>
-    <bean id="eventService" class="epamUniversity.services.EventService"/>
-    <bean id="bookingService" class="epamUniversity.services.BookingService"/>
-    <bean id="discountService" class="epamUniversity.services.DiscountService"/>
+    <bean id="userServiceImpl" class="epamUniversity.services.UserServiceImpl"/>
+    <bean id="eventService" class="epamUniversity.services.EventServiceImpl"/>
+    <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
+    <bean id="discountService" class="epamUniversity.services.DiscountServiceImpl"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">
         <constructor-arg index="0" value="New user"/>
@@ -46,11 +46,11 @@
     </bean>
     <bean id="usr3" class="epamUniversity.entities.User" init-method="init">
         <constructor-arg value="Maxim"/>
-        <constructor-arg value="Maxim@gmail.com"/>
+        <constructor-arg value="maxim@gmail.com"/>
     </bean>
     <bean id="usr4" class="epamUniversity.entities.User" init-method="init">
         <constructor-arg value="Lanka"/>
-        <constructor-arg value="LankaLnkovna@gmail.com"/>
+        <constructor-arg value="lanka@gmail.com"/>
     </bean>
 
     <bean id = "ticket" class="epamUniversity.entities.Ticket" scope="prototype"/>

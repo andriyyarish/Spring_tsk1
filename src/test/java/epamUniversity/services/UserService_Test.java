@@ -31,36 +31,35 @@ public class UserService_Test {
     @Autowired
     private User user2;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Before
     public void setUp(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("SpringUniver.xml");
-        userService = (UserService) context.getBean("userService");
+        ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF\\springUniver.xml");
+        userServiceImpl = (UserServiceImpl) context.getBean("userServiceImpl");
         user = (User) context.getBean("usr1");
         user2 = (User) context.getBean("usr2");
     }
 
     @Test
     public void registerUser(){
-        userService.registerUser(user);
-        userService.registerUser(user2);
-        System.out.println(userService.getUserById(1));
-        assertThat(userService.getUserList().size(), equalTo(2));
+        userServiceImpl.save(user);
+        userServiceImpl.save(user2);
+        System.out.println(userServiceImpl.getById(1));
+        assertThat(userServiceImpl.getAll().size(), equalTo(2));
     }
 
     @Test
     public void getById(){
-        userService.registerUser(user);
-        userService.registerUser(user2);
-        System.out.println(userService.getUserById(1));
-        assertThat(userService.getUserById(1).getName(), equalToIgnoringCase("andriy"));
+        userServiceImpl.save(user);
+        userServiceImpl.save(user2);
+        System.out.println(userServiceImpl.getById(1));
+        assertThat(userServiceImpl.getById(1).getName(), equalToIgnoringCase("andriy"));
     }
 
     @Test
     public void checkThatInitMethodOdUserWorks(){
-        Map<Integer, User> userList = userService.getUserList();
-        assertThat(userList.size(),greaterThanOrEqualTo(2));
+
     }
 
 

@@ -1,59 +1,43 @@
 package epamUniversity.services;
 
-import org.joda.time.DateTime;
-
-import epamUniversity.entities.Auditorium;
 import epamUniversity.entities.Event;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * Created by Andriy_Yarish on 3/9/2016.
+ * @author Yuriy_Tkach
  */
-public class EventService {
+public interface EventService extends AbstractDomainObjectService<Event> {
 
-    private static Map<Integer, Event> eventList = new LinkedHashMap<Integer, Event>();
-    private static int index = 0;
+    /**
+     * Finding event by name
+     *
+     * @param name
+     *            Name of the event
+     * @return found event or <code>null</code>
+     */
+    public @Nullable Event getByName(@Nonnull String name);
 
-    public int addEvent(Event event){
-        eventList.put(index,event);
-        return index++ ;
-    }
+    /*
+     * Finding all events that air on specified date range
+     *
+     * @param from Start date
+     *
+     * @param to End date inclusive
+     *
+     * @return Set of events
+     */
+    // public @Nonnull Set<Event> getForDateRange(@Nonnull LocalDate from,
+    // @Nonnull LocalDate to);
 
-    public Map<Integer,Event> getEventMap (){
-        return eventList;
-    }
+    /*
+     * Return events from 'now' till the the specified date time
+     *
+     * @param to End date time inclusive
+     * s
+     * @return Set of events
+     */
+    // public @Nonnull Set<Event> getNextEvents(@Nonnull LocalDateTime to);
 
-    public Event getEventById(int id){
-        return eventList.get(id);
-    }
-
-    public Map<Integer, Event> getForDateRange(DateTime from, DateTime to){
-        Map<Integer, Event> filteredEvents = new HashMap<>();
-
-        for (Map.Entry<Integer, Event> e: eventList.entrySet()){
-        DateTime currentDate = e.getValue().getDate();
-            if(currentDate.isAfter(from)&&currentDate.isBefore(to))
-                filteredEvents.put(e.getKey(),e.getValue());
-        }
-        return filteredEvents;
-    }
-
-    public Map<Integer, Event> getNextEvents(DateTime to){
-        return getForDateRange(new DateTime(), to);
-    }
-
-    public void assignAuditorium(Event event, Auditorium auditorium, DateTime date){
-        event.setAuditorium(auditorium);
-        event.setDate(date);
-    }
-
-    public void removeEventByIndex(int key) {
-
-        if(eventList.remove(index)==null)
-            System.out.println("!!! Caution - remove operation failed. There are no value mapped to this key");
-
-    }
 }

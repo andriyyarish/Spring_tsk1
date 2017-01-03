@@ -1,59 +1,55 @@
 package epamUniversity.services;
+import epamUniversity.entities.Event;
+import epamUniversity.entities.Ticket;
+import epamUniversity.entities.User;
 
-import epamUniversity.entities.*;
-import org.joda.time.DateTime;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDateTime;
+import java.util.Set;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
- * BookingService - Manages tickets, prices, bookings
-
- getTicketPrice(event, date, time, seats, user) - returns price for ticket for specified event on specific date and time for specified seats.
- User is needed to calculate discount (see below)
- Event is needed to get base price, rating
- Vip seats should cost more than regular seats (For example, 2xBasePrice)
- All prices for high rated movies should be higher (For example, 1.2xBasePrice)
- bookTicket(user, ticket) - user could  be registered or not. If user is registered, then booking information is stored for that user. Purchased tickets for particular event should be stored
- getTicketsForEvent(event, date) - get all purchased tickets for event for specific date
+ * @author Yuriy_Tkach
  */
-public class BookingService {
+public interface BookingService {
 
-    @Autowired
-    private EventService eventService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private DiscountService discountService;
-    @Autowired
-    private Ticket ticket;
-    private Event event;
-    private User user;
+    /**
+     * Getting price when buying all supplied seats for particular event
+     *
+     * @param event
+     *            Event to get base ticket price, vip seats and other
+     *            information
+     * @param dateTime
+     *            Date and time of event air
+     * @param user
+     *            User that buys ticket could be needed to calculate discount.
+     *            Can be <code>null</code>
+     * @param seats
+     *            Set of seat numbers that user wants to buy
+     * @return total price
+     */
+    public double getTicketsPrice(@Nonnull Event event, @Nonnull LocalDateTime dateTime, @Nullable User user,
+                                  @Nonnull Set<Long> seats);
 
-    static final double VIPMULTIPLIER = 0.5;
+    /**
+     * Books tickets in internal system. If user is not
+     * <code>null</code> in a ticket then booked tickets are saved with it
+     *
+     * @param tickets
+     *            Set of tickets
+     */
+    public void bookTickets(@Nonnull Set<Ticket> tickets);
 
-    public double getTicketPrice(Event event, DateTime date, int seat, User usr){
-        ticket.setEvent(event);
-        ticket.setSeat(seat);
-        ticket.setOwner(usr.getName());
-        double price = getSeatPrice(event);
-        price *= 1 + DiscountService.getBasePriceMultiplier(event,seat,usr);
-        ticket.setPrice(price);
-        return price;
-    }
-
-    public Ticket getTicket(Event event, DateTime date, int seat, User usr){
-        getTicketPrice(event,date,seat,usr);
-        return ticket;
-    }
-
-    private double getSeatPrice(Event event){
-        return event.getPrice();
-    }
-
-
-
-
-
-
-
+    /**
+     * Getting all purchased tickets for event on specific air date and time
+     *
+     * @param event
+     *            Event to get tickets for
+     * @param dateTime
+     *            Date and time of airing of event
+     * @return set of all purchased tickets
+     */
+    public @Nonnull Set<Ticket> getPurchasedTicketsForEvent(@Nonnull Event event, @Nonnull LocalDateTime dateTime);
 
 }

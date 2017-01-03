@@ -1,60 +1,33 @@
 package epamUniversity.services;
-
 import epamUniversity.entities.Event;
 import epamUniversity.entities.User;
 import org.joda.time.DateTime;
 
-import static epamUniversity.services.BookingService.VIPMULTIPLIER;
+import java.time.LocalDateTime;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 
 /**
- * Created by Andriy_Yarish on 3/9/2016.
+ * @author Yuriy_Tkach
  */
-public class DiscountService {
+public interface DiscountService {
 
-    private static double SALE = 0.0;
-
-
-    public DiscountService(){
-
-    }
-
-    public static double getBasePriceMultiplier(Event event, int seat, User user){
-        return getRatingMultiplier(event) +
-                getSeatTypeMultiplier(event,seat) -
-                getBirthdayDiscount(user) -
-                SALE;
-    }
-
-    private static double getBirthdayDiscount(User user){
-        double discount = 0.0;
-        DateTime today = DateTime.now();
-        DateTime usrBirtday = user.getDateOfBirth();
-
-        if(today.getDayOfMonth()==usrBirtday.getDayOfMonth()
-                && today.getMonthOfYear()==usrBirtday.getDayOfYear())
-            discount = 0.15;
-
-        return discount;
-    }
-
-    private static double getSeatTypeMultiplier(Event event, int seat){
-        if (event.getAuditorium().getVipSeats().contains(String.valueOf(seat)))
-            return VIPMULTIPLIER;
-        else
-            return 1.0;
-    }
-
-    private static double getRatingMultiplier(Event event){
-        switch (event.getRating()){
-            case LOW:
-                return 0.0;
-            case MEDIUM:
-                return 0.2;
-            case HIGH:
-                return 0.5;
-            default:
-                return 0.0;
-        }
-    }
+    /**
+     * Getting discount based on some rules for user that buys some number of
+     * tickets for the specific date time of the event
+     *
+     * @param user
+     *            User that buys tickets. Can be <code>null</code>
+     * @param event
+     *            Event that tickets are bought for
+     * @param airDateTime
+     *            The date and time event will be aired
+     * @param numberOfTickets
+     *            Number of tickets that user buys
+     * @return discount value from 0 to 100
+     */
+    byte getDiscount(@Nullable User user, @Nonnull Event event, @Nonnull DateTime airDateTime, long numberOfTickets);
 
 }

@@ -13,6 +13,7 @@
         <spring.ver>4.2.5.RELEASE</spring.ver>
         <aspectj.ver>1.8.8</aspectj.ver>
         <java.ver>1.8</java.ver>
+        <findbugs.version>3.0.1</findbugs.version>
     </properties>
 
     <build>
@@ -36,9 +37,32 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <!-- Enables analysis which takes more memory but finds
+                        more bugs. If you run out of memory, changes the value of the effort element
+                        to 'Low'. -->
+                    <effort>Max</effort>
+                    <!-- Build doesn't fail if problems are found -->
+                    <failOnError>false</failOnError>
+                    <!-- Reports all bugs (other values are medium and max) -->
+                    <threshold>Low</threshold>
+                    <!-- Produces XML report -->
+                    <xmlOutput>true</xmlOutput>
+                    <!-- Configures the directory in which the XML report
+                        is created -->
+                    <findbugsXmlOutputDirectory>${project.build.directory}/findbugs</findbugsXmlOutputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <dependencies>
         <dependency>
@@ -88,6 +112,11 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${findbugs.version}</version>
         </dependency>
 
         <dependency>

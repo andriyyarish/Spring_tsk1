@@ -14,8 +14,8 @@
         <legend>Add Event</legend>
         <form name="event" action="events" method="post">
             EventName: <input type="text" name="name" />	<br/>
-            EventRating: <input type="text" name="rating" />	<br/>
-            EventPrice: <input type="number" name="price" />	<br/>
+            EventRating: <input type="text" name="eventRating" />	<br/>
+            EventPrice: <input type="number" name="basePrice" />	<br/>
             EventDate: <input type="datetime" name="date" />	<br/>
             <input type="submit" value="   Save   " />
         </form>
@@ -28,8 +28,8 @@
     <#list model["eventList"] as event>
         <tr>
             <td>${event.name}</td>
-            <td>${event.rating}</td>
-            <td>${event.price}</td>
+            <td>${event.eventRating!"UNKOWN"}</td>
+            <td>${event.basePrice}</td>
             <td>${event.date?if_exists}</td>
         </tr>
     </#list>

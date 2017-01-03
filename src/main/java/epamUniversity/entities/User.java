@@ -1,9 +1,8 @@
 package epamUniversity.entities;
 
+import epamUniversity.services.UserServiceImpl;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import epamUniversity.services.UserService;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,13 +11,12 @@ import java.util.Random;
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
-public class User {
+public class User extends DomainObject {
 
     private static int index;
     @Autowired
-    private transient UserService userService;
+    private transient UserServiceImpl userServiceImpl;
     private transient DateTime dateOfBirth;
-    private int id;
     private String email;
     private String name;
     private List<Ticket> bookingHistory;
@@ -33,37 +31,20 @@ public class User {
         bookingHistory = new LinkedList<>();
         int y = new Random().nextInt(20) + 10;
         dateOfBirth = new DateTime().minusYears(y);
-        id = index++;
+        super.setId(index++);
     }
 
-    public UserService getUserService() {
-        return userService;
+    public UserServiceImpl getUserServiceImpl() {
+        return userServiceImpl;
     }
 
-    public User setUserService(UserService userService) {
-        this.userService = userService;
+    public User setUserServiceImpl(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
         return this;
-    }
-
-    public static int getIndex() {
-        return index;
-    }
-
-    public static void setIndex(int index) {
-        User.index = index;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public DateTime getDateOfBirth(){
         return dateOfBirth;
-    }
-
-    public User setId(int id) {
-        this.id = id;
-        return this;
     }
 
     public String getEmail() {
@@ -97,13 +78,13 @@ public class User {
     }
 
     public void init(){
-        userService.registerUser(this);
+        userServiceImpl.save(this);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                ", id=" + id +
+                ", id=" + super.getId() +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", dateOfBirth=" + dateOfBirth +

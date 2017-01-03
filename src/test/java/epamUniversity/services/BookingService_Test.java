@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import epamUniversity.entities.Event;
 import epamUniversity.entities.Ticket;
@@ -26,8 +25,8 @@ public class BookingService_Test {
 
     User user;
     Event event;
-    BookingService bookingService;
-    UserService userService;
+    BookingServiceImpl bookingService;
+    UserServiceImpl userServiceImpl;
     DateTime date;
 
     @Before
@@ -36,9 +35,9 @@ public class BookingService_Test {
         user = (User) context.getBean("usr3");
         event = (Event) context.getBean("event1");
 
-        bookingService = context.getBean(BookingService.class);
-        userService = context.getBean(UserService.class);
-        userService.registerUser(user);
+        bookingService = context.getBean(BookingServiceImpl.class);
+        userServiceImpl = context.getBean(UserServiceImpl.class);
+        userServiceImpl.save(user);
         date = new DateTime();
     }
 

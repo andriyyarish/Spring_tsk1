@@ -26,11 +26,10 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 @RunWith(MockitoJUnitRunner.class)
 @ContextConfiguration()
 
-public class EventService_Test {
+public class EventService_Impl_Test {
 
     @Autowired()
-    @Qualifier("eventService")
-    private EventService eventService;
+    private EventServiceImpl eventService;
     private Event event1;
     private Event event2;
     private Event event3;
@@ -39,8 +38,8 @@ public class EventService_Test {
 
     @Before
     public void setUp(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("SpringUniver.xml");
-        eventService = applicationContext.getBean(EventService.class);
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springUniver.xml");
+        eventService = applicationContext.getBean(EventServiceImpl.class);
         event1 = (Event) applicationContext.getBean("event1");
         event2 = (Event) applicationContext.getBean("event2");
         event3 = (Event) applicationContext.getBean("event2");
@@ -49,22 +48,22 @@ public class EventService_Test {
 
     @Test
     public void addEvent(){
-        eventService.addEvent(event1);
-        eventService.addEvent(event2);
-        assertThat(eventService.getEventMap().size(), Matchers.equalTo(2));
+        eventService.save(event1);
+        eventService.save(event2);
+        assertThat(eventService.getAll().size(), Matchers.equalTo(2));
     }
 
     @Test
     public void getEvent(){
-        Event eventById = eventService.getEventById(0);
+        Event eventById = eventService.getById(0);
         assertThat(eventById, Matchers.notNullValue());
     }
 
     @Test
     public void assignAuditorium(){
-        int id = eventService.addEvent(event3);
+        int id = eventService.save(event3).getId();
         eventService.assignAuditorium(event3,auditorium,new DateTime());
-        assertThat(eventService.getEventById(id).getAuditorium(), Matchers.notNullValue());
+        assertThat(eventService.getById(id).getAuditoriums(), Matchers.notNullValue());
     }
 
     @Test
