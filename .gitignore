@@ -2,4 +2,5 @@
 *.jar
 *.war
 
-Spring.iml
+/.idea
+/Spring.iml
