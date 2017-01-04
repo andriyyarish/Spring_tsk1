@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  bookTicket(user, ticket) - user could  be registered or not. If user is registered, then booking information is stored for that user. Purchased tickets for particular event should be stored
  getTicketsForEvent(event, date) - get all purchased tickets for event for specific date
  */
-public class BookingServiceImpl {
+public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private EventServiceImpl eventService;

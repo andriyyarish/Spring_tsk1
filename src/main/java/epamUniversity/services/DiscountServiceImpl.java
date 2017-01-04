@@ -9,7 +9,7 @@ import static epamUniversity.services.BookingServiceImpl.VIPMULTIPLIER;
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
-public class DiscountServiceImpl {
+public class DiscountServiceImpl implements DiscountService {
 
     private static double SALE = 0.0;
 
