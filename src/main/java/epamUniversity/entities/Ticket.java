@@ -1,41 +1,40 @@
 package epamUniversity.entities;
 
+import org.joda.time.DateTime;
+
+import java.util.Objects;
+
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
-public class Ticket {
-    private double price;
-    private int seat;
-    private SeatType seatType;
+public class Ticket implements Comparable<Ticket> {
+    private User user;
+
     private Event event;
-    private String owner;
 
-    public Ticket(){
+    private DateTime dateTime;
 
-    }
+    private int seat;
 
-    public double getPrice() {
-        return price;
-    }
+    private double price;
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getSeat() {
-        return seat;
-    }
-
-    public void setSeat(int seat) {
+    public Ticket(User user, Event event, DateTime dateTime, int seat) {
+        this.user = user;
+        this.event = event;
+        this.dateTime = dateTime;
         this.seat = seat;
     }
 
-    public SeatType getSeatType() {
-        return seatType;
+    public Ticket() {
+
     }
 
-    public void setSeatType(SeatType seatType) {
-        this.seatType = seatType;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Event getEvent() {
@@ -46,22 +45,80 @@ public class Ticket {
         this.event = event;
     }
 
-    public String getOwner() {
-        return owner;
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setDateTime(DateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public long getSeat() {
+        return seat;
+    }
+
+    public void setSeat(int seat) {
+        this.seat = seat;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     @Override
-    public String toString() {
-        return "Ticket{" +
-                "price=" + price +
-                ", seat=" + seat +
-                ", seatType=" + seatType +
-                ", event=" + event +
-                ", owner='" + owner + '\'' +
-                '}';
+    public int hashCode() {
+        return Objects.hash(dateTime, event, seat);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Ticket other = (Ticket) obj;
+        if (dateTime == null) {
+            if (other.dateTime != null) {
+                return false;
+            }
+        } else if (!dateTime.equals(other.dateTime)) {
+            return false;
+        }
+        if (event == null) {
+            if (other.event != null) {
+                return false;
+            }
+        } else if (!event.equals(other.event)) {
+            return false;
+        }
+        if (seat != other.seat) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int compareTo(Ticket other) {
+        if (other == null) {
+            return 1;
+        }
+        int result = dateTime.compareTo(other.getDateTime());
+
+        if (result == 0) {
+            result = event.getName().compareTo(other.getEvent().getName());
+        }
+        if (result == 0) {
+            result = Long.compare(seat, other.getSeat());
+        }
+        return result;
     }
 }

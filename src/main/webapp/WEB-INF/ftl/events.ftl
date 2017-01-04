@@ -40,6 +40,7 @@
             <th>Rating</th>
             <th>Price</th>
             <th>Date</th>
+            <th>Auditoriums</th>
         </tr>
     <#list model["eventList"] as event>
         <tr>

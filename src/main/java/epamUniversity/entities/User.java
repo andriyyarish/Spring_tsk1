@@ -1,12 +1,10 @@
 package epamUniversity.entities;
 
-import epamUniversity.services.UserServiceImpl;
+import epamUniversity.services.UserService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -15,80 +13,118 @@ public class User extends DomainObject {
 
     private static int index;
     @Autowired
-    private transient UserServiceImpl userServiceImpl;
-    private transient DateTime dateOfBirth;
-    private String email;
-    private String name;
-    private List<Ticket> bookingHistory;
+    private transient UserService userService;
 
-    public User (String name, String email){
+    private String firstName;
+
+    private String lastName;
+
+    private String email;
+
+    private DateTime dateOfBirth;
+
+    private NavigableSet<Ticket> tickets = new TreeSet<>();
+
+    public User(String firstName, String lastName, String email) {
         this();
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
     }
 
-    public User (){
-        bookingHistory = new LinkedList<>();
-        int y = new Random().nextInt(20) + 10;
-        dateOfBirth = new DateTime().minusYears(y);
+    public User(){
+        int y = new Random().nextInt(50);
+        int d = new Random().nextInt(10);
+        dateOfBirth = new DateTime().minusYears(y).minusDays(d);
         super.setId(index++);
     }
 
-    public UserServiceImpl getUserServiceImpl() {
-        return userServiceImpl;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public User setUserServiceImpl(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
-        return this;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public DateTime getDateOfBirth(){
-        return dateOfBirth;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
-    public String getName() {
-        return name;
+    public NavigableSet<Ticket> getTickets() {
+        return tickets;
     }
 
-    public User setName(String name) {
-        this.name = name;
-        return this;
+    public void setTickets(NavigableSet<Ticket> tickets) {
+        this.tickets.addAll(tickets);
     }
 
-    public void setDateOfBirth(DateTime dateOfBirth){
+    public void setTickets(Ticket ticket) {
+        this.tickets.add(ticket);
+    }
+
+    public DateTime getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(DateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public List<Ticket> getBookingHistory(){
-        return bookingHistory;
-    }
-
-    public void addToBookingHistory(Ticket ticket){
-        bookingHistory.add(ticket);
-    }
-
     public void init(){
-        userServiceImpl.save(this);
+        userService.save(this);
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                ", id=" + super.getId() +
-                ", email='" + email + '\'' +
-                ", name='" + name + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", bookingHistory=" + bookingHistory +
-                '}';
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, email);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        User other = (User) obj;
+        if (email == null) {
+            if (other.email != null) {
+                return false;
+            }
+        } else if (!email.equals(other.email)) {
+            return false;
+        }
+        if (firstName == null) {
+            if (other.firstName != null) {
+                return false;
+            }
+        } else if (!firstName.equals(other.firstName)) {
+            return false;
+        }
+        if (lastName == null) {
+            if (other.lastName != null) {
+                return false;
+            }
+        } else if (!lastName.equals(other.lastName)) {
+            return false;
+        }
+        return true;
     }
 }

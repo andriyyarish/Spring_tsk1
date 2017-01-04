@@ -1,10 +1,8 @@
 package epamUniversity.entities;
 
+import epamUniversity.services.EventService;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-import epamUniversity.services.EventServiceImpl;
 
 import java.util.*;
 
@@ -15,7 +13,7 @@ public class Event extends DomainObject {
     private static int index ;
 
     @Autowired
-    private EventServiceImpl eventService;
+    private EventService eventService;
 
     private String name;
 

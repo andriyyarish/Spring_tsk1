@@ -33,7 +33,7 @@ public class BookingServiceImpl {
     public double getTicketPrice(Event event, DateTime date, int seat, User usr){
         ticket.setEvent(event);
         ticket.setSeat(seat);
-        ticket.setOwner(usr.getName());
+        ticket.setUser(usr);
         double price = getSeatPrice(event);
         price *= 1 + DiscountServiceImpl.getBasePriceMultiplier(event,seat,usr);
         ticket.setPrice(price);

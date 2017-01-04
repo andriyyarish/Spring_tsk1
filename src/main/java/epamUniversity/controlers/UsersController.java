@@ -2,7 +2,7 @@ package epamUniversity.controlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import epamUniversity.services.UserServiceImpl;
+import epamUniversity.services.UserService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import epamUniversity.entities.User;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by Andriy_Yarish on 12/28/2016.
  */
@@ -18,7 +21,7 @@ import epamUniversity.entities.User;
 @Controller
 public class UsersController implements InitializingBean {
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
     @Autowired
     private GsonBuilder gsonBuilder;
     private User userProto;
@@ -31,21 +34,44 @@ public class UsersController implements InitializingBean {
 
     @RequestMapping (value = "/users", method = RequestMethod.GET)
     public String users(@ModelAttribute("model") ModelMap model){
-        model.addAttribute("userList", userServiceImpl.getAll());
+        model.addAttribute("userList", userService.getAll());
         return "users";
     }
 
     @RequestMapping (value = "/users", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("user") User user){
-        if(null != user && null != user.getName() && null != user.getEmail())
-            userServiceImpl.save(user);
+        if(null != user && null != user.getFirstName() && null!=user.getLastName() && null != user.getEmail())
+            userService.save(user);
         return "redirect:users.html";
     }
+
+    @RequestMapping (value = "/users/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam("id") int id,
+                             @ModelAttribute("model") ModelMap model){
+        User u = userService.getById(id);
+        if(u!=null)
+            userService.remove(u);
+        //todo need to throw some exception
+        model.addAttribute("userList", userService.getAll());
+        return "users";
+    }
+
+    @RequestMapping (value = "/users/search", method = RequestMethod.GET)
+    public String searchUser(@RequestParam("id") int id,
+                             @ModelAttribute("model") ModelMap model){
+        User u = userService.getById(id);
+        List<User> ls = new LinkedList<>();
+        if(u!=null)
+            ls.add(u);
+        model.addAttribute("userList", ls);
+        return "users";
+    }
+
 
 
 //    @RequestMapping (value = "/users", method = RequestMethod.GET)
 //    public String getAllUsers(ModelMap modelMap){
-//        Map<Integer, User> userList = userServiceImpl.getUserList();
+//        Map<Integer, User> userList = userService.getUserList();
 //
 //        for(int i = 0; i<userList.size();i++)
 //            modelMap.addAttribute("usr"+i,userList.get(i) );
@@ -56,7 +82,7 @@ public class UsersController implements InitializingBean {
 //
 //    @RequestMapping (value = "/user/{id}", method = RequestMethod.GET, produces =MediaType.APPLICATION_JSON_VALUE)
 //    public ModelAndView getUserById(@PathVariable(value = "id") int id){
-//        User userById = userServiceImpl.getUserById(id);
+//        User userById = userService.getUserById(id);
 //        return new ModelAndView("users", "message", userById.toString());
 //    }
 //

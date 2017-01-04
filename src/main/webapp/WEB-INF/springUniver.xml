@@ -34,24 +34,29 @@
     <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">
-        <constructor-arg index="0" value="New user"/>
-        <constructor-arg index="1" value="New user"/>
+        <constructor-arg value="New user"/>
+        <constructor-arg value="New user"/>
+        <constructor-arg value="newUser@email.com"/>
     </bean>
     <bean id="usr1" class="epamUniversity.entities.User" init-method="init">
-        <constructor-arg index="0" value="Andriy"/>
-        <constructor-arg index="1" value="andy@gmail.com"/>
+        <constructor-arg value="Andriy"/>
+        <constructor-arg value="Yarish"/>
+        <constructor-arg value="andy@gmail.com"/>
     </bean>
     <bean id="usr2" class="epamUniversity.entities.User" init-method="init">
         <constructor-arg value="Ivan"/>
+        <constructor-arg value="Petrov"/>
         <constructor-arg value="ivan@gmail.com"/>
     </bean>
     <bean id="usr3" class="epamUniversity.entities.User" init-method="init">
-        <constructor-arg value="Maxim"/>
-        <constructor-arg value="maxim@gmail.com"/>
+        <constructor-arg value="Petr"/>
+        <constructor-arg value="Ivanov"/>
+        <constructor-arg value="petr@gmail.com"/>
     </bean>
     <bean id="usr4" class="epamUniversity.entities.User" init-method="init">
-        <constructor-arg value="Lanka"/>
-        <constructor-arg value="lanka@gmail.com"/>
+        <constructor-arg value="John"/>
+        <constructor-arg value="Doe"/>
+        <constructor-arg value="john@gmail.com"/>
     </bean>
 
     <bean id = "ticket" class="epamUniversity.entities.Ticket" scope="prototype"/>
@@ -71,11 +76,11 @@
         <constructor-arg>
             <bean class="org.joda.time.DateTime" scope="prototype"/>
         </constructor-arg>
-        <!--<property name="auditoriums" >-->
-            <!--<map>-->
-                <!--<entry key-ref="dateTime" value-ref="auditorium1"/>-->
-            <!--</map>-->
-        <!--</property>-->
+        <property name="auditoriums" >
+            <util:map map-class="java.util.TreeMap" >
+                <entry key-ref="dateTime" value-ref="auditorium1"/>
+            </util:map>
+        </property>
     </bean>
 
     <bean id="auditorium1" class="epamUniversity.entities.Auditorium" init-method="init">

@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class AuditoriumServiceImpl {
     private List<Auditorium> auditoriumList;
+
     private Map<String, List<Integer>> bookedSeats;
 
     public AuditoriumServiceImpl(){

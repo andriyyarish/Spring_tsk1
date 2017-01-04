@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     public User getUserByName(String name) throws Exception {
         User usr = null;
         for(User u: userList.values()) {
-            if (u.getName().equals(name))
+            if (u.getFirstName().equals(name))
                 usr = u;
         }
         return usr ;
