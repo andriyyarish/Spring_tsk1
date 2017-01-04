@@ -2,8 +2,8 @@ package epamUniversity.services;
 import epamUniversity.entities.Event;
 import epamUniversity.entities.Ticket;
 import epamUniversity.entities.User;
+import org.joda.time.DateTime;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -29,7 +29,7 @@ public interface BookingService {
      *            Set of seat numbers that user wants to buy
      * @return total price
      */
-    public double getTicketsPrice(@Nonnull Event event, @Nonnull LocalDateTime dateTime, @Nullable User user,
+    public double getTicketsPrice(@Nonnull Event event, @Nonnull DateTime dateTime, @Nullable User user,
                                   @Nonnull Set<Long> seats);
 
     /**
@@ -50,6 +50,6 @@ public interface BookingService {
      *            Date and time of airing of event
      * @return set of all purchased tickets
      */
-    public @Nonnull Set<Ticket> getPurchasedTicketsForEvent(@Nonnull Event event, @Nonnull LocalDateTime dateTime);
+    public @Nonnull Set<Ticket> getPurchasedTicketsForEvent(@Nonnull Event event, @Nonnull DateTime dateTime);
 
 }

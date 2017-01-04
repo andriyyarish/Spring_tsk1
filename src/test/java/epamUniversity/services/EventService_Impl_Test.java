@@ -12,7 +12,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import epamUniversity.entities.Auditorium;
 import epamUniversity.entities.Event;
@@ -38,12 +41,12 @@ public class EventService_Impl_Test {
 
     @Before
     public void setUp(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springUniver.xml");
-        eventService = applicationContext.getBean(EventServiceImpl.class);
-        event1 = (Event) applicationContext.getBean("event1");
-        event2 = (Event) applicationContext.getBean("event2");
-        event3 = (Event) applicationContext.getBean("event2");
-        auditorium = applicationContext.getBean(Auditorium.class);
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springUniver.xml");
+//        eventService = applicationContext.getBean(EventServiceImpl.class);
+//        event1 = (Event) applicationContext.getBean("event1");
+//        event2 = (Event) applicationContext.getBean("event2");
+//        event3 = (Event) applicationContext.getBean("event2");
+//        auditorium = applicationContext.getBean(Auditorium.class);
     }
 
     @Test
@@ -74,6 +77,15 @@ public class EventService_Impl_Test {
 
         Map<Integer, Event> forDateRange = eventService.getForDateRange(from,to);
         assertThat(forDateRange.size(), greaterThanOrEqualTo(1));
+    }
+
+    @Test
+    public void map(){
+        NavigableMap <String, String> nm = new TreeMap<>();
+        Map<String,String> map = new LinkedHashMap<>();
+        map.put("a","b");
+        nm.putAll(map);
+        System.out.println(nm);
     }
 
 }

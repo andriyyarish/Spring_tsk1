@@ -1,6 +1,7 @@
 package epamUniversity.entities;
 
 import epamUniversity.services.AuditoriumServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
  * Created by Newman on 12/26/16.
  */
 public class Auditorium {
+    @Autowired
     AuditoriumServiceImpl auditoriumService;
     String name;
     String adress;

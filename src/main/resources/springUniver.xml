@@ -31,6 +31,7 @@
     <bean id="eventService" class="epamUniversity.services.EventServiceImpl"/>
     <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
     <bean id="discountService" class="epamUniversity.services.DiscountServiceImpl"/>
+    <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">
         <constructor-arg index="0" value="New user"/>
@@ -72,12 +73,20 @@
         </constructor-arg>
     </bean>
 
-    <bean id="auditorium" class="epamUniversity.entities.Auditorium">
-        <constructor-arg index="0" value="${name}"/>
-        <constructor-arg index="1" value="${adress}"/>
-        <constructor-arg index="2" value="${seats}"/>
-        <constructor-arg index="3" value="${vipSeatsList}"/>
+    <bean id="auditorium1" class="epamUniversity.entities.Auditorium">
+        <constructor-arg value="${name1}"/>
+        <constructor-arg value="${adress1}"/>
+        <constructor-arg value="${seats1}"/>
+        <constructor-arg value="${vipSeatsList1}"/>
     </bean>
+
+    <bean id="auditorium2" class="epamUniversity.entities.Auditorium">
+        <constructor-arg value="${name2}"/>
+        <constructor-arg value="${adress2}"/>
+        <constructor-arg value="${seats2}"/>
+        <constructor-arg value="${vipSeatsList2}"/>
+    </bean>
+
 
 
 </beans>

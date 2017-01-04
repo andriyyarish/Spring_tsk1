@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import epamUniversity.services.EventServiceImpl;
 
-import java.util.NavigableMap;
-import java.util.NavigableSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -27,16 +25,18 @@ public class Event extends DomainObject {
 
     private Rating eventRating;
 
-    private DateTime date;
+    private NavigableMap<DateTime, Auditorium> auditoriums = new TreeMap<>();
 
-    private NavigableMap<DateTime, Auditorium> auditoriums;
+    public Event(){
+        super.setId(index++);
+    }
 
     public Event(String name, double price, String rating, DateTime date) {
+        this();
         this.name = name;
         this.basePrice = price;
         this.eventRating = Rating.valueOf(rating);
-        this.date = date;
-        super.setId(index++);
+        this.airDates.add(date);
     }
 
     /**
@@ -159,8 +159,8 @@ public class Event extends DomainObject {
         return airDates;
     }
 
-    public void setAirDates(NavigableSet<DateTime> airDates) {
-        this.airDates = airDates;
+    public void setAirDates(Set<DateTime> airDates) {
+        this.airDates.addAll(airDates);
     }
 
     public double getBasePrice() {
@@ -171,11 +171,11 @@ public class Event extends DomainObject {
         this.basePrice = basePrice;
     }
 
-    public Rating getRating() {
+    public Rating getEventRating() {
         return eventRating;
     }
 
-    public void setRating(Rating rating) {
+    public void setEventRating(Rating rating) {
         this.eventRating = rating;
     }
 
@@ -183,8 +183,8 @@ public class Event extends DomainObject {
         return auditoriums;
     }
 
-    public void setAuditoriums(NavigableMap<DateTime, Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
+    public void setAuditoriums(Map<DateTime, Auditorium> auditoriums) {
+        this.auditoriums.putAll(auditoriums);
     }
 
     private void init() {
