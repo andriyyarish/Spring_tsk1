@@ -22,6 +22,12 @@
             <td>User service</td>
             <td><a href="/epam/users.html">GO</a></td>
         </tr>
+
+        <tr>
+            <td>Get User By email</td>
+            <td><a href="/epam/getUserByEmail.html">GO</a></td>
+        </tr>
+
         <tr>
             <td>Event service</td>
             <td><a href="/epam/events.html">GO</a></td>

@@ -4,6 +4,9 @@ import epamUniversity.entities.Event;
 import epamUniversity.entities.User;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import static epamUniversity.services.BookingServiceImpl.VIPMULTIPLIER;
 
 /**
@@ -16,6 +19,11 @@ public class DiscountServiceImpl implements DiscountService {
 
     public DiscountServiceImpl(){
 
+    }
+
+    @Override
+    public byte getDiscount(@Nullable User user, @Nonnull Event event, @Nonnull DateTime airDateTime, long numberOfTickets) {
+        return 0;
     }
 
     public static double getBasePriceMultiplier(Event event, int seat, User user){
@@ -57,5 +65,6 @@ public class DiscountServiceImpl implements DiscountService {
 //        }
         return 1.0;
     }
+
 
 }

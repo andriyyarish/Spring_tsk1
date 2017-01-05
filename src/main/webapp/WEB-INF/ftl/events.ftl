@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head><title>EPAM university home work</title>
 <body>
@@ -48,6 +49,7 @@
             <td>${event.eventRating!"UNKOWN"}</td>
             <td>${event.basePrice}</td>
             <td>${event.date?if_exists}</td>
+            <td>${event.auditoriums}</td>
         </tr>
     </#list>
     </table>

@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     public User getUserByEmail(String email){
         User usr = null;
         for(User u: userList.values()) {
-            if (u.getEmail() == email)
+            if (u.getEmail().equals(email))
                 usr = u;
         }
         return usr;

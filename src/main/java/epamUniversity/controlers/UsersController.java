@@ -10,7 +10,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import epamUniversity.entities.User;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,15 +58,22 @@ public class UsersController implements InitializingBean {
         return "users";
     }
 
-    @RequestMapping (value = "/users/search", method = RequestMethod.GET)
-    public String searchUser(@RequestParam("id") int id,
-                             @ModelAttribute("model") ModelMap model){
-        User u = userService.getById(id);
-        List<User> ls = new LinkedList<>();
-        if(u!=null)
-            ls.add(u);
-        model.addAttribute("userList", ls);
-        return "users";
+    @RequestMapping (value = "/getUserByEmail")
+    public ModelAndView searchUser(HttpServletRequest request){
+        ModelAndView result = new ModelAndView();
+        String email = request.getParameter("email");
+
+        if (email != null) {
+            User user = userService.getUserByEmail(email);
+            if (user != null) {
+                result.addObject("user", user.getFirstName() + "" + user.getLastName());
+            } else {
+                result.addObject("user", "");
+            }
+            result.addObject("email", email);
+        }
+        result.setViewName("getUsrByEmail");
+        return result;
     }
 
 
