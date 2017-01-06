@@ -5,6 +5,8 @@ package epamUniversity.entities;
  */
 public enum Rating {
     HIGH ,
+
     MEDIUM,
+
     LOW
 }

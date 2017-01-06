@@ -2,6 +2,7 @@ package epamUniversity.entities;
 
 import epamUniversity.services.EventService;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
@@ -10,7 +11,7 @@ import java.util.*;
  * Created by Andriy_Yarish on 3/9/2016.
  */
 public class Event extends DomainObject {
-    private static int index ;
+    private static int index;
 
     @Autowired
     private EventService eventService;
@@ -25,7 +26,7 @@ public class Event extends DomainObject {
 
     private NavigableMap<DateTime, Auditorium> auditoriums = new TreeMap<>();
 
-    public Event(){
+    public Event() {
         super.setId(index++);
     }
 
@@ -47,21 +48,27 @@ public class Event extends DomainObject {
      * not aired on that date
      */
     public boolean assignAuditorium(DateTime dateTime, Auditorium auditorium) {
-        if (airDates.contains(dateTime)) {
-            auditoriums.put(dateTime, auditorium);
-            return true;
-        } else {
-            return false;
+        DateTimeComparator comparator = DateTimeComparator.getDateOnlyInstance();
+        boolean assigned = false;
+        for (DateTime d : airDates) {
+            if (comparator.compare(d, dateTime) == 0) {
+                auditoriums.put(dateTime, auditorium);
+                assigned = true;
+            } else {
+                assigned = false;
+            }
         }
+        return assigned;
     }
 
-    /**
-     * Removes auditorium assignment from event
-     *
-     * @param dateTime Date and time to remove auditorium for
-     * @return <code>true</code> if successful, <code>false</code> if not
-     * removed
-     */
+        /**
+         * Removes auditorium assignment from event
+         *
+         * @param dateTime Date and time to remove auditorium for
+         * @return <code>true</code> if successful, <code>false</code> if not
+         * removed
+         */
+
     public boolean removeAuditoriumAssignment(DateTime dateTime) {
         return auditoriums.remove(dateTime) != null;
     }
@@ -111,8 +118,7 @@ public class Event extends DomainObject {
     /**
      * Checks if event airs on particular date and time
      *
-     * @param dateTime
-     *            Date and time to check
+     * @param dateTime Date and time to check
      * @return <code>true</code> event airs on that date and time
      */
     public boolean airsOnDateTime(DateTime dateTime) {
@@ -122,8 +128,7 @@ public class Event extends DomainObject {
     /**
      * Checks if event airs on particular date
      *
-     * @param date
-     *            Date to ckeck
+     * @param date Date to ckeck
      * @return <code>true</code> event airs on that date
      */
     public boolean airsOnDate(DateTime date) {
@@ -134,10 +139,8 @@ public class Event extends DomainObject {
      * Checking if event airs on dates between <code>from</code> and
      * <code>to</code> inclusive
      *
-     * @param from
-     *            Start date to check
-     * @param to
-     *            End date to check
+     * @param from Start date to check
+     * @param to   End date to check
      * @return <code>true</code> event airs on dates
      */
     public boolean airsOnDates(DateTime from, DateTime to) {

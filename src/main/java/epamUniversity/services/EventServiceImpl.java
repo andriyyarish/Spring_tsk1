@@ -29,7 +29,12 @@ public class EventServiceImpl implements EventService {
     @Nullable
     @Override
     public Event getByName(@Nonnull String name) {
-        return null;
+        Event event = null;
+        for (Map.Entry<Integer,Event> e: eventList.entrySet()) {
+            if (e.getValue().getName().equals(name))
+                event = e.getValue();
+        }
+        return event;
     }
 
     @Override

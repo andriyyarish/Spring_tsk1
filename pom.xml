@@ -118,11 +118,23 @@
             <artifactId>jsr305</artifactId>
             <version>${findbugs.version}</version>
         </dependency>
-
+<!--For html views creation-->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>2.3.25-incubating</version>
+        </dependency>
+<!--for pdf views creation-->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <!-- Needed for IText PDF View -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.9</version>
         </dependency>
 
         <dependency>

@@ -7,7 +7,10 @@ import java.util.Objects;
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
-public class Ticket implements Comparable<Ticket> {
+public class Ticket extends DomainObject implements Comparable<Ticket> {
+
+    private int index;
+
     private User user;
 
     private Event event;
@@ -19,14 +22,15 @@ public class Ticket implements Comparable<Ticket> {
     private double price;
 
     public Ticket(User user, Event event, DateTime dateTime, int seat) {
+        this();
         this.user = user;
         this.event = event;
         this.dateTime = dateTime;
         this.seat = seat;
     }
 
-    public Ticket() {
-
+    private Ticket() {
+        super.setId(index++);
     }
 
     public User getUser() {

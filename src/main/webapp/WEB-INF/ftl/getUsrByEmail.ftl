@@ -1,4 +1,4 @@
-<h2>Get user by email </h2>
+<h3>Get user by email </h3>
 
 
 <form name="emailform" id="emailform" action="getUserByEmail" method="post">
@@ -7,11 +7,13 @@
 </form>
 
 
-    <#--<#if ${user?length} > 0 "">-->
-        <#--<p>results of ${email}:</p> <br>  ${user}-->
-        <#--<#else>-->
-        <#--sorry, there is no such user with email ($email)-->
-    <#--</#if>-->
+    <#if user?has_content>
+    <h1 style="color: green">Search results of email ${email?if_exists}: </h1>
+        <h2> ${user?if_exists} </h2>
+    <#else>
+       <h1 style="color: firebrick"> Sorry, there is no such user with email (${email?if_exists}) </h1>
+    </#if>
 
-results of email ${email?if_exists}: ${user?if_exists}
+
+
 

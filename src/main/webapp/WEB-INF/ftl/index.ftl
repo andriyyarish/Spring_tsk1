@@ -29,6 +29,11 @@
         </tr>
 
         <tr>
+            <td>Get User By id</td>
+            <td><a href="/epam/getUserById.html">GO</a></td>
+        </tr>
+
+        <tr>
             <td>Event service</td>
             <td><a href="/epam/events.html">GO</a></td>
         </tr>

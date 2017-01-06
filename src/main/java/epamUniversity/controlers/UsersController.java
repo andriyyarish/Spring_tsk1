@@ -3,6 +3,10 @@ package epamUniversity.controlers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import epamUniversity.services.UserService;
+import epamUniversity.util.DatesHandling;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedList;
 import java.util.List;
+
+import static epamUniversity.util.DatesHandling.parseStringToDate;
+import static java.lang.Integer.parseInt;
 
 /**
  * Created by Andriy_Yarish on 12/28/2016.
@@ -29,7 +36,7 @@ public class UsersController implements InitializingBean {
     private User userProto;
     private Gson gson;
 
-    @RequestMapping (value = "/index", method = RequestMethod.GET)
+    @RequestMapping (value = "/", method = RequestMethod.GET)
     public String index(){
         return "index";
     }
@@ -40,10 +47,34 @@ public class UsersController implements InitializingBean {
         return "users";
     }
 
-    @RequestMapping (value = "/users", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute("user") User user){
-        if(null != user && null != user.getFirstName() && null!=user.getLastName() && null != user.getEmail())
+    @RequestMapping (value = "/usersPdfView", method = RequestMethod.GET)
+    public ModelAndView usersToPdf(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("usersPdfView");
+        model.addObject("usersList",userService.getAll());
+        return model;
+    }
+
+//    @RequestMapping (value = "/users", method = RequestMethod.POST)
+//    public String addUser(@ModelAttribute("user") User user){
+//        if(null != user && null != user.getFirstName() && null!=user.getLastName() && null != user.getEmail())
+//            userService.save(user);
+//        return "redirect:users.html";
+//    }
+// Alternative method was implemented because previous one was note to handle DateTime.
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public String addUser_new(HttpServletRequest request){
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String emai = request.getParameter("email");
+        String dateOfBirth = request.getParameter("dateOfBirth");
+
+        if(null != firstName && null!=lastName && null != emai){
+            User user = new User(firstName,lastName,emai);
+            DateTime date = parseStringToDate(dateOfBirth);
+            user.setDateOfBirth(date);
             userService.save(user);
+        }
         return "redirect:users.html";
     }
 
@@ -59,14 +90,14 @@ public class UsersController implements InitializingBean {
     }
 
     @RequestMapping (value = "/getUserByEmail")
-    public ModelAndView searchUser(HttpServletRequest request){
+    public ModelAndView getUserByEmail(HttpServletRequest request){
         ModelAndView result = new ModelAndView();
         String email = request.getParameter("email");
 
         if (email != null) {
             User user = userService.getUserByEmail(email);
             if (user != null) {
-                result.addObject("user", user.getFirstName() + "" + user.getLastName());
+                result.addObject("user", user.getFirstName() + " " + user.getLastName());
             } else {
                 result.addObject("user", "");
             }
@@ -76,6 +107,23 @@ public class UsersController implements InitializingBean {
         return result;
     }
 
+    @RequestMapping (value = "/getUserById")
+    public ModelAndView getUserById(HttpServletRequest request){
+        ModelAndView result = new ModelAndView();
+        String id = request.getParameter("id");
+
+        if (id != null) {
+            User user = userService.getById(parseInt(id));
+            if (user != null) {
+                result.addObject("user", user.getFirstName() + " " + user.getLastName());
+            } else {
+                result.addObject("user", "");
+            }
+            result.addObject("id", id);
+        }
+        result.setViewName("getUsrById");
+        return result;
+    }
 
 
 //    @RequestMapping (value = "/users", method = RequestMethod.GET)
@@ -102,9 +150,6 @@ public class UsersController implements InitializingBean {
 //        return "result";
 //    }
 
-
-
-
     @Override
     public void afterPropertiesSet() throws Exception {
         gson = gsonBuilder.serializeNulls()
@@ -112,4 +157,6 @@ public class UsersController implements InitializingBean {
                 .disableInnerClassSerialization()
                 .create();
     }
+
+
 }

@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head><title>EPAM university home work</title>
 <body>
@@ -32,45 +32,64 @@
             <input type="submit" value="   Save   "/>
         </form>
     </fieldset>
+
+    <br/>
+    <legend>Assign auditorium to event</legend>
+    <form name="event" action="assignAuditoriumToEvent" method="post">
+        EventName: <select name="event">
+    <#list model["eventList"] as els>
+        <option>${els.name}</option>
+    </#list>
+        <br/>
+    </select>
+        AuditoriumName: <select name="auditorium">
+    <#list model["auditoriumsList"] as als>
+        <option>${als.name}</option>
+    </#list>
+        <br/>
+    </select>
+        Date <input type="date" name="date"><br/>
+        <input type="submit" value="Save">
+    </form>
     <br/>
     <div>
-    <table class="eventData" style="float: left;">
-        <caption>Events list</caption>
-        <tr>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Price</th>
-            <th>Date</th>
-            <th>Auditoriums</th>
-        </tr>
-    <#list model["eventList"] as event>
-        <tr>
-            <td>${event.name}</td>
-            <td>${event.eventRating!"UNKOWN"}</td>
-            <td>${event.basePrice}</td>
-            <td>${event.date?if_exists}</td>
-            <td>${event.auditoriums}</td>
-        </tr>
-    </#list>
-    </table>
+        <table class="eventData" style="float: left;">
+            <caption>Events list</caption>
+            <tr>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Auditoriums</th>
+            </tr>
+        <#list model["eventList"] as event>
+            <tr>
+                <td>${event.name}</td>
+                <td>${event.eventRating!"UNKOWN"}</td>
+                <td>${event.basePrice}</td>
+                <td>${event.date?if_exists}</td>
+                <td>Auditoriums</td>
+            </tr>
+        </#list>
+        </table>
 
-    <table class="auditoriumsList" style="display: inline-block">
-        <caption>Auditoriums list</caption>
-        <tr>
-            <th>Name</th>
-            <th>Adress</th>
-            <th>Seats</th>
-            <th>VipSeats</th>
-        </tr>
-    <#list model["auditoriumsList"] as audt>
-        <tr>
-            <td>${audt.name}</td>
-            <td>${audt.adress}</td>
-            <td>${audt.seats}</td>
-            <td>Vip seats</td><#--<td>${audt.vipSeats}</td>-->
-        </tr>
-    </#list>
-    </table>
+        <table class="auditoriumsList" style="display: inline-block">
+            <caption>Auditoriums list</caption>
+            <tr>
+                <th>Name</th>
+                <th>Adress</th>
+                <th>Seats</th>
+                <th>VipSeats</th>
+            </tr>
+        <#list model["auditoriumsList"] as audt>
+            <tr>
+                <td>${audt.name}</td>
+                <td>${audt.adress}</td>
+                <td>${audt.seats}</td>
+                <td>Vip seats</td><#--<td>${audt.vipSeats}</td>-->
+            </tr>
+        </#list>
+        </table>
     </div>
 </div>
 </body>

@@ -1,4 +1,4 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <#import "/spring.ftl" as spring/>
 
 <html>
@@ -21,6 +21,7 @@
             FirstName: <input type="text" name="firstName"/> <br/>
             LastName: <input type="text" name="lastName"/> <br/>
             Email: <input type="text" name="email"/> <br/>
+            DateOfBirth <input type="date" name="dateOfBirth">
             <input type="submit" value="   Save   "/>
         </form>
     </fieldset>
@@ -44,12 +45,13 @@
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
             <td>${user.email}</td>
-            <td>${user.dateOfBirth?if_exists}</td>
+            <td>${user.dateOfBirth?if_exists?date["yyyy-mm-dd"]}</td>
             <td><a href="/epam/users/delete?id=${user.id}">Delete</a></td>
             <td></td>
         </tr>
     </#list>
     </table>
+    <a href="/epam/usersPdfView">Export user list to PDF </a>
 
 </div>
 </body>
