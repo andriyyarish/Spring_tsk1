@@ -1,5 +1,7 @@
 package epamUniversity.services;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +40,8 @@ public class UserService_Test {
         user = (User) context.getBean("newusr");
         userService = context.getBean(UserService.class);
         user.setEmail("test");
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        System.out.println(gson.toJson(user));
     }
 
     @Test
@@ -56,6 +60,7 @@ public class UserService_Test {
     @Test
     public void getAllUsers(){
         Collection<User> cu = userService.getAll();
+
         Assert.assertTrue(cu.size()>0);
     }
 

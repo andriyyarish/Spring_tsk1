@@ -1,6 +1,7 @@
 package epamUniversity.services;
 
 import epamUniversity.entities.*;
+import epamUniversity.services.discount.DiscountServiceImpl;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -25,8 +26,8 @@ public class BookingServiceImpl implements BookingService {
     private EventServiceImpl eventService;
     @Autowired
     private UserServiceImpl userServiceImpl;
-    @Autowired
-    private DiscountServiceImpl discountService;
+//    @Autowired
+//    private DiscountServiceImpl discountService;
     @Autowired
     private Ticket ticket;
     private Event event;
@@ -34,17 +35,17 @@ public class BookingServiceImpl implements BookingService {
 
     static final double VIPMULTIPLIER = 0.5;
 
-    public double getTicketPrice(Event event, DateTime date, int seat, User usr){
+    public double getTicketPrice(EventInstance event, DateTime date, int seat, User usr){
         ticket.setEvent(event);
         ticket.setSeat(seat);
         ticket.setUser(usr);
-        double price = getSeatPrice(event);
-        price *= 1 + DiscountServiceImpl.getBasePriceMultiplier(event,seat,usr);
+        double price = getSeatPrice(event.getEventParent());
+//        price *= 1 + DiscountServiceImpl.getBasePriceMultiplier(event,seat,usr);
         ticket.setPrice(price);
         return price;
     }
 
-    public Ticket getTicket(Event event, DateTime date, int seat, User usr){
+    public Ticket getTicket(EventInstance event, DateTime date, int seat, User usr){
         getTicketPrice(event,date,seat,usr);
         return ticket;
     }
@@ -63,8 +64,6 @@ public class BookingServiceImpl implements BookingService {
     public void bookTickets(@Nonnull Set<Ticket> tickets) {
 
     }
-
-
 
     @Nonnull
     @Override

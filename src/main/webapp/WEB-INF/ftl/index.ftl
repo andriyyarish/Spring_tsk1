@@ -38,6 +38,11 @@
             <td><a href="/epam/events.html">GO</a></td>
         </tr>
 
+        <tr>
+            <td>Batch Loading</td>
+            <td><a href="/epam/batchLoad.html">GO</a> </td>
+        </tr>
+
     </table>
 
 </div>

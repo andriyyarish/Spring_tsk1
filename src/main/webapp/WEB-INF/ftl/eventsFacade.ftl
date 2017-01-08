@@ -15,7 +15,7 @@
 
     <fieldset>
         <legend>Add Event</legend>
-        <form name="event" action="events" method="post">
+        <form name="eventParent" action="events" method="post">
             EventName: <input type="text" name="name"/> <br/>
             EventRating: <select name="eventRating">
             <option value="LOW">Low</option>
@@ -34,9 +34,9 @@
     </fieldset>
 
     <br/>
-    <legend>Assign auditorium to event</legend>
-    <form name="event" action="assignAuditoriumToEvent" method="post">
-        EventName: <select name="event">
+    <h2><legend >Assign auditorium to eventParent</legend></h2>
+    <form name="eventParent" action="assignAuditoriumToEvent" method="post">
+        EventName: <select name="eventParent">
     <#list model["eventList"] as els>
         <option>${els.name}</option>
     </#list>
@@ -52,8 +52,9 @@
         <input type="submit" value="Save">
     </form>
     <br/>
+
     <div>
-        <table class="eventData" style="float: left;">
+        <table class="eventData" style="float: left; margin-right: 20px" border="1" >
             <caption>Events list</caption>
             <tr>
                 <th>Name</th>
@@ -62,18 +63,18 @@
                 <th>Date</th>
                 <th>Auditoriums</th>
             </tr>
-        <#list model["eventList"] as event>
+        <#list model["eventList"] as eventParent>
             <tr>
-                <td>${event.name}</td>
-                <td>${event.eventRating!"UNKOWN"}</td>
-                <td>${event.basePrice}</td>
-                <td>${event.date?if_exists}</td>
+                <td>${eventParent.name}</td>
+                <td>${eventParent.eventRating!"UNKOWN"}</td>
+                <td>${eventParent.basePrice}</td>
+                <td>${eventParent.date?if_exists}</td>
                 <td>Auditoriums</td>
             </tr>
         </#list>
         </table>
 
-        <table class="auditoriumsList" style="display: inline-block">
+        <table class="auditoriumsList" style="display: inline-block" border="1">
             <caption>Auditoriums list</caption>
             <tr>
                 <th>Name</th>

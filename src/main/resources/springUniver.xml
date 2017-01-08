@@ -30,7 +30,7 @@
     <bean id="userService" class="epamUniversity.services.UserServiceImpl"/>
     <bean id="eventService" class="epamUniversity.services.EventServiceImpl"/>
     <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
-    <bean id="discountService" class="epamUniversity.services.DiscountServiceImpl"/>
+    <!--<bean id="discountService" class="epamUniversity.services.discount.DiscountServiceImpl"/>-->
     <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">

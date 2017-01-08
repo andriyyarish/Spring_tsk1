@@ -30,7 +30,7 @@
     <bean id="userServiceImpl" class="epamUniversity.services.UserServiceImpl"/>
     <bean id="eventService" class="epamUniversity.services.EventServiceImpl"/>
     <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
-    <bean id="discountService" class="epamUniversity.services.DiscountServiceImpl"/>
+    <bean id="discountService" class="epamUniversity.services.discount.DiscountServiceImpl"/>
     <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">
@@ -98,5 +98,12 @@
     </bean>
 
     <bean id="dateTime" class="org.joda.time.DateTime"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <!-- <property name="maxUploadSize" value="40000000" /> -->
+    </bean>
 
 </beans>

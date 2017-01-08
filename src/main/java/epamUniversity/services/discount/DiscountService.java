@@ -1,5 +1,6 @@
-package epamUniversity.services;
+package epamUniversity.services.discount;
 import epamUniversity.entities.Event;
+import epamUniversity.entities.EventInstance;
 import epamUniversity.entities.User;
 import org.joda.time.DateTime;
 
@@ -22,12 +23,14 @@ public interface DiscountService {
      *            User that buys tickets. Can be <code>null</code>
      * @param event
      *            Event that tickets are bought for
-     * @param airDateTime
-     *            The date and time event will be aired
-     * @param numberOfTickets
-     *            Number of tickets that user buys
+
      * @return discount value from 0 to 100
      */
-    byte getDiscount(@Nullable User user, @Nonnull Event event, @Nonnull DateTime airDateTime, long numberOfTickets);
+    double getDiscount(@Nullable User user, @Nonnull EventInstance event);
+
+    //     * @param airDateTime
+//     *            The date and time event will be aired
+//     * @param numberOfTickets
+//     *            Number of tickets that user buys
 
 }

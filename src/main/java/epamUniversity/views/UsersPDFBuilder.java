@@ -62,8 +62,6 @@ public class UsersPDFBuilder extends AbstractITextPdfView {
         cell.setPhrase(new Phrase("Date of birth", font));
         table.addCell(cell);
 
-
-
         // write table row data
         for (User aBook : listBooks) {
             table.addCell(aBook.getFirstName());

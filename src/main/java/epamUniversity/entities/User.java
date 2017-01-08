@@ -21,6 +21,7 @@ public class User extends DomainObject {
 
     private String email;
 
+//    @JsonDeserialize(using=LocalDateDeserializer.class)
     private DateTime dateOfBirth;
 
     private NavigableSet<Ticket> tickets = new TreeSet<>();
@@ -71,7 +72,7 @@ public class User extends DomainObject {
         this.tickets.addAll(tickets);
     }
 
-    public void setTickets(Ticket ticket) {
+    public void addTicket(Ticket ticket) {
         this.tickets.add(ticket);
     }
 

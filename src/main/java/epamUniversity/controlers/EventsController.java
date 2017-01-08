@@ -36,7 +36,7 @@ public class EventsController {
     public String getEvents(@ModelAttribute("model") ModelMap modelMap) {
         modelMap.put("eventList", eventService.getAll());
         modelMap.put("auditoriumsList", auditoriumService.getAuditoriums());
-        return "events";
+        return "eventsFacade";
     }
 
     @RequestMapping(value = "/events", method = RequestMethod.POST)

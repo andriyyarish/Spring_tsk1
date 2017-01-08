@@ -1,13 +1,14 @@
-package epamUniversity.services;
+package epamUniversity.services.discount;
 
 import epamUniversity.entities.Event;
+import epamUniversity.entities.EventInstance;
 import epamUniversity.entities.User;
+import epamUniversity.services.discount.strategy.DiscountStrategy;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import static epamUniversity.services.BookingServiceImpl.VIPMULTIPLIER;
+import java.util.List;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -16,15 +17,23 @@ public class DiscountServiceImpl implements DiscountService {
 
     private static double SALE = 0.0;
 
+    List<DiscountStrategy> strategies;
 
-    public DiscountServiceImpl(){
-
+    public DiscountServiceImpl(List<DiscountStrategy> strategies){
+        this.strategies = strategies;
     }
 
-    @Override
-    public byte getDiscount(@Nullable User user, @Nonnull Event event, @Nonnull DateTime airDateTime, long numberOfTickets) {
-        return 0;
+    public DiscountServiceImpl() {
     }
+
+    //    @Override
+//    public double getDiscount(@Nullable User user, @Nonnull EventInstance event, @Nonnull DateTime airDateTime, long numberOfTickets) {
+//        double totalDiscountPercent = 0.00;
+//        for (DiscountStrategy ds: strategies){
+//            totalDiscountPercent += ds.execute(user, event);
+//        }
+//        return totalDiscountPercent;
+//    }
 
     public static double getBasePriceMultiplier(Event event, int seat, User user){
         return getRatingMultiplier(event) +
@@ -67,4 +76,8 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
 
+    @Override
+    public double getDiscount(@Nullable User user, @Nonnull EventInstance event) {
+        return 0;
+    }
 }

@@ -2,6 +2,7 @@ package epamUniversity.controlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import epamUniversity.entities.Ticket;
 import epamUniversity.services.UserService;
 import epamUniversity.util.DatesHandling;
 import org.joda.time.DateTime;
@@ -17,6 +18,7 @@ import epamUniversity.entities.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,18 +38,22 @@ public class UsersController implements InitializingBean {
     private User userProto;
     private Gson gson;
 
-    @RequestMapping (value = "/", method = RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
-
     @RequestMapping (value = "/users", method = RequestMethod.GET)
     public String users(@ModelAttribute("model") ModelMap model){
         model.addAttribute("userList", userService.getAll());
-        return "users";
+        return "usersFacade";
+    }
+    // the same path as for html representation but it works only with specific header type/value
+    @RequestMapping (value = "/users", method = RequestMethod.GET, headers = "accept=application/pdf")
+    public ModelAndView users(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("usersPdfView");
+        model.addObject("usersList",userService.getAll());
+        return model;
     }
 
-    @RequestMapping (value = "/usersPdfView", method = RequestMethod.GET)
+    // this path is used in users view to demonstrate that PDF export works
+    @RequestMapping (value = "/usersPdfView", method = RequestMethod.GET, headers = "accept=application/pdf")
     public ModelAndView usersToPdf(){
         ModelAndView model = new ModelAndView();
         model.setViewName("usersPdfView");
@@ -55,13 +61,14 @@ public class UsersController implements InitializingBean {
         return model;
     }
 
+    // Alternative method was implemented because previous one was note to handle DateTime.
 //    @RequestMapping (value = "/users", method = RequestMethod.POST)
 //    public String addUser(@ModelAttribute("user") User user){
 //        if(null != user && null != user.getFirstName() && null!=user.getLastName() && null != user.getEmail())
 //            userService.save(user);
 //        return "redirect:users.html";
 //    }
-// Alternative method was implemented because previous one was note to handle DateTime.
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public String addUser_new(HttpServletRequest request){
         String firstName = request.getParameter("firstName");
@@ -76,17 +83,6 @@ public class UsersController implements InitializingBean {
             userService.save(user);
         }
         return "redirect:users.html";
-    }
-
-    @RequestMapping (value = "/users/delete", method = RequestMethod.GET)
-    public String deleteUser(@RequestParam("id") int id,
-                             @ModelAttribute("model") ModelMap model){
-        User u = userService.getById(id);
-        if(u!=null)
-            userService.remove(u);
-        //todo need to throw some exception
-        model.addAttribute("userList", userService.getAll());
-        return "users";
     }
 
     @RequestMapping (value = "/getUserByEmail")
@@ -125,6 +121,32 @@ public class UsersController implements InitializingBean {
         return result;
     }
 
+    @RequestMapping (value = "/users/delete", method = RequestMethod.GET)
+    public String deleteUser(@RequestParam("id") int id,
+                             @ModelAttribute("model") ModelMap model){
+        User u = userService.getById(id);
+        if(u!=null)
+            userService.remove(u);
+        //todo need to throw some exception
+        model.addAttribute("userList", userService.getAll());
+        return "users";
+    }
+
+    @RequestMapping(value = "/users/{id}/getTickets", method = RequestMethod.GET)
+    public ModelAndView getBookedTickets(@PathVariable(value = "id") int usrId, ModelAndView result){
+        User user = userService.getById(usrId);
+        Collection<Ticket> tickets;
+        Collection<String> ticketsView = new LinkedList<>();
+        if(user != null) {
+            tickets = user.getTickets();
+            if(tickets != null && tickets.size()>0)
+                for (Ticket t: tickets)
+                    ticketsView.add("Event: "+t.getEvent()+"Date: "+t.getDateTime());
+        }
+        result.addObject("tickets",ticketsView);
+        result.setViewName("ticketsByUser");
+        return result;
+    }
 
 //    @RequestMapping (value = "/users", method = RequestMethod.GET)
 //    public String getAllUsers(ModelMap modelMap){

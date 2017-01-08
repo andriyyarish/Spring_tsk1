@@ -1,6 +1,7 @@
 package epamUniversity.services;
 
 
+import epamUniversity.entities.EventInstance;
 import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -25,6 +26,7 @@ public class BookingService_Test {
 
     User user;
     Event event;
+    EventInstance eventInstance;
     BookingServiceImpl bookingService;
     UserServiceImpl userServiceImpl;
     DateTime date;
@@ -34,6 +36,8 @@ public class BookingService_Test {
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringUniver.xml");
         user = (User) context.getBean("usr3");
         event = (Event) context.getBean("event1");
+        eventInstance = new EventInstance();
+        eventInstance.setEventParent(event);
 
         bookingService = context.getBean(BookingServiceImpl.class);
         userServiceImpl = context.getBean(UserServiceImpl.class);
@@ -44,22 +48,22 @@ public class BookingService_Test {
     @Test
     public void testGetPriceMethod(){
 
-        double price = bookingService.getTicketPrice(event,date,4,user);
+        double price = bookingService.getTicketPrice(eventInstance,date,4,user);
         System.out.println(price);
     }
 
     @Test
     public void testGenerateTicketMethod(){
-        Ticket ticket = bookingService.getTicket(event,date,4,user);
-        double expectedPrice = bookingService.getTicketPrice(event,date,4,user);
+        Ticket ticket = bookingService.getTicket(eventInstance,date,4,user);
+        double expectedPrice = bookingService.getTicketPrice(eventInstance,date,4,user);
         assertThat(expectedPrice, Matchers.equalTo(ticket.getPrice()));
     }
 
     // price for the same event and vip and regular
     @Test
     public void testGenerateTicketMethodNegative(){
-        double expectedPrice = bookingService.getTicketPrice(event,date,17,user);
-        Ticket ticket = bookingService.getTicket(event,date,4,user);
+        double expectedPrice = bookingService.getTicketPrice(eventInstance,date,17,user);
+        Ticket ticket = bookingService.getTicket(eventInstance,date,4,user);
 
         assertThat("Should be greater because of vip place",expectedPrice, Matchers.greaterThan(ticket.getPrice()));
     }

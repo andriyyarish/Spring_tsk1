@@ -47,6 +47,7 @@
             <td>${user.email}</td>
             <td>${user.dateOfBirth?if_exists?date["yyyy-mm-dd"]}</td>
             <td><a href="/epam/users/delete?id=${user.id}">Delete</a></td>
+            <td><a href="/epam/users/${user.id}/getTickets">Show Booked tickets</a> </td>
             <td></td>
         </tr>
     </#list>
