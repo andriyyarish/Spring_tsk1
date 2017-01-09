@@ -1,7 +1,7 @@
 package epamUniversity.services;
 
 
-import epamUniversity.entities.EventInstance;
+import epamUniversity.entities.*;
 import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.junit.Before;
@@ -10,10 +10,6 @@ import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import epamUniversity.entities.Event;
-import epamUniversity.entities.Ticket;
-import epamUniversity.entities.User;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -36,7 +32,7 @@ public class BookingService_Test {
         ApplicationContext context = new ClassPathXmlApplicationContext("SpringUniver.xml");
         user = (User) context.getBean("usr3");
         event = (Event) context.getBean("event1");
-        eventInstance = new EventInstance();
+        eventInstance = new EventInstance(event,new Auditorium(),new DateTime() );
         eventInstance.setEventParent(event);
 
         bookingService = context.getBean(BookingServiceImpl.class);

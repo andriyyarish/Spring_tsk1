@@ -16,7 +16,13 @@ public class EventInstance extends DomainObject {
 
     private DateTime dateTime;
 
-    List<Ticket> tiskets = new ArrayList<>();
+    List<Ticket> tickets = new ArrayList<>();
+
+    public EventInstance(Event eventParent, Auditorium auditorium, DateTime dateTime) {
+        this.eventParent = eventParent;
+        this.auditorium = auditorium;
+        this.dateTime = dateTime;
+    }
 
     public Event getEventParent() {
         return eventParent;
@@ -42,11 +48,11 @@ public class EventInstance extends DomainObject {
         this.dateTime = dateTime;
     }
 
-    public List<Ticket> getTiskets() {
-        return tiskets;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTiskets(List<Ticket> tiskets) {
-        this.tiskets = tiskets;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

@@ -40,7 +40,6 @@
     <#list model["eventList"] as els>
         <option>${els.name}</option>
     </#list>
-        <br/>
     </select>
         AuditoriumName: <select name="auditorium">
     <#list model["auditoriumsList"] as als>
@@ -52,6 +51,15 @@
         <input type="submit" value="Save">
     </form>
     <br/>
+
+    <form name = "airDates" action="events/airDates" method="post">
+        EventName: <select name="eventParent">
+    <#list model["eventList"] as els>
+        <option>${els.name}</option>
+    </#list>
+    </select>
+        AirDates: <input type="date" name="airDates">
+    </form>
 
     <div>
         <table class="eventData" style="float: left; margin-right: 20px" border="1" >

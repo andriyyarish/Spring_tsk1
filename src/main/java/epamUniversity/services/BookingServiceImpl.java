@@ -35,28 +35,18 @@ public class BookingServiceImpl implements BookingService {
 
     static final double VIPMULTIPLIER = 0.5;
 
-    public double getTicketPrice(EventInstance event, DateTime date, int seat, User usr){
-        ticket.setEvent(event);
-        ticket.setSeat(seat);
-        ticket.setUser(usr);
-        double price = getSeatPrice(event.getEventParent());
-//        price *= 1 + DiscountServiceImpl.getBasePriceMultiplier(event,seat,usr);
-        ticket.setPrice(price);
-        return price;
+    public double getTicketsPrice(@Nonnull Event event,
+                                  @Nonnull Auditorium auditorium,
+                                  @Nonnull DateTime dateTime,
+                                  @Nullable User user,
+                                  @Nonnull Integer seat) {
+        double basePrice = event.getBasePrice();
+        double priceMultiplier = getVipmultiplier(auditorium,seat);
+        return basePrice * (1+priceMultiplier/100);
     }
-
-    public Ticket getTicket(EventInstance event, DateTime date, int seat, User usr){
-        getTicketPrice(event,date,seat,usr);
-        return ticket;
-    }
-
-    private double getSeatPrice(Event event){
-        return event.getBasePrice();
-    }
-
 
     @Override
-    public double getTicketsPrice(@Nonnull Event event, @Nonnull DateTime dateTime, @Nullable User user, @Nonnull Set<Long> seats) {
+    public double getTicketsPrice(@Nonnull Event event, @Nonnull DateTime dateTime, @Nullable User user, @Nonnull Set<Integer> seats) {
         return 0;
     }
 
@@ -65,9 +55,40 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
+    public void bookTickets(@Nonnull Ticket ticket) {
+
+    }
+
+
     @Nonnull
     @Override
-    public Set<Ticket> getPurchasedTicketsForEvent(@Nonnull Event event, @Nonnull DateTime dateTime) {
+    public Set<Ticket> getPurchasedTicketsForEvent(@Nonnull Event event,
+                                                   @Nonnull DateTime dateTime) {
+
         return null;
     }
+
+    public double getTicketPrice(EventInstance event, DateTime date, int seat, User usr){
+        ticket.setEvent(event);
+        ticket.setSeat(seat);
+        ticket.setUser(usr);
+//        double price = getSeatPrice(event.getEventParent());
+//        price *= 1 + DiscountServiceImpl.getBasePriceMultiplier(event,seat,usr);
+//        ticket.setPrice(price);
+        return 0.0;
+    }
+
+    public Ticket getTicket(EventInstance event, DateTime date, int seat, User usr){
+        getTicketPrice(event,date,seat,usr);
+        return ticket;
+    }
+
+    public double getVipmultiplier(Auditorium a, int seat){
+        if(a.getVipSeats().contains(seat))
+            return 20.0;
+        else
+            return 0.0;
+    }
+
+
 }

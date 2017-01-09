@@ -2,53 +2,68 @@ package epamUniversity.services;
 
 import epamUniversity.entities.Auditorium;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.*;
 
 /**
  * AuditoriumServiceImpl - Returns info about auditoriums and places
-
- Since auditorium information is usually static, store it in some property file. The information that needs to be stored is:
- name
- number of seats
- vip seats (comma-separated list of expensive seats)
- Several auditoriums can be stored in separate property files, information from them could be injected into the AuditoriumServiceImpl
-
- getAuditoriums(), getSeatsNumber(), getVipSeats()
+ * <p>
+ * Since auditorium information is usually static, store it in some property file. The information that needs to be stored is:
+ * name
+ * number of seats
+ * vip seats (comma-separated list of expensive seats)
+ * Several auditoriums can be stored in separate property files, information from them could be injected into the AuditoriumServiceImpl
+ * <p>
+ * getAuditoriums(), getSeatsNumber(), getVipSeats()
  */
-public class AuditoriumServiceImpl {
+public class AuditoriumServiceImpl implements AuditoriumService {
     private List<Auditorium> auditoriumList;
 
     private Map<String, List<Integer>> bookedSeats;
 
-    public AuditoriumServiceImpl(){
+    public AuditoriumServiceImpl() {
         auditoriumList = new LinkedList<>();
     }
 
-    public List<Auditorium> getAuditoriums(){
+    public List<Auditorium> getAuditoriums() {
         return auditoriumList;
     }
 
-    public Auditorium getAuditorium(String name){
+    public Auditorium getAuditorium(String name) {
         return auditoriumList.stream()
                 .filter(a -> a.getName().contains(name))
                 .findFirst()
                 .get();
     }
 
-    public void setAuditorium(Auditorium auditorium){
+    public void setAuditorium(Auditorium auditorium) {
         auditoriumList.add(auditorium);
     }
 
-    public void bookSeat(Auditorium auditorium, int seat){
+    public void bookSeat(Auditorium auditorium, int seat) {
         bookedSeats.get(auditorium.getName()).add(seat);
     }
 
-    public boolean isSeatBooked(Auditorium auditorium, int seat){
+    public boolean isSeatBooked(Auditorium auditorium, int seat) {
         return bookedSeats.get(auditorium.getName()).contains(seat);
     }
 
+    @Nonnull
+    @Override
+    public Set<Auditorium> getAll() {
+        return new LinkedHashSet<>(auditoriumList);
+    }
 
-
+    @Nullable
+    @Override
+    public Auditorium getByName(@Nonnull String name) {
+        Auditorium auditorium = null;
+        for (Auditorium a : auditoriumList) {
+            if (a.getName().equals(name)) {
+                auditorium = a;
+            }
+        }
+        return auditorium;
+    }
 }

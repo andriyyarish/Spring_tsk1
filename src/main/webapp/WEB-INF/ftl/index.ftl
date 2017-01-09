@@ -43,6 +43,11 @@
             <td><a href="/epam/batchLoad.html">GO</a> </td>
         </tr>
 
+        <tr>
+            <td>Booking facade</td>
+            <td><a href="/epam/booking.html">GO</a> </td>
+        </tr>
+
     </table>
 
 </div>

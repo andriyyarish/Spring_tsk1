@@ -1,5 +1,5 @@
 <h1>Error page</h1>
-    ${ex.message}
+    ${ex.message?if_exists}
 <br>
 <li><a href="/epam")">go to homepage</a></li>
 <hr>

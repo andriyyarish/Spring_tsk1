@@ -16,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import epamUniversity.entities.User;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -62,6 +64,15 @@ public class UserService_Test {
         Collection<User> cu = userService.getAll();
 
         Assert.assertTrue(cu.size()>0);
+    }
+
+    @Test
+    public void getEmailsViaLiambdas(){
+        List<String> uls = userService.getAll()
+                .stream()
+                .map(user -> user.getEmail())
+                .collect(Collectors.toList());
+        System.out.println(uls);
     }
 
 
