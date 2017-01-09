@@ -20,12 +20,10 @@
 </select>
     <br/>
 
-    Date <input type="datetime">
+    Date <input type="date" name="date">
     <br/>
 
-    Seat <input type="number">
+    Seat <input type="number" name="seat">
     <input type="submit" name="submit">
 </form>
 
-
-<h1>Price for ${event?if_exists} is ${price?if_exists}</h1>

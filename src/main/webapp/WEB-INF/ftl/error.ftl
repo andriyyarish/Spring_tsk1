@@ -8,3 +8,7 @@
 <pre>
     ${ex.StackTrace?if_exists}
 </pre>
+
+<pre>
+    ${message?if_exists}
+</pre>

@@ -4,6 +4,7 @@ import epamUniversity.entities.Auditorium;
 import epamUniversity.entities.Event;
 import epamUniversity.entities.User;
 import epamUniversity.services.*;
+import epamUniversity.util.DatesHandling;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import static epamUniversity.util.DatesHandling.parseStringToDate;
+import static java.lang.Integer.parseInt;
+import static javax.xml.bind.DatatypeConverter.parseInteger;
 
 /**
  * Created by Andriy_Yarish on 1/9/2017.
@@ -66,15 +71,24 @@ public class BookingController {
         String uEmail = request.getParameter("user");
         String aud = request.getParameter("auditorium");
         String ev = request.getParameter("event");
+        int seat = parseInt(request.getParameter("seat"));
+        DateTime date = parseStringToDate(request.getParameter("date"));
 
         User user = userService.getUserByEmail(uEmail);
         Auditorium auditorium = auditoriumService.getByName(aud);
         Event event1 = eventService.getByName(ev);
 
-        double price = ((BookingServiceImpl)bookingService).getTicketsPrice(event1,auditorium,new DateTime(),user,2);
-        result.addObject("price", price);
-        result.addObject("event", ev);
-        result.setViewName("ticketPrice");
+        if(event1.getAirDates().contains(date) && auditorium.getSeats()<=seat) {
+
+            double price = ((BookingServiceImpl) bookingService).getTicketsPrice(event1, auditorium, new DateTime(), user, seat);
+            result.addObject("price", price);
+            result.addObject("event", ev);
+            result.setViewName("ticketPrice");
+
+        } else {
+            result.addObject("message","Event does not run on choosen date or seat number is invalid");
+            result.setViewName("error");
+        }
         return result;
     }
 
