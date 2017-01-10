@@ -2,9 +2,9 @@ package epamUniversity.controlers;
 
 import epamUniversity.entities.Auditorium;
 import epamUniversity.entities.Event;
+import epamUniversity.entities.Ticket;
 import epamUniversity.entities.User;
 import epamUniversity.services.*;
-import epamUniversity.util.DatesHandling;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,15 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
+import static epamUniversity.util.DatesHandling.containsDate;
 import static epamUniversity.util.DatesHandling.parseStringToDate;
 import static java.lang.Integer.parseInt;
-import static javax.xml.bind.DatatypeConverter.parseInteger;
 
 /**
  * Created by Andriy_Yarish on 1/9/2017.
@@ -41,8 +38,11 @@ public class BookingController {
     @Autowired
     AuditoriumService auditoriumService;
 
-    @RequestMapping (method = RequestMethod.GET)
-    public ModelAndView showBookingForm(ModelAndView result){
+    @Autowired
+    TicketsService ticketsService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView showBookingForm(ModelAndView result) {
         List<String> uls = userService.getAll()
                 .stream()
                 .map(user -> user.getEmail())
@@ -59,15 +59,15 @@ public class BookingController {
                 .map(auditorium -> auditorium.getName())
                 .collect(Collectors.toList());
 
-        result.addObject("users",uls);
-        result.addObject("events",eLs);
+        result.addObject("users", uls);
+        result.addObject("events", eLs);
         result.addObject("auditoriums", aLs);
         result.setViewName("bookingFacade");
         return result;
     }
 
     @RequestMapping(value = "/ticketPrice", method = RequestMethod.POST)
-    public ModelAndView getTicketPrice(ModelAndView result, HttpServletRequest request){
+    public ModelAndView getTicketPrice(ModelAndView result, HttpServletRequest request) {
         String uEmail = request.getParameter("user");
         String aud = request.getParameter("auditorium");
         String ev = request.getParameter("event");
@@ -76,21 +76,48 @@ public class BookingController {
 
         User user = userService.getUserByEmail(uEmail);
         Auditorium auditorium = auditoriumService.getByName(aud);
-        Event event1 = eventService.getByName(ev);
+        Event event = eventService.getByName(ev);
 
-        if(event1.getAirDates().contains(date) && auditorium.getSeats()<=seat) {
+        if (containsDate(event.getAirDates(), date) && auditorium.getSeats() >= seat) {
 
-            double price = ((BookingServiceImpl) bookingService).getTicketsPrice(event1, auditorium, new DateTime(), user, seat);
+            double price = ((BookingServiceImpl) bookingService).getTicketsPrice(event, auditorium, new DateTime(), user, seat);
             result.addObject("price", price);
             result.addObject("event", ev);
+            result.addObject("auditorium", aud);
+            result.addObject("seat", seat);
+            result.addObject("date", date);
+            result.addObject("user", uEmail);
             result.setViewName("ticketPrice");
 
         } else {
-            result.addObject("message","Event does not run on choosen date or seat number is invalid");
+            result.addObject("message", "Event does not run on choosen date or seat number is invalid");
             result.setViewName("error");
         }
         return result;
     }
+
+    @RequestMapping(value = "/orderTicket", method = RequestMethod.POST)
+    public ModelAndView orderTicket(ModelAndView result, HttpServletRequest request) {
+
+        ModelAndView modelAndView = getTicketPrice(result, request);
+        User u = userService.getUserByEmail((String) modelAndView.getModel().get("user"));
+        Event e = eventService.getByName((String) modelAndView.getModel().get("event"));
+        Auditorium a = auditoriumService.getByName((String) modelAndView.getModel().get("auditorium"));
+        DateTime d = (DateTime) modelAndView.getModel().get("date");
+        Integer s = (Integer) modelAndView.getModel().get("seat");
+
+        Ticket ticket = new Ticket(u, e, a, d, s);
+        ticket.setPrice((Double) modelAndView.getModel().get("price"));
+
+        u.addTicket(ticket);
+        ticketsService.save(ticket);
+
+
+        result.addObject("ticket",ticket);
+        result.setViewName("ticketPdfView");
+        return result;
+    }
+
 
 
 

@@ -35,8 +35,8 @@
 
     <br/>
     <h2><legend >Assign auditorium to eventParent</legend></h2>
-    <form name="eventParent" action="assignAuditoriumToEvent" method="post">
-        EventName: <select name="eventParent">
+    <form name="eventParent" action="events/assignAuditorium" method="post">
+        EventName: <select name="event">
     <#list model["eventList"] as els>
         <option>${els.name}</option>
     </#list>
@@ -47,19 +47,22 @@
     </#list>
         <br/>
     </select>
-        Date <input type="date" name="date"><br/>
+        Date <input type="date" name="date">
         <input type="submit" value="Save">
     </form>
     <br/>
 
+    <h2><legend >Add air date for Event</legend></h2>
     <form name = "airDates" action="events/airDates" method="post">
-        EventName: <select name="eventParent">
+        EventName: <select name="event" >
     <#list model["eventList"] as els>
         <option>${els.name}</option>
     </#list>
     </select>
-        AirDates: <input type="date" name="airDates">
+        AirDates: <input type="date" name="date">
+        <input type="submit" value="Add Air Date">
     </form>
+    <br/>
 
     <div>
         <table class="eventData" style="float: left; margin-right: 20px" border="1" >
@@ -76,8 +79,8 @@
                 <td>${eventParent.name}</td>
                 <td>${eventParent.eventRating!"UNKOWN"}</td>
                 <td>${eventParent.basePrice}</td>
-                <td>${eventParent.date?if_exists}</td>
-                <td>Auditoriums</td>
+                <td>${eventParent.airDates?size}</td>
+                <td>${eventParent.auditoriums?size}</td> <#-- Exception occurs during gettingDateTime object from the list -->
             </tr>
         </#list>
         </table>

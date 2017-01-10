@@ -1,5 +1,6 @@
 package epamUniversity.services;
 
+import epamUniversity.entities.EventInstance;
 import org.joda.time.DateTime;
 
 import epamUniversity.entities.Auditorium;
@@ -7,10 +8,7 @@ import epamUniversity.entities.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
@@ -18,6 +16,7 @@ import java.util.Map;
 public class EventServiceImpl implements EventService {
 
     private static Map<Integer, Event> eventList = new LinkedHashMap<Integer, Event>();
+    private static Map<Event,List<EventInstance>> eventInstancesMap = new LinkedHashMap<>();
     private static int index = 0;
 
     @Override

@@ -82,7 +82,7 @@ public class UsersController implements InitializingBean {
             user.setDateOfBirth(date);
             userService.save(user);
         }
-        return "redirect:users.html";
+        return "redirect:/users.html";
     }
 
     @RequestMapping (value = "/getUserByEmail")
@@ -129,7 +129,7 @@ public class UsersController implements InitializingBean {
             userService.remove(u);
         //todo need to throw some exception
         model.addAttribute("userList", userService.getAll());
-        return "users";
+        return "redirect:/users.html";
     }
 
     @RequestMapping(value = "/users/{id}/getTickets", method = RequestMethod.GET)
@@ -141,7 +141,8 @@ public class UsersController implements InitializingBean {
             tickets = user.getTickets();
             if(tickets != null && tickets.size()>0)
                 for (Ticket t: tickets)
-                    ticketsView.add("Event: "+t.getEvent()+"Date: "+t.getDateTime());
+                    ticketsView.add("Event: "+t.getEvent().getEventParent().getName()
+                            +"Auditorium: " + t.getEvent().getAuditorium().getName());
         }
         result.addObject("tickets",ticketsView);
         result.setViewName("ticketsByUser");

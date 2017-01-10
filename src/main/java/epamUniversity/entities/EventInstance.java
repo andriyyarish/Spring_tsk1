@@ -1,6 +1,8 @@
 package epamUniversity.entities;
 
+import epamUniversity.services.EventService;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +11,9 @@ import java.util.List;
  * Created by Andriy_Yarish on 1/7/2017.
  */
 public class EventInstance extends DomainObject {
+
+    @Autowired
+    private EventService eventService;
 
     private Event eventParent;
 
@@ -22,6 +27,7 @@ public class EventInstance extends DomainObject {
         this.eventParent = eventParent;
         this.auditorium = auditorium;
         this.dateTime = dateTime;
+        //todo need to register eventInstances and link to event, available seats should be checked there
     }
 
     public Event getEventParent() {

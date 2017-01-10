@@ -84,7 +84,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public double getVipmultiplier(Auditorium a, int seat){
-        if(a.getVipSeats().contains(seat))
+        if(a.getVipSeats().contains(String.valueOf(seat)))
             return 20.0;
         else
             return 0.0;

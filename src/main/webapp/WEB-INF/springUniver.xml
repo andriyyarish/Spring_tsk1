@@ -32,6 +32,7 @@
     <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
     <bean id="discountService" class="epamUniversity.services.discount.DiscountServiceImpl"/>
     <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
+    <bean id="ticketService" class="epamUniversity.services.TicketsService"/>
 
     <bean id="newusr" class="epamUniversity.entities.User" init-method="init" scope="prototype">
         <constructor-arg value="New user"/>
@@ -70,7 +71,7 @@
         </constructor-arg>
     </bean>
     <bean id="event2" class="epamUniversity.entities.Event" init-method="init">
-        <constructor-arg value="OE"/>
+        <constructor-arg value="James Bond"/>
         <constructor-arg value="250.50"/>
         <constructor-arg value="HIGH"/>
         <constructor-arg>

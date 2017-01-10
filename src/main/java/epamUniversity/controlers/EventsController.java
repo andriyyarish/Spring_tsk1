@@ -46,7 +46,7 @@ public class EventsController {
         return "redirect:events.html";
     }
 
-    @RequestMapping(value = "/assignAuditoriumToEvent")
+    @RequestMapping(value = "/events/assignAuditorium")
     public String assignAuditorium(HttpServletRequest request) {
         boolean assigned = false;
         String eventName = request.getParameter("event");
@@ -60,7 +60,24 @@ public class EventsController {
             event = eventService.getByName(eventName);
             assigned = event.assignAuditorium(parseStringToDate(date), auditorium); //TODO Need to show somehow the result
         }
-        return "redirect:events.html";
+        if(assigned)
+            return "redirect:/events.html";
+        else
+            return "error";
+    }
+
+    @RequestMapping(value = "events/airDates")
+    public String addAirDate(HttpServletRequest request){
+        boolean isAdded = false;
+        String eventName = request.getParameter("event");
+        String airDate = request.getParameter("date");
+
+        Event event = eventService.getByName(eventName);
+        isAdded = event.addAirDateTime(DatesHandling.parseStringToDate(airDate));
+        if(isAdded)
+            return "redirect:/events.html";
+        else
+            return "error"; //TODO need to throw some message as an option ModelAndView should be returned;
     }
 
 }

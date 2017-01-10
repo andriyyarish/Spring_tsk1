@@ -4,9 +4,10 @@
     </tr>
 <#list tickets as t>
     <tr>
-        <td>t</td>
+        <td>${t}</td>
     </tr>
 </#list>
+
 </table>
 
 
