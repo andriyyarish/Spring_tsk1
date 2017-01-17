@@ -41,7 +41,7 @@ public class EventService_Impl_Test {
 
     @Before
     public void setUp(){
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("springUniver.xml");
+//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("appconfig-mvc.xml");
 //        eventService = applicationContext.getBean(EventServiceImpl.class);
 //        event1 = (Event) applicationContext.getBean("event1");
 //        event2 = (Event) applicationContext.getBean("event2");

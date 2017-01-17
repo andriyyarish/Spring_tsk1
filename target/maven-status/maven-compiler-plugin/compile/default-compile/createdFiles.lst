@@ -8,8 +8,10 @@ epamUniversity\controlers\EventsController.class
 epamUniversity\entities\User.class
 epamUniversity\entities\DomainObject.class
 epamUniversity\services\discount\DiscountServiceImpl.class
+epamUniversity\services\UserDetailsServiceImpl.class
 epamUniversity\services\discount\strategy\DiscountStrategy.class
 epamUniversity\services\AbstractDomainObjectService.class
+epamUniversity\entities\Role.class
 epamUniversity\entities\EventInstance.class
 epamUniversity\services\UserService.class
 epamUniversity\services\BookingService.class
@@ -20,6 +22,7 @@ epamUniversity\entities\Ticket.class
 epamUniversity\services\AuditoriumService.class
 epamUniversity\services\TicketsService.class
 epamUniversity\views\TicketsPDFBuilder.class
+epamUniversity\dao\RoleDao.class
 epamUniversity\entities\Rating.class
 epamUniversity\services\BookingServiceImpl.class
 epamUniversity\views\AbstractITextPdfView.class
@@ -33,3 +36,5 @@ epamUniversity\controlers\BatchLoadingController$1.class
 epamUniversity\services\discount\strategy\TenthTicketDiscountStrategy.class
 epamUniversity\services\AuditoriumServiceImpl.class
 epamUniversity\services\discount\strategy\BirthdayDiscountStrategy.class
+epamUniversity\dao\UserDao.class
+epamUniversity\entities\UserAccount.class

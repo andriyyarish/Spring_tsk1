@@ -18,6 +18,12 @@
         <jackson.databind>2.2.3</jackson.databind>
         <joda.time>2.9.7</joda.time>
         <gson.ver>2.8.0</gson.ver>
+        <spring.security.version>4.2.0.RELEASE</spring.security.version>
+        <spring-data-jpa.version>1.8.2.RELEASE</spring-data-jpa.version>
+        <hibernate.version>4.3.11.Final</hibernate.version>
+        <hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <mysql-connector.version>5.1.36</mysql-connector.version>
     </properties>
 
     <build>
@@ -110,6 +116,44 @@
             <artifactId>spring-aop</artifactId>
             <version>${spring.ver}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data-jpa.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>javax.servlet</groupId>
