@@ -1,6 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.Event;
+import epamUniversity.model.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

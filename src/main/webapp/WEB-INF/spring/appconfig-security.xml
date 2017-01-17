@@ -12,12 +12,24 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="andy" password="root" authorities="ROLE_ADMIN"/>
-                <user name="user" password="user" authorities="ROLE_USER"/>
-            </user-service>
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="andy" password="root" authorities="ROLE_ADMIN"/>-->
+                <!--<user name="user" password="user" authorities="ROLE_USER"/>-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
+        <authentication-provider user-service-ref="userDetailsServiceImp">
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
+
+    <b:bean id="userDetailsServiceImp" class="epamUniversity.services.UserDetailsServiceImpl">
+
+    </b:bean>
+
+    <b:bean id="encoder"
+                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <b:constructor-arg name="strength" value="11"/>
+    </b:bean>
 
 </b:beans>

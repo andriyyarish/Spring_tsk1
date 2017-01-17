@@ -1,10 +1,10 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.EventInstance;
+import epamUniversity.model.EventInstance;
 import org.joda.time.DateTime;
 
-import epamUniversity.entities.Auditorium;
-import epamUniversity.entities.Event;
+import epamUniversity.model.Auditorium;
+import epamUniversity.model.Event;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

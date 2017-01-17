@@ -1,8 +1,8 @@
 package epamUniversity.services;
 
-import epamUniversity.dao.UserDao;
-import epamUniversity.entities.Role;
-import epamUniversity.entities.UserAccount;
+import epamUniversity.dao.UserAccountRepository;
+import epamUniversity.model.Role;
+import epamUniversity.model.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,12 +25,12 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserDao userDao;
+    private UserAccountRepository userAccountRepository;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccount user = userDao.findByUsername(username);
+        UserAccount user = userAccountRepository.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
@@ -38,5 +38,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+//        return null;
     }
 }

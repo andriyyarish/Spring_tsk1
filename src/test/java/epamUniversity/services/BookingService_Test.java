@@ -1,7 +1,7 @@
 package epamUniversity.services;
 
 
-import epamUniversity.entities.*;
+import epamUniversity.model.*;
 import org.hamcrest.Matchers;
 import org.joda.time.DateTime;
 import org.junit.Before;

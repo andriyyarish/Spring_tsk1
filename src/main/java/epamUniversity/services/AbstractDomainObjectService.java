@@ -1,7 +1,7 @@
 package epamUniversity.services;
 
 
-import epamUniversity.entities.DomainObject;
+import epamUniversity.model.DomainObject;
 
 import java.util.Collection;
 

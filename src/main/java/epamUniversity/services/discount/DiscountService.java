@@ -1,10 +1,6 @@
 package epamUniversity.services.discount;
-import epamUniversity.entities.Event;
-import epamUniversity.entities.EventInstance;
-import epamUniversity.entities.User;
-import org.joda.time.DateTime;
-
-import java.time.LocalDateTime;
+import epamUniversity.model.EventInstance;
+import epamUniversity.model.User;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

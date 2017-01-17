@@ -1,6 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.User;
+import epamUniversity.model.User;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;

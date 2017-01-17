@@ -3,7 +3,7 @@ package epamUniversity.services;
 /**
  * Created by Andriy_Yarish on 1/3/2017.
  */
-import epamUniversity.entities.User;
+import epamUniversity.model.User;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

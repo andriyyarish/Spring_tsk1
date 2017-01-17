@@ -1,4 +1,4 @@
-package epamUniversity.entities;
+package epamUniversity.model;
 import javax.persistence.*;
 import java.util.Set;
 

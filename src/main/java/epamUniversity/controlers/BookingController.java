@@ -1,9 +1,9 @@
 package epamUniversity.controlers;
 
-import epamUniversity.entities.Auditorium;
-import epamUniversity.entities.Event;
-import epamUniversity.entities.Ticket;
-import epamUniversity.entities.User;
+import epamUniversity.model.Auditorium;
+import epamUniversity.model.Event;
+import epamUniversity.model.Ticket;
+import epamUniversity.model.User;
 import epamUniversity.services.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;

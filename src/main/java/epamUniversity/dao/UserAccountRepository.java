@@ -1,8 +1,8 @@
 package epamUniversity.dao;
 
-import epamUniversity.entities.UserAccount;
+import epamUniversity.model.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserDao extends JpaRepository<UserAccount , Long> {
+public interface UserAccountRepository extends JpaRepository<UserAccount, Long> {
     UserAccount findByUsername(String username);
 }

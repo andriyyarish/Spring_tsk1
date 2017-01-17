@@ -1,7 +1,7 @@
 package epamUniversity.services;
-import epamUniversity.entities.Event;
-import epamUniversity.entities.Ticket;
-import epamUniversity.entities.User;
+import epamUniversity.model.Event;
+import epamUniversity.model.Ticket;
+import epamUniversity.model.User;
 import org.joda.time.DateTime;
 
 import java.util.Set;

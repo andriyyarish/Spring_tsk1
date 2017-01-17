@@ -1,8 +1,7 @@
 package epamUniversity.services.discount.strategy;
 
-import epamUniversity.entities.Event;
-import epamUniversity.entities.EventInstance;
-import epamUniversity.entities.User;
+import epamUniversity.model.EventInstance;
+import epamUniversity.model.User;
 
 /**
  * Created by Andriy_Yarish on 1/7/2017.

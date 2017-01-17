@@ -1,21 +1,16 @@
 package epamUniversity.controlers;
 
-import epamUniversity.entities.Auditorium;
-import epamUniversity.entities.Event;
-import epamUniversity.services.AuditoriumService;
+import epamUniversity.model.Auditorium;
+import epamUniversity.model.Event;
 import epamUniversity.services.AuditoriumServiceImpl;
 import epamUniversity.services.EventService;
-import epamUniversity.services.EventServiceImpl;
 import epamUniversity.util.DatesHandling;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 

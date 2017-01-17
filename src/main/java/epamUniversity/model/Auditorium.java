@@ -1,4 +1,4 @@
-package epamUniversity.entities;
+package epamUniversity.model;
 
 import epamUniversity.services.AuditoriumServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

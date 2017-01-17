@@ -1,7 +1,7 @@
 package epamUniversity.services.discount.strategy;
 
-import epamUniversity.entities.EventInstance;
-import epamUniversity.entities.User;
+import epamUniversity.model.EventInstance;
+import epamUniversity.model.User;
 
 /**
  * Returns percentage of discount currently 50 %

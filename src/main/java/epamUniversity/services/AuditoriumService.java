@@ -1,7 +1,7 @@
 package epamUniversity.services;
 
 
-import epamUniversity.entities.Auditorium;
+import epamUniversity.model.Auditorium;
 
 import java.util.Set;
 

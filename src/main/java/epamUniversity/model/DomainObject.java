@@ -1,4 +1,4 @@
-package epamUniversity.entities;
+package epamUniversity.model;
 
 /**
  * Created by Andriy_Yarish on 1/3/2017.

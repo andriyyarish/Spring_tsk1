@@ -7,9 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
 import java.util.LinkedHashMap;
@@ -17,8 +15,8 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
-import epamUniversity.entities.Auditorium;
-import epamUniversity.entities.Event;
+import epamUniversity.model.Auditorium;
+import epamUniversity.model.Event;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;

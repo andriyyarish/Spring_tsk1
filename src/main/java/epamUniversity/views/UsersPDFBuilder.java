@@ -1,6 +1,5 @@
 package epamUniversity.views;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +14,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import epamUniversity.entities.User;
-import epamUniversity.views.AbstractITextPdfView;
+import epamUniversity.model.User;
 
 /**
  * This view class generates a PDF document 'on the fly' based on the data

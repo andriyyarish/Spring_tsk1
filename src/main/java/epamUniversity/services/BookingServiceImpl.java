@@ -1,7 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.*;
-import epamUniversity.services.discount.DiscountServiceImpl;
+import epamUniversity.model.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 

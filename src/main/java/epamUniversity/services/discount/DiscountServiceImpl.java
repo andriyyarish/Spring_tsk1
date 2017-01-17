@@ -1,8 +1,8 @@
 package epamUniversity.services.discount;
 
-import epamUniversity.entities.Event;
-import epamUniversity.entities.EventInstance;
-import epamUniversity.entities.User;
+import epamUniversity.model.Event;
+import epamUniversity.model.EventInstance;
+import epamUniversity.model.User;
 import epamUniversity.services.discount.strategy.DiscountStrategy;
 import org.joda.time.DateTime;
 

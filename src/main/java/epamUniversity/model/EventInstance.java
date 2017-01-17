@@ -1,4 +1,4 @@
-package epamUniversity.entities;
+package epamUniversity.model;
 
 import epamUniversity.services.EventService;
 import org.joda.time.DateTime;

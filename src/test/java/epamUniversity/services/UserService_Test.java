@@ -7,19 +7,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import epamUniversity.entities.User;
+import epamUniversity.model.User;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;

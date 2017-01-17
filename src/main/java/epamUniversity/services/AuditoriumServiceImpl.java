@@ -1,6 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.entities.Auditorium;
+import epamUniversity.model.Auditorium;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

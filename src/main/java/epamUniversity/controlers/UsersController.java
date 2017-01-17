@@ -2,25 +2,21 @@ package epamUniversity.controlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import epamUniversity.entities.Ticket;
+import epamUniversity.model.Ticket;
 import epamUniversity.services.UserService;
-import epamUniversity.util.DatesHandling;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import epamUniversity.entities.User;
+import epamUniversity.model.User;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import static epamUniversity.util.DatesHandling.parseStringToDate;
 import static java.lang.Integer.parseInt;
