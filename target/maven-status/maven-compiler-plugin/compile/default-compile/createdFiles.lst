@@ -1,4 +1,5 @@
 epamUniversity\model\User.class
+epamUniversity\controlers\LoginController.class
 epamUniversity\controlers\BookingController.class
 epamUniversity\views\UsersPDFBuilder.class
 epamUniversity\controlers\CustomExceptionHandler.class

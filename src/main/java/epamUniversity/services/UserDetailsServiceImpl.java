@@ -30,7 +30,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         Account user = accountDao.findByUsername(username);
+        if(user==null)
+            throw new UsernameNotFoundException("User " + username + " not found");
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 

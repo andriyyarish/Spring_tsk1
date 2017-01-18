@@ -6,29 +6,49 @@
 
 
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern = "/" access= "hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <intercept-url pattern="/users**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/epam/getUserByEmai*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/epam/getUserById*" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/events**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/booking**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
+        <intercept-url pattern="/users/*/getTickets" access="hasRole('ROLE_USER')"/>
+
+        <form-login login-page="/login" default-target-url="/"
+                    authentication-failure-url="/login?error"
+                    login-processing-url="/login"
+                    username-parameter="username"
+                    password-parameter="password"/>
+
+        <logout logout-success-url="/login?logout"/>
+        <csrf disabled="true"/>
     </http>
 
     <authentication-manager>
-        <!--<authentication-provider>-->
-            <!--<user-service>-->
-                <!--<user name="andy" password="root" authorities="ROLE_ADMIN"/>-->
-                <!--<user name="user" password="user" authorities="ROLE_USER"/>-->
-            <!--</user-service>-->
-        <!--</authentication-provider>-->
-        <authentication-provider user-service-ref="userDetailsServiceImp">
-            <password-encoder ref="encoder"/>
+        <authentication-provider>
+            <user-service>
+                <user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+                <user name="user" password="user" authorities="ROLE_USER"/>
+            </user-service>
         </authentication-provider>
+
+        <authentication-provider ref="daoAuthenticationProvider"/>
+        <!--<authentication-provider user-service-ref="userDetailsServiceImp">-->
+            <!--<password-encoder ref="encoder"/>-->
+        <!--</authentication-provider>-->
     </authentication-manager>
 
-    <b:bean id="userDetailsServiceImp" class="epamUniversity.services.UserDetailsServiceImpl">
 
+    <b:bean id="userDetailsServiceImp" class="epamUniversity.services.UserDetailsServiceImpl"/>
+    <b:bean id="daoAuthenticationProvider"
+            class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <b:property name="userDetailsService" ref="userDetailsServiceImp"/>
+        <!--<b:property name="saltSource" ref="saltSource"/>-->
+        <!--<b:property name="passwordEncoder" ref="passwordEncoder"/>-->
     </b:bean>
 
     <b:bean id="encoder"
-                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+            class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <b:constructor-arg name="strength" value="11"/>
     </b:bean>
 

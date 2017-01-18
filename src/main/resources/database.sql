@@ -25,9 +25,17 @@ CREATE TABLE user_roles (
 )
   ENGINE = InnoDB;
 
--- Insert data
+CREATE TABLE persistent_logins (
+  username  VARCHAR(64) NOT NULL,
+  series    VARCHAR(64) PRIMARY KEY,
+  token     VARCHAR(64) NOT NULL,
+  last_used TIMESTAMP   NOT NULL
+);
 
-INSERT INTO accounts VALUES (1, 'andy', 'root');
+  -- Insert data
+
+  INSERT INTO accounts VALUES (1, 'andy', 'root'
+);
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
