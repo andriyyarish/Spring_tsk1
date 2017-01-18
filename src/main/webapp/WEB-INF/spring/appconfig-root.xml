@@ -13,6 +13,6 @@
 
     <context:component-scan base-package="epamUniversity.*"/>
 
-    <context:property-placeholder location="classpath:db.properties"/>
+    <!--<context:property-placeholder location="classpath:db.properties"/>-->
 
 </beans>
