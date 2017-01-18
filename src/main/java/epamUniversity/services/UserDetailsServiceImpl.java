@@ -1,6 +1,6 @@
 package epamUniversity.services;
 
-import epamUniversity.dao.AccountDao;
+import epamUniversity.dao.AccountRepository;
 import epamUniversity.model.Role;
 import epamUniversity.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.Set;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private AccountDao accountDao;
+    private AccountRepository accountDao;
 
     @Override
     @Transactional(readOnly = true)

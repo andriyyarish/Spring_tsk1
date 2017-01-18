@@ -7,7 +7,6 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Auditorium.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\UserDetailsServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\EventService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\EventsController.java
-D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\AccountDao.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\SeatType.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\discount\strategy\DiscountStrategy.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Role.java
@@ -31,6 +30,7 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\BookingService.
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\CustomExceptionHandler.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\BookingServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\views\UsersPDFBuilder.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\AccountRepository.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\TicketsService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\RoleDao.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\HomePageController.java
