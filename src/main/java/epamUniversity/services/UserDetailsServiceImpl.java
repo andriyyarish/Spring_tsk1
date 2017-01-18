@@ -1,14 +1,15 @@
 package epamUniversity.services;
 
-import epamUniversity.dao.UserAccountRepository;
+import epamUniversity.dao.AccountDao;
 import epamUniversity.model.Role;
-import epamUniversity.model.UserAccount;
+import epamUniversity.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
@@ -17,20 +18,19 @@ import java.util.Set;
 /**
  * Implementation of {@link org.springframework.security.core.userdetails.UserDetailsService} interface.
  *
- * @author Eugene Suleimanov
- * @version 1.0
+ *
  */
 
-
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserAccountRepository userAccountRepository;
+    private AccountDao accountDao;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserAccount user = userAccountRepository.findByUsername(username);
+        Account user = accountDao.findByUsername(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
