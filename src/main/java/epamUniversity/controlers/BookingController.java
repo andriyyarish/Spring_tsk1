@@ -27,19 +27,19 @@ import static java.lang.Integer.parseInt;
 @RequestMapping(value = "booking")
 public class BookingController {
     @Autowired
-    EventService eventService;
+    private EventService eventService;
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    BookingService bookingService;
+    private BookingService bookingService;
 
     @Autowired
-    AuditoriumService auditoriumService;
+    private AuditoriumService auditoriumService;
 
     @Autowired
-    TicketsService ticketsService;
+    private TicketsService ticketsService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showBookingForm(ModelAndView result) {

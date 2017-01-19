@@ -22,10 +22,10 @@ import static epamUniversity.util.DatesHandling.parseStringToDate;
 @Controller
 public class EventsController {
     @Autowired
-    EventService eventService;
+    private EventService eventService;
     //todo change for interface
     @Autowired
-    AuditoriumServiceImpl auditoriumService;
+    private AuditoriumServiceImpl auditoriumService;
 
     @RequestMapping(value = "/events", method = RequestMethod.GET)
     public String getEvents(@ModelAttribute("model") ModelMap modelMap) {

@@ -26,10 +26,10 @@ import java.util.logging.Logger;
 @Controller
 @RequestMapping(value = "/batchLoad")
 public class BatchLoadingController {
-    public static final Logger logger = Logger.getLogger("BatchLoadingController");
+    private static final Logger logger = Logger.getLogger("BatchLoadingController");
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @RequestMapping()
     public ModelAndView batchLoad(){
