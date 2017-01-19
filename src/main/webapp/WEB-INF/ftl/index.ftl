@@ -50,6 +50,8 @@
 
     </table>
 
+    <button><a href="/epam/logout">LogOut</a></button>
+
 </div>
 </body>
 </html>

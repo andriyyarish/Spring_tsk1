@@ -13,18 +13,6 @@
 <div id="content">
     <form name="f" action="login" method="post">
         <fieldset>
-        <#if error?has_content>
-            <div class="alert alert-error" style="color: crimson; border: brown">
-                Invalid username or password.
-            </div>
-        </#if>
-            <legend>Please Login</legend>
-
-        <#if logout?has_content>
-            <div class="alert alert-error" style="color: green; border: brown">
-                You have been logged out.
-            </div>
-        </#if>
 
             <legend>Please Login</legend>
 
@@ -33,8 +21,13 @@
         <#--</div>-->
             <label for="username">Username</label>
             <input type="text" id="username" name="username"/>
+
             <label for="password">Password</label>
             <input type="password" id="password" name="password"/>
+
+            <label for="remember-me">Remember Me ?</label>
+            <input type="checkbox" id="remember-me" value="true">
+
             <div class="form-actions">
                 <button type="submit" class="btn">Log in</button>
             </div>
@@ -42,5 +35,17 @@
     </form>
 
 </div>
+<#if error??>
+<div class="alert alert-error" style="color: crimson; border: brown">
+${error}
+</div>
+</#if>
+
+<#if logout??>
+<div class="alert alert-error" style="color: green; border: brown">
+${logout}
+</div>
+</#if>
+
 </body>
 </html>

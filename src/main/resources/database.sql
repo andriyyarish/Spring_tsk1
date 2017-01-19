@@ -34,8 +34,8 @@ CREATE TABLE persistent_logins (
 
   -- Insert data
 
-  INSERT INTO accounts VALUES (1, 'andy', 'root'
-);
+INSERT INTO accounts VALUES (1, 'andy', 'root');
+INSERT INTO accounts VALUES (3,'encode','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.'); -- 123456
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
