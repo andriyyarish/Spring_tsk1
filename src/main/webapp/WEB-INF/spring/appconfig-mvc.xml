@@ -43,21 +43,25 @@
         <constructor-arg value="Andriy"/>
         <constructor-arg value="Yarish"/>
         <constructor-arg value="andy@gmail.com"/>
+        <property name="password" value="password"/>
     </bean>
     <bean id="usr2" class="epamUniversity.model.User" init-method="init">
         <constructor-arg value="Ivan"/>
         <constructor-arg value="Petrov"/>
         <constructor-arg value="ivan@gmail.com"/>
+        <property name="password" value="password"/>
     </bean>
     <bean id="usr3" class="epamUniversity.model.User" init-method="init">
         <constructor-arg value="Petr"/>
         <constructor-arg value="Ivanov"/>
         <constructor-arg value="petr@gmail.com"/>
+        <property name="password" value="password"/>
     </bean>
     <bean id="usr4" class="epamUniversity.model.User" init-method="init">
         <constructor-arg value="John"/>
         <constructor-arg value="Doe"/>
         <constructor-arg value="john@gmail.com"/>
+        <property name="password" value="password"/>
     </bean>
 
     <bean id = "ticket" class="epamUniversity.model.Ticket" scope="prototype"/>

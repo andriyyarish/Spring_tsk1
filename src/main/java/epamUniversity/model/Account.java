@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Simple JavaBean domain object that represents a User.
+ * Simple JavaBean domain object that represents a UserAccount.
  *
  */
 
@@ -23,13 +23,15 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    @Transient
-    private String confirmPassword;
-
     @ManyToMany
     @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    public Account (User user){
+        this.username = user.getEmail();
+        this.password = user.getPassword();
+    }
 
     public Long getId() {
         return id;
@@ -53,14 +55,6 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
     public Set<Role> getRoles() {

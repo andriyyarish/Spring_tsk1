@@ -7,6 +7,7 @@ epamUniversity\controlers\TestController.class
 epamUniversity\controlers\EventsController.class
 epamUniversity\services\discount\DiscountServiceImpl.class
 epamUniversity\services\UserDetailsServiceImpl.class
+epamUniversity\dao\RoleRepository.class
 epamUniversity\services\discount\strategy\DiscountStrategy.class
 epamUniversity\services\AbstractDomainObjectService.class
 epamUniversity\model\Rating.class
@@ -20,9 +21,9 @@ epamUniversity\controlers\BatchLoadingController.class
 epamUniversity\services\AuditoriumService.class
 epamUniversity\services\TicketsService.class
 epamUniversity\views\TicketsPDFBuilder.class
-epamUniversity\dao\RoleDao.class
 epamUniversity\model\SeatType.class
 epamUniversity\model\Account.class
+epamUniversity\dao\UserRepository.class
 epamUniversity\services\BookingServiceImpl.class
 epamUniversity\views\AbstractITextPdfView.class
 epamUniversity\controlers\UsersController.class

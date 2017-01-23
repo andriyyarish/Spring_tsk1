@@ -21,7 +21,9 @@
             FirstName: <input type="text" name="firstName"/> <br/>
             LastName: <input type="text" name="lastName"/> <br/>
             Email: <input type="text" name="email"/> <br/>
-            DateOfBirth <input type="date" name="dateOfBirth">
+            DateOfBirth: <input type="date" name="dateOfBirth" required> <br/>
+            Password: <input type="password" name="password" required> <br/>
+            ConfirmPassword: <input type="password" name="confirmPassword" required> <br/>
             <input type="submit" value="   Save   "/>
         </form>
     </fieldset>

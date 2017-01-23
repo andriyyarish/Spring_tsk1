@@ -13,6 +13,7 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Role.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\util\DatesHandling.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AuditoriumServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\LoginController.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\UserRepository.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\UserService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Account.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\DomainObject.java
@@ -30,10 +31,10 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\EventInstance.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\BookingService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\CustomExceptionHandler.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\BookingServiceImpl.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\RoleRepository.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\views\UsersPDFBuilder.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\AccountRepository.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\TicketsService.java
-D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\RoleDao.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\HomePageController.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\discount\DiscountService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\discount\strategy\BirthdayDiscountStrategy.java

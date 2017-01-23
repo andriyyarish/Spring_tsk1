@@ -71,11 +71,19 @@ public class UsersController implements InitializingBean {
         String lastName = request.getParameter("lastName");
         String emai = request.getParameter("email");
         String dateOfBirth = request.getParameter("dateOfBirth");
+        String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
 
-        if(null != firstName && null!=lastName && null != emai){
+        if(null != firstName &&
+                null!=lastName &&
+                null != emai &&
+                null!= password &&
+                password.equals(confirmPassword)){
+
             User user = new User(firstName,lastName,emai);
             DateTime date = parseStringToDate(dateOfBirth);
             user.setDateOfBirth(date);
+            user.setPassword(password);
             userService.save(user);
         }
         return "redirect:/users.html";

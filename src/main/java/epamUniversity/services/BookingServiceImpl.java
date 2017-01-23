@@ -3,6 +3,7 @@ package epamUniversity.services;
 import epamUniversity.model.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -19,12 +20,13 @@ import java.util.Set;
  bookTicket(user, ticket) - user could  be registered or not. If user is registered, then booking information is stored for that user. Purchased tickets for particular event should be stored
  getTicketsForEvent(event, date) - get all purchased tickets for event for specific date
  */
+@Service
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
-    private EventServiceImpl eventService;
+    private EventService eventService;
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userServiceImpl;
 //    @Autowired
 //    private DiscountServiceImpl discountService;
     @Autowired

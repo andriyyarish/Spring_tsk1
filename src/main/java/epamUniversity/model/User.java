@@ -1,34 +1,55 @@
 package epamUniversity.model;
 
 import epamUniversity.services.UserService;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.*;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
+@Entity
+@Table(name = "users")
 public class User extends DomainObject {
 
-    private static int index;
+    private transient static int index;
+    // service is added to be able to perform selfRegistration in repository during bean initialization
     @Autowired
     private transient UserService userService;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name ="firstName")
     private String firstName;
 
+    @Column(name = "lastName")
     private String lastName;
 
+    @Column(name = "email")
     private String email;
 
-//    @JsonDeserialize(using=LocalDateDeserializer.class)
-    private DateTime dateOfBirth;
+//    @Column(name = "dateOfBirth")
+//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+    private transient DateTime dateOfBirth;
 
-    private NavigableSet<Ticket> tickets = new TreeSet<>();
+    //TODO need to create table tickets and link with user
+    private transient NavigableSet<Ticket> tickets = new TreeSet<>();
 
+    @Column(name = "password")
     private String password;
 
-    private String role;
+    private transient String confirmPassword;
+
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 
     public User(String firstName, String lastName, String email) {
         this();
@@ -86,6 +107,22 @@ public class User extends DomainObject {
 
     public void setDateOfBirth(DateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public void init(){

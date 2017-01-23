@@ -190,6 +190,13 @@
             <artifactId>joda-time</artifactId>
             <version>${joda.time}</version>
         </dependency>
+        <!--for joda - hibernate contribution -->
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+            <version>6.0.1.GA</version>
+        </dependency>
+
 
         <!--&#45;&#45;JsonMapper-->
         <dependency>
