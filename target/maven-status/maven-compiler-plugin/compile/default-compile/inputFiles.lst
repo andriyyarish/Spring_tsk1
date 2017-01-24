@@ -3,6 +3,7 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AbstractDomainO
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Event.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\discount\DiscountServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\TestController.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AccountService.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Auditorium.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\UserDetailsServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\EventService.java
@@ -11,6 +12,7 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\SeatType.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\discount\strategy\DiscountStrategy.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Role.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\util\DatesHandling.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\EventRepository.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AuditoriumServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\LoginController.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\dao\UserRepository.java
@@ -20,6 +22,7 @@ D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\DomainObject.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\Rating.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\BookingController.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AuditoriumService.java
+D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\services\AccountServiceImpl.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\BatchLoadingController.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\controlers\UsersController.java
 D:\EDU\IdeaProjects\Spring\src\main\java\epamUniversity\model\User.java

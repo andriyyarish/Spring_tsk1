@@ -6,7 +6,10 @@ CREATE TABLE accounts (
   id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
+#   user_id INT NOT NULL,
   ballance FLOAT
+
+#   FOREIGN KEY (user_id) REFERENCES users(id)
 )
   ENGINE = InnoDB;
 
@@ -18,7 +21,10 @@ CREATE TABLE users (
   lastName VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   dateOfBirth DATETIME ,
-  password VARCHAR(255) NOT NULL
+  password VARCHAR(255) NOT NULL,
+  account_id INT NOT NULL,
+
+  FOREIGN KEY (account_id) REFERENCES accounts(id)
 )
   ENGINE = InnoDB;
 
@@ -44,7 +50,26 @@ CREATE TABLE account_roles (
 )
   ENGINE = InnoDB;
 
-SET FOREIGN_KEY_CHECKS=1;
+DROp TABLE IF EXISTS events;
+CREATE TABLE events (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  name VARCHAR(255) NOT NULL ,
+  basePrice DOUBLE,
+  eventRating VARCHAR(255)
+
+)
+  ENGINE = InnoDB;
+
+DROP TABLE IF EXISTS auditoriums;
+CREATE TABLE auditoriums(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  name VARCHAR(255) NOT NULL ,
+  adress VARCHAR(255) NOT NULL ,
+  seats INT NOT NULL
+)
+  ENGINE = InnoDB;
+
+
 
 CREATE TABLE IF NOT EXISTS persistent_logins (
   username  VARCHAR(64) NOT NULL,
@@ -53,12 +78,14 @@ CREATE TABLE IF NOT EXISTS persistent_logins (
   last_used TIMESTAMP   NOT NULL
 );
 
-  -- Insert data
+-- Insert data
+INSERT INTO accounts VALUES (1,'encode','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 0); -- 123456
 
-INSERT INTO accounts VALUES (1, 'andy', 'root');
-INSERT INTO accounts VALUES (3,'encode','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.'); -- 123456
+INSERT INTO users VALUES (1,'script','script','script','1970-01-01 00:00:01','script',1);
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');
 
 INSERT INTO account_roles VALUES (1, 2);
+
+SET FOREIGN_KEY_CHECKS=1;

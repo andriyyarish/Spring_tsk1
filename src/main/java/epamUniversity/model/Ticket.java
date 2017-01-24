@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Ticket extends DomainObject implements Comparable<Ticket> {
 
-    private int index;
+    private Long id;
 
     private User user;
 
@@ -38,7 +38,7 @@ public class Ticket extends DomainObject implements Comparable<Ticket> {
     }
 
     private Ticket() {
-        super.setId(index++);
+
     }
 
     public User getUser() {

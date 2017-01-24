@@ -10,7 +10,7 @@ import java.util.*;
  * Created by Andriy_Yarish on 1/9/2017.
  */
 public class TicketsService implements AbstractDomainObjectService<Ticket> {
-    private static Map<Integer,Ticket> tickets = new LinkedHashMap<Integer,Ticket>();
+    private static Map<Long,Ticket> tickets = new LinkedHashMap<>();
 
     @Override
     public Ticket save(@Nonnull Ticket object) {

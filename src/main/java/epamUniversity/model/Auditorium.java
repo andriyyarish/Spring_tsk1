@@ -3,6 +3,7 @@ package epamUniversity.model;
 import epamUniversity.services.AuditoriumServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -11,14 +12,29 @@ import java.util.Map;
 /**
  * Created by Newman on 12/26/16.
  */
-public class Auditorium {
+@Entity
+@Table(name = "auditoriums")
+public class Auditorium extends DomainObject {
+
     @Autowired
-    AuditoriumServiceImpl auditoriumService;
+    private transient AuditoriumServiceImpl auditoriumService;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column (name = "name")
     String name;
+
+    @Column (name = "adress")
     String adress;
+
+    @Column (name = "seats")
     int seats;
-    List<String> vipSeats;
-    Map<Integer, SeatType> allSeats;
+
+    transient List<String> vipSeats;
+
+    transient Map<Integer, SeatType> allSeats;
 
     public Auditorium(String name, String adress, int seats, String vipSeats) {
         this.name = name;

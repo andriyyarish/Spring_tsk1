@@ -1,6 +1,9 @@
 package epamUniversity.services;
 
+import epamUniversity.dao.AuditoriumRepository;
 import epamUniversity.model.Auditorium;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -17,7 +20,11 @@ import java.util.*;
  * <p>
  * getAuditoriums(), getSeatsNumber(), getVipSeats()
  */
+@Service
 public class AuditoriumServiceImpl implements AuditoriumService {
+    @Autowired
+    private AuditoriumRepository auditoriumRepository;
+
     private List<Auditorium> auditoriumList;
 
     private Map<String, List<Integer>> bookedSeats;
@@ -39,6 +46,7 @@ public class AuditoriumServiceImpl implements AuditoriumService {
 
     public void setAuditorium(Auditorium auditorium) {
         auditoriumList.add(auditorium);
+        auditoriumRepository.save(auditorium);
     }
 
     public void bookSeat(Auditorium auditorium, int seat) {

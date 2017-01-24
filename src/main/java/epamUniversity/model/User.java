@@ -1,7 +1,7 @@
 package epamUniversity.model;
 
+import epamUniversity.dao.RoleRepository;
 import epamUniversity.services.UserService;
-import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +13,15 @@ import java.util.*;
  */
 @Entity
 @Table(name = "users")
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class User extends DomainObject {
 
-    private transient static int index;
     // service is added to be able to perform selfRegistration in repository during bean initialization
     @Autowired
     private transient UserService userService;
+
+    @Autowired
+    private transient RoleRepository roleRepository;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,7 +35,7 @@ public class User extends DomainObject {
 
     @Column(name = "email")
     private String email;
-
+// throw unexpected exception did not fix it yet
 //    @Column(name = "dateOfBirth")
 //    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
     private transient DateTime dateOfBirth;
@@ -44,12 +47,17 @@ public class User extends DomainObject {
     private String password;
 
     private transient String confirmPassword;
-
+    /**
+     * Maping table is used to link user and role tables
+     */
     @ManyToMany
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private Set<Role> roles;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Account account;
 
     public User(String firstName, String lastName, String email) {
         this();
@@ -62,7 +70,6 @@ public class User extends DomainObject {
         int y = new Random().nextInt(50);
         int d = new Random().nextInt(10);
         dateOfBirth = new DateTime().minusYears(y).minusDays(d);
-        super.setId(index++);
     }
 
     public String getFirstName() {
@@ -123,6 +130,23 @@ public class User extends DomainObject {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void init(){

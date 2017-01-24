@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "accounts")
-public class Account {
+public class Account extends DomainObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,14 +23,27 @@ public class Account {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "ballance")
+    private double ballance;
+
     @ManyToMany
     @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+//    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @Column (name = "user_id")
+//    private Long user;
+
     public Account (User user){
+        this();
         this.username = user.getEmail();
         this.password = user.getPassword();
+//        this.user = user.getId();
+    }
+
+    public Account(){
+        this.ballance = 0.0;
     }
 
     public Long getId() {
@@ -59,6 +72,14 @@ public class Account {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public double getBallance() {
+        return ballance;
+    }
+
+    public void setBallance(double ballance) {
+        this.ballance = ballance;
     }
 
     public void setRoles(Set<Role> roles) {

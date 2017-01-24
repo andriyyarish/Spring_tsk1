@@ -2,7 +2,10 @@
 <#import "/spring.ftl" as spring/>
 
 <html>
-<head><title>EPAM university home work</title>
+<head>
+    <title>EPAM university home work</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
 <body>
 <div id="header">
     <H2>
@@ -39,7 +42,11 @@
             <th>Lastname</th>
             <th>Email</th>
             <th>Date of birth</th>
+            <th>Current balance</th>
             <th>Delete</th>
+            <th>Show tickets</th>
+            <th>Refill amount</th>
+            <th>Perform refill</th>
         </tr>
     <#list model["userList"] as user>
         <tr>
@@ -48,8 +55,20 @@
             <td>${user.lastName}</td>
             <td>${user.email}</td>
             <td>${user.dateOfBirth?if_exists?date["yyyy-mm-dd"]}</td>
+            <td>${user.account.ballance}</td>
             <td><a href="/epam/users/delete?id=${user.id}">Delete</a></td>
             <td><a href="/epam/users/${user.id}/getTickets">Show Booked tickets</a> </td>
+            <td><input type="text" name="refill" id="refill" ></td>
+
+            <script>
+                function setRefill() {
+                    var a = $('#refill').val();
+                    var b = document.getElementById('doRefill').getAttribute('href') +'/'+a;
+                    document.getElementById('doRefill').setAttribute('href',b);
+                }
+            </script>
+
+            <td><a id="doRefill" href="/epam/users/refill/${user.id}" onclick="return setRefill()" >Refill balance</a> </td>
             <td></td>
         </tr>
     </#list>

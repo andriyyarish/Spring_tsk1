@@ -5,29 +5,38 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeComparator;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
 import java.util.*;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
- */
+        */
+@Entity
+@Table(name = "events")
 public class Event extends DomainObject {
-    private static int index;
 
     @Autowired
-    private EventService eventService;
+    private transient EventService eventService;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "name")
     private String name;
 
-    private NavigableSet<DateTime> airDates = new TreeSet<>();
+    private transient NavigableSet<DateTime> airDates = new TreeSet<>();
 
+    @Column(name = "basePrice")
     private double basePrice;
 
+    @Column(name = "eventRating")
     private Rating eventRating;
 
-    private NavigableMap<DateTime, Auditorium> auditoriums = new TreeMap<>();
+    private transient NavigableMap<DateTime, Auditorium> auditoriums = new TreeMap<>();
 
     public Event() {
-        super.setId(index++);
+
     }
 
     public Event(String name, double price, String rating, DateTime date) {

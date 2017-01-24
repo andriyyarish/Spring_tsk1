@@ -1,17 +1,21 @@
 package epamUniversity.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by Andriy_Yarish on 1/3/2017.
  */
 public class DomainObject {
 
-    private Integer id;
+    private Long id;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
