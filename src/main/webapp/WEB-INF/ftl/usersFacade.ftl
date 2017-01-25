@@ -58,18 +58,32 @@
             <td>${user.account.ballance}</td>
             <td><a href="/epam/users/delete?id=${user.id}">Delete</a></td>
             <td><a href="/epam/users/${user.id}/getTickets">Show Booked tickets</a> </td>
-            <td><input type="text" name="refill" id="refill" ></td>
+            <td><input type="text" name="refill" id=${user.id + 'refill'}></td>
+
+            <td><a id=${user.id + 'doRefill'} href="/epam/users/refill/${user.id}" onclick="setRefill()">Refill balance</a> </td>
+            <td></td>
 
             <script>
                 function setRefill() {
-                    var a = $('#refill').val();
-                    var b = document.getElementById('doRefill').getAttribute('href') +'/'+a;
-                    document.getElementById('doRefill').setAttribute('href',b);
+                    var id = function (a,b) {return a+b;}
+                    var userId = ${user.id};
+                    var valLoc = id(userId,"refill");
+                    var actionLoc = id(userId,"doRefill");
+
+                    console.log(actionLoc);
+
+                    var value = document.getElementById(valLoc).value;
+                    console.log(value);
+
+                    var newHref = document.getElementById(actionLoc).getAttribute('href') +'?amount=' + value;
+                    newHref.replace("^=")
+                    console.log(newHref);
+
+                    document.getElementById(actionLoc).setAttribute('href',newHref);
+                    var uHref = document.getElementById(actionLoc).getAttribute('href');
+                    console.log(uHref)
                 }
             </script>
-
-            <td><a id="doRefill" href="/epam/users/refill/${user.id}" onclick="return setRefill()" >Refill balance</a> </td>
-            <td></td>
         </tr>
     </#list>
     </table>

@@ -2,6 +2,7 @@ package epamUniversity.model;
 import epamUniversity.model.Role;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -40,6 +41,8 @@ public class Account extends DomainObject {
         this.username = user.getEmail();
         this.password = user.getPassword();
 //        this.user = user.getId();
+
+
     }
 
     public Account(){

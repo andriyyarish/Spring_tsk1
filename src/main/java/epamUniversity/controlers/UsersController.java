@@ -160,8 +160,8 @@ public class UsersController implements InitializingBean {
         return result;
     }
 
-    @RequestMapping(value = "users/refill/{id}/{amount}")
-    public String refillBallance(@PathVariable int id,@PathVariable String amount){
+    @RequestMapping(value = "users/refill/{id}")
+    public String refillBallance(@PathVariable int id,@RequestParam String amount){
         User user = userService.getById(id);
         accountService.refillAccount(user,Double.parseDouble(amount));
         return "redirect:/users.html";

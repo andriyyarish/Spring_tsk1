@@ -47,43 +47,43 @@ public class EventService_Impl_Test {
 //        auditorium = applicationContext.getBean(Auditorium.class);
     }
 
-    @Test
-    public void addEvent(){
-        eventService.save(event1);
-        eventService.save(event2);
-        assertThat(eventService.getAll().size(), Matchers.equalTo(2));
-    }
-
-    @Test
-    public void getEvent(){
-        Event eventById = eventService.getById(0);
-        assertThat(eventById, Matchers.notNullValue());
-    }
-
-    @Test
-    public void assignAuditorium(){
-        int id = eventService.save(event3).getId();
-        eventService.assignAuditorium(event3,auditorium,new DateTime());
-        assertThat(eventService.getById(id).getAuditoriums(), Matchers.notNullValue());
-    }
-
-    @Test
-    public void getForDateRange(){
-        DateTime from = new DateTime().minusDays(10);
-        DateTime to = new DateTime().plusDays(10);
-
-
-        Map<Integer, Event> forDateRange = eventService.getForDateRange(from,to);
-        assertThat(forDateRange.size(), greaterThanOrEqualTo(1));
-    }
-
-    @Test
-    public void map(){
-        NavigableMap <String, String> nm = new TreeMap<>();
-        Map<String,String> map = new LinkedHashMap<>();
-        map.put("a","b");
-        nm.putAll(map);
-        System.out.println(nm);
-    }
+//    @Test
+//    public void addEvent(){
+//        eventService.save(event1);
+//        eventService.save(event2);
+//        assertThat(eventService.getAll().size(), Matchers.equalTo(2));
+//    }
+//
+//    @Test
+//    public void getEvent(){
+//        Event eventById = eventService.getById(0);
+//        assertThat(eventById, Matchers.notNullValue());
+//    }
+//
+//    @Test
+//    public void assignAuditorium(){
+//        int id = eventService.save(event3).getId();
+//        eventService.assignAuditorium(event3,auditorium,new DateTime());
+//        assertThat(eventService.getById(id).getAuditoriums(), Matchers.notNullValue());
+//    }
+//
+//    @Test
+//    public void getForDateRange(){
+//        DateTime from = new DateTime().minusDays(10);
+//        DateTime to = new DateTime().plusDays(10);
+//
+//
+//        Map<Integer, Event> forDateRange = eventService.getForDateRange(from,to);
+//        assertThat(forDateRange.size(), greaterThanOrEqualTo(1));
+//    }
+//
+//    @Test
+//    public void map(){
+//        NavigableMap <String, String> nm = new TreeMap<>();
+//        Map<String,String> map = new LinkedHashMap<>();
+//        map.put("a","b");
+//        nm.putAll(map);
+//        System.out.println(nm);
+//    }
 
 }

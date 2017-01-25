@@ -43,38 +43,33 @@ public class UserService_Test {
         System.out.println(gson.toJson(user));
     }
 
-    @Test
-    public void registerUserAndCheckThatIdAssigned(){
-        User u = userService.save(user);
-        assertEquals(userService.getById(u.getId()).getEmail(),"test");
-    }
-
-    @Test
-    public void getById(){
-        userService.save(user);
-        System.out.println(userService.getById(1));
-        assertThat(userService.getById(1).getFirstName(), equalToIgnoringCase("Andriy"));
-    }
-
-    @Test
-    public void getAllUsers(){
-        Collection<User> cu = userService.getAll();
-
-        Assert.assertTrue(cu.size()>0);
-    }
-
-    @Test
-    public void getEmailsViaLiambdas(){
-        List<String> uls = userService.getAll()
-                .stream()
-                .map(user -> user.getEmail())
-                .collect(Collectors.toList());
-        System.out.println(uls);
-    }
-
-
-
-
-
+//    @Test
+//    public void registerUserAndCheckThatIdAssigned(){
+//        User u = userService.save(user);
+//        assertEquals(userService.getById(u.getId()).getEmail(),"test");
+//    }
+//
+//    @Test
+//    public void getById(){
+//        userService.save(user);
+//        System.out.println(userService.getById(1));
+//        assertThat(userService.getById(1).getFirstName(), equalToIgnoringCase("Andriy"));
+//    }
+//
+//    @Test
+//    public void getAllUsers(){
+//        Collection<User> cu = userService.getAll();
+//
+//        Assert.assertTrue(cu.size()>0);
+//    }
+//
+//    @Test
+//    public void getEmailsViaLiambdas(){
+//        List<String> uls = userService.getAll()
+//                .stream()
+//                .map(user -> user.getEmail())
+//                .collect(Collectors.toList());
+//        System.out.println(uls);
+//    }
 
 }

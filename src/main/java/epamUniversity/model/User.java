@@ -2,6 +2,7 @@ package epamUniversity.model;
 
 import epamUniversity.dao.RoleRepository;
 import epamUniversity.services.UserService;
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,9 +37,9 @@ public class User extends DomainObject {
     @Column(name = "email")
     private String email;
 // throw unexpected exception did not fix it yet
-//    @Column(name = "dateOfBirth")
-//    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-    private transient DateTime dateOfBirth;
+    @Column(name = "dateOfBirth")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime dateOfBirth;
 
     //TODO need to create table tickets and link with user
     private transient NavigableSet<Ticket> tickets = new TreeSet<>();
