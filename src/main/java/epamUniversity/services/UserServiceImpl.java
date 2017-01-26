@@ -1,6 +1,7 @@
 package epamUniversity.services;
 
 import epamUniversity.dao.AccountRepository;
+import epamUniversity.dao.RoleRepository;
 import epamUniversity.dao.UserRepository;
 import epamUniversity.model.Account;
 import epamUniversity.model.User;
@@ -23,6 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @Autowired
     BCryptPasswordEncoder encoder;
@@ -63,10 +67,10 @@ public class UserServiceImpl implements UserService {
             String encodedPass = encoder.encode(object.getPassword());
             object.setPassword(encodedPass);
             account = new Account(object);
+            account.addRole(roleRepository.getOne(1L)); // default User Role on registration
             accountRepository.save(account);
             Account a = accountRepository.findByUsername(object.getEmail());
-
-            object.setAccount(a);
+            object.setAccount(a); // update record in user table with ID of created account
             userRepository.save(object);
             return object;
         } else {

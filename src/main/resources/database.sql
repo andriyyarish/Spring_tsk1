@@ -21,7 +21,7 @@ CREATE TABLE users (
   lastName VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   dateOfBirth DATETIME ,
-  password VARCHAR(255) NOT NULL,
+#   password VARCHAR(255) NOT NULL,
   account_id INT NOT NULL,
 
   FOREIGN KEY (account_id) REFERENCES accounts(id)
@@ -40,13 +40,13 @@ CREATE TABLE roles (
 -- Table for mapping user and roles: user_roles
 DROP TABLE IF EXISTS account_roles;
 CREATE TABLE account_roles (
-  user_id INT NOT NULL,
+  account_id INT NOT NULL,
   role_id INT NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES accounts (id),
+  FOREIGN KEY (account_id) REFERENCES accounts (id),
   FOREIGN KEY (role_id) REFERENCES roles (id),
 
-  UNIQUE (user_id, role_id)
+  UNIQUE (account_id, role_id)
 )
   ENGINE = InnoDB;
 
@@ -56,7 +56,6 @@ CREATE TABLE events (
   name VARCHAR(255) NOT NULL ,
   basePrice DOUBLE,
   eventRating VARCHAR(255)
-
 )
   ENGINE = InnoDB;
 
@@ -68,8 +67,31 @@ CREATE TABLE auditoriums(
   seats INT NOT NULL
 )
   ENGINE = InnoDB;
+-- create tickets table
+DROP TABLE IF EXISTS tickets;
+CREATE TABLE tickets(
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+  seat INT NOT NULL ,
+  price DOUBLE NOT NULL ,
+  dateTime DATETIME,
+  user_id INT NOT NULL ,
 
+  FOREIGN KEY (user_id) REFERENCES users(id)
+)
+  ENGINE = InnoDB;
 
+-- tickets to user relation
+DROP TABLE IF EXISTS user_tickets;
+CREATE TABLE user_tickets (
+  user_id INT NOT NULL,
+  ticket_id INT NOT NULL,
+
+  FOREIGN KEY (user_id) REFERENCES users (id),
+  FOREIGN KEY (ticket_id) REFERENCES tickets (id),
+
+  UNIQUE (user_id, ticket_id)
+)
+  ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS persistent_logins (
   username  VARCHAR(64) NOT NULL,
@@ -81,7 +103,7 @@ CREATE TABLE IF NOT EXISTS persistent_logins (
 -- Insert data
 INSERT INTO accounts VALUES (1,'encode','$2a$10$EblZqNptyYvcLm/VwDCVAuBjzZOI7khzdyGPBr08PpIi0na624b8.', 0); -- 123456
 
-INSERT INTO users VALUES (1,'script','script','script','1970-01-01 00:00:01','script',1);
+INSERT INTO users VALUES (1,'script','script','script','1970-01-01 00:00:01',1);
 
 INSERT INTO roles VALUES (1, 'ROLE_USER');
 INSERT INTO roles VALUES (2, 'ROLE_ADMIN');

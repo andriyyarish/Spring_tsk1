@@ -152,8 +152,8 @@ public class UsersController implements InitializingBean {
             tickets = user.getTickets();
             if (tickets != null && tickets.size() > 0)
                 for (Ticket t : tickets)
-                    ticketsView.add("Event: " + t.getEvent().getEventParent().getName()
-                            + "Auditorium: " + t.getEvent().getAuditorium().getName());
+                    ticketsView.add("User email: " + t.getUser().getEmail()
+                            + " Ticket Id: " + t.getId());
         }
         result.addObject("tickets", ticketsView);
         result.setViewName("ticketsByUser");
@@ -167,30 +167,6 @@ public class UsersController implements InitializingBean {
         return "redirect:/users.html";
     }
 
-//    @RequestMapping (value = "/users", method = RequestMethod.GET)
-//    public String getAllUsers(ModelMap modelMap){
-//        Map<Integer, User> userList = userService.getUserList();
-//
-//        for(int i = 0; i<userList.size();i++)
-//            modelMap.addAttribute("usr"+i,userList.get(i) );
-//
-//        modelMap.addAttribute("listSize",userList.size());
-//        return "users";
-//    }
-//
-//    @RequestMapping (value = "/user/{id}", method = RequestMethod.GET, produces =MediaType.APPLICATION_JSON_VALUE)
-//    public ModelAndView getUserById(@PathVariable(value = "id") int id){
-//        User userById = userService.getUserById(id);
-//        return new ModelAndView("users", "message", userById.toString());
-//    }
-//
-//    @RequestMapping (value = "/users", method = RequestMethod.POST)
-//    public String registerUser(@ModelAttribute("test") User user, ModelMap modelMap){
-//        modelMap.addAttribute("name",user.getName());
-//        modelMap.addAttribute("email",user.getEmail());
-//        return "result";
-//    }
-
     @Override
     public void afterPropertiesSet() throws Exception {
         gson = gsonBuilder.serializeNulls()
@@ -198,6 +174,5 @@ public class UsersController implements InitializingBean {
                 .disableInnerClassSerialization()
                 .create();
     }
-
 
 }

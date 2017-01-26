@@ -5,6 +5,19 @@
 <head>
     <title>EPAM university home work</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        function setRefill(uid) {
+            var id = function (a,b) {return a+b;}
+            var userId = uid;
+            var valLoc = id(userId,"refill");
+            var actionLoc = id(userId,"doRefill");
+
+            var value = document.getElementById(valLoc).value;
+            var newHref = document.getElementById(actionLoc).getAttribute('href') +'?amount=' + value;
+
+            document.getElementById(actionLoc).setAttribute('href',newHref);
+        }
+    </script>
 </head>
 <body>
 <div id="header">
@@ -60,30 +73,10 @@
             <td><a href="/epam/users/${user.id}/getTickets">Show Booked tickets</a> </td>
             <td><input type="text" name="refill" id=${user.id + 'refill'}></td>
 
-            <td><a id=${user.id + 'doRefill'} href="/epam/users/refill/${user.id}" onclick="setRefill()">Refill balance</a> </td>
+            <td><a id=${user.id + 'doRefill'} href="/epam/users/refill/${user.id}" onclick="setRefill(${user.id})">Refill balance</a> </td>
             <td></td>
 
-            <script>
-                function setRefill() {
-                    var id = function (a,b) {return a+b;}
-                    var userId = ${user.id};
-                    var valLoc = id(userId,"refill");
-                    var actionLoc = id(userId,"doRefill");
 
-                    console.log(actionLoc);
-
-                    var value = document.getElementById(valLoc).value;
-                    console.log(value);
-
-                    var newHref = document.getElementById(actionLoc).getAttribute('href') +'?amount=' + value;
-                    newHref.replace("^=")
-                    console.log(newHref);
-
-                    document.getElementById(actionLoc).setAttribute('href',newHref);
-                    var uHref = document.getElementById(actionLoc).getAttribute('href');
-                    console.log(uHref)
-                }
-            </script>
         </tr>
     </#list>
     </table>

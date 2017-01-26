@@ -1,7 +1,10 @@
 package epamUniversity.services;
 
+import epamUniversity.dao.TicketRepository;
 import epamUniversity.model.*;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import java.util.*;
@@ -9,18 +12,21 @@ import java.util.*;
 /**
  * Created by Andriy_Yarish on 1/9/2017.
  */
+@Service
 public class TicketsService implements AbstractDomainObjectService<Ticket> {
     private static Map<Long,Ticket> tickets = new LinkedHashMap<>();
 
+    @Autowired
+    private TicketRepository ticketRepository;
+
     @Override
     public Ticket save(@Nonnull Ticket object) {
-         tickets.put(object.getId(),object);
-         return tickets.get(object.getId());
+         return ticketRepository.save(object);
     }
 
     @Override
     public void remove(@Nonnull Ticket object) {
-        tickets.remove(object.getId());
+        ticketRepository.delete(object);
     }
 
     @Override
@@ -31,7 +37,7 @@ public class TicketsService implements AbstractDomainObjectService<Ticket> {
     @Nonnull
     @Override
     public Collection<Ticket> getAll() {
-        return tickets.values();
+        return ticketRepository.findAll();
     }
 
     public Ticket buildTicket(Event event, DateTime date, Auditorium auditorium, User user, int seat){

@@ -3,6 +3,7 @@ import epamUniversity.model.Role;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class Account extends DomainObject {
     private double ballance;
 
     @ManyToMany
-    @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "account_roles", joinColumns = @JoinColumn(name = "account_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
@@ -41,12 +42,11 @@ public class Account extends DomainObject {
         this.username = user.getEmail();
         this.password = user.getPassword();
 //        this.user = user.getId();
-
-
     }
 
     public Account(){
         this.ballance = 0.0;
+        roles = new HashSet<>();
     }
 
     public Long getId() {
@@ -87,5 +87,9 @@ public class Account extends DomainObject {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role){
+        this.roles.add(role);
     }
 }

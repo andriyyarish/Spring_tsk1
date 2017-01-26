@@ -20,9 +20,10 @@ public class User extends DomainObject {
     // service is added to be able to perform selfRegistration in repository during bean initialization
     @Autowired
     private transient UserService userService;
-
     @Autowired
     private transient RoleRepository roleRepository;
+    private transient String password;
+    private transient String confirmPassword;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,26 +37,16 @@ public class User extends DomainObject {
 
     @Column(name = "email")
     private String email;
-// throw unexpected exception did not fix it yet
+
     @Column(name = "dateOfBirth")
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateOfBirth;
 
-    //TODO need to create table tickets and link with user
-    private transient NavigableSet<Ticket> tickets = new TreeSet<>();
-
-    @Column(name = "password")
-    private String password;
-
-    private transient String confirmPassword;
-    /**
-     * Maping table is used to link user and role tables
-     */
-    @ManyToMany
-    @JoinTable(name = "user_roles",
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_tickets",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+            inverseJoinColumns = @JoinColumn(name = "ticket_id"))
+    private Set<Ticket> tickets;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Account account;
@@ -97,12 +88,12 @@ public class User extends DomainObject {
         this.email = email;
     }
 
-    public NavigableSet<Ticket> getTickets() {
+    public Set<Ticket> getTickets() {
         return tickets;
     }
 
-    public void setTickets(NavigableSet<Ticket> tickets) {
-        this.tickets.addAll(tickets);
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public void addTicket(Ticket ticket) {

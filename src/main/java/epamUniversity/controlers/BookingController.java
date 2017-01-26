@@ -80,7 +80,7 @@ public class BookingController {
 
         if (containsDate(event.getAirDates(), date) && auditorium.getSeats() >= seat) {
 
-            double price = ((BookingServiceImpl) bookingService).getTicketsPrice(event, auditorium, new DateTime(), user, seat);
+            double price = bookingService.getTicketsPrice(event, auditorium, new DateTime(), user, seat);
             result.addObject("price", price);
             result.addObject("event", ev);
             result.addObject("auditorium", aud);
@@ -99,7 +99,7 @@ public class BookingController {
     @RequestMapping(value = "/orderTicket", method = RequestMethod.POST)
     public ModelAndView orderTicket(ModelAndView result, HttpServletRequest request) {
 
-        ModelAndView modelAndView = getTicketPrice(result, request);
+        ModelAndView modelAndView = getTicketPrice(result, request); // uses method that performs price calculation
         User u = userService.getUserByEmail((String) modelAndView.getModel().get("user"));
         Event e = eventService.getByName((String) modelAndView.getModel().get("event"));
         Auditorium a = auditoriumService.getByName((String) modelAndView.getModel().get("auditorium"));
@@ -109,9 +109,7 @@ public class BookingController {
         Ticket ticket = new Ticket(u, e, a, d, s);
         ticket.setPrice((Double) modelAndView.getModel().get("price"));
 
-        u.addTicket(ticket);
-        ticketsService.save(ticket);
-
+        bookingService.bookTicket(ticket);
 
         result.addObject("ticket",ticket);
         result.setViewName("ticketPdfView");

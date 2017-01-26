@@ -1,24 +1,35 @@
 package epamUniversity.model;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by Andriy_Yarish on 3/9/2016.
  */
+@Entity
+@Table(name = "tickets")
+@AttributeOverride(name = "id", column = @Column(name = "id"))
 public class Ticket extends DomainObject implements Comparable<Ticket> {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(targetEntity = User.class)
     private User user;
 
-    private EventInstance event;
+    private transient EventInstance event;
 
+    @Column(name = "dateTime")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     private DateTime dateTime;
 
+    @Column(name = "seat")
     private int seat;
 
+    @Column(name = "price")
     private double price;
 
     public Ticket(User user, EventInstance event, DateTime dateTime, int seat) {
@@ -79,6 +90,16 @@ public class Ticket extends DomainObject implements Comparable<Ticket> {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

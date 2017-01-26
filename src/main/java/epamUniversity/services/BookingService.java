@@ -1,4 +1,5 @@
 package epamUniversity.services;
+import epamUniversity.model.Auditorium;
 import epamUniversity.model.Event;
 import epamUniversity.model.Ticket;
 import epamUniversity.model.User;
@@ -32,6 +33,12 @@ public interface BookingService {
     public double getTicketsPrice(@Nonnull Event event, @Nonnull DateTime dateTime, @Nullable User user,
                                   @Nonnull Set<Integer> seats);
 
+    public double getTicketsPrice(@Nonnull Event event,
+                                  @Nonnull Auditorium auditorium,
+                                  @Nonnull DateTime dateTime,
+                                  @Nullable User user,
+                                  @Nonnull Integer seat);
+
     /**
      * Books tickets in internal system. If user is not
      * <code>null</code> in a ticket then booked tickets are saved with it
@@ -40,6 +47,8 @@ public interface BookingService {
      *            Set of tickets
      */
     public void bookTickets(@Nonnull Set<Ticket> tickets);
+
+    public void bookTicket(@Nonnull Ticket tickets);
 
     /**
      * Getting all purchased tickets for event on specific air date and time

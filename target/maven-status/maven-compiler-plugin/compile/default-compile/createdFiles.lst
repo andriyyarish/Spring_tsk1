@@ -3,6 +3,7 @@ epamUniversity\controlers\BookingController.class
 epamUniversity\controlers\TestController.class
 epamUniversity\controlers\EventsController.class
 epamUniversity\dao\RoleRepository.class
+epamUniversity\dao\TicketRepository.class
 epamUniversity\services\discount\strategy\DiscountStrategy.class
 epamUniversity\model\Rating.class
 epamUniversity\services\UserService.class

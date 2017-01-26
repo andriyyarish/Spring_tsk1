@@ -1,5 +1,6 @@
 package epamUniversity.services;
 
+import epamUniversity.dao.UserRepository;
 import epamUniversity.model.*;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.transaction.Transactional;
 import java.util.Set;
 
 /**
@@ -26,7 +28,14 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private EventService eventService;
     @Autowired
-    private UserService userServiceImpl;
+    private UserService userService;
+    @Autowired
+    private AccountService accountService;
+    @Autowired
+    private TicketsService ticketsService;
+    @Autowired
+    private UserRepository userRepository;
+
 //    @Autowired
 //    private DiscountServiceImpl discountService;
     @Autowired
@@ -56,8 +65,13 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
-    public void bookTickets(@Nonnull Ticket ticket) {
-
+    @Transactional
+    public void bookTicket(@Nonnull Ticket ticket) {
+        User user = ticket.getUser();
+        accountService.chargeAccount(user,ticket.getPrice());
+        ticketsService.save(ticket);
+        user.addTicket(ticket);
+        userRepository.saveAndFlush(user);
     }
 
 

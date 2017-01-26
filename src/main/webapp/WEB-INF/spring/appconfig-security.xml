@@ -13,7 +13,7 @@
         <intercept-url pattern="/epam/getUserById*" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/events**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/booking**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"/>
-        <intercept-url pattern="/users/*/getTickets" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/users/*/getTickets" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
 
         <form-login login-page="/login" default-target-url="/"
                     authentication-failure-url="/login?error"
