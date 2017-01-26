@@ -65,6 +65,11 @@ public class BookingServiceImpl implements BookingService {
 
     }
 
+    /**
+     * Check that User has enought money and place is available
+     * If everything is ok changes will be written into DB
+     * @param ticket
+     */
     @Transactional
     public void bookTicket(@Nonnull Ticket ticket) {
         User user = ticket.getUser();
