@@ -30,7 +30,7 @@ public class TicketsService implements AbstractDomainObjectService<Ticket> {
     }
 
     @Override
-    public Ticket getById(@Nonnull Integer id) {
+    public Ticket getById(@Nonnull Long id) {
         return tickets.get(id);
     }
 

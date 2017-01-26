@@ -32,7 +32,7 @@ public interface AbstractDomainObjectService<T extends DomainObject> {
      * @param id id of the object
      * @return Found object or <code>null</code>
      */
-    public T getById(@Nonnull Integer id);
+    public T getById(@Nonnull Long id);
 
     /**
      * Getting all objects from storage

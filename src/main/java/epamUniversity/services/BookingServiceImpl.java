@@ -68,7 +68,7 @@ public class BookingServiceImpl implements BookingService {
     @Transactional
     public void bookTicket(@Nonnull Ticket ticket) {
         User user = ticket.getUser();
-        accountService.chargeAccount(user,ticket.getPrice());
+        accountService.chargeBalance(user,ticket.getPrice());
         ticketsService.save(ticket);
         user.addTicket(ticket);
         userRepository.saveAndFlush(user);

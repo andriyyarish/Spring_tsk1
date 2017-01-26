@@ -2,8 +2,6 @@ package epamUniversity.controlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import epamUniversity.dao.AccountRepository;
-import epamUniversity.model.Account;
 import epamUniversity.model.Ticket;
 import epamUniversity.model.User;
 import epamUniversity.services.AccountService;
@@ -22,6 +20,7 @@ import java.util.LinkedList;
 
 import static epamUniversity.util.DatesHandling.parseStringToDate;
 import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 /**
  * Created by Andriy_Yarish on 12/28/2016.
@@ -120,7 +119,7 @@ public class UsersController implements InitializingBean {
         String id = request.getParameter("id");
 
         if (id != null) {
-            User user = userService.getById(parseInt(id));
+            User user = userService.getById(parseLong(id));
             if (user != null) {
                 result.addObject("user", user.getFirstName() + " " + user.getLastName());
             } else {
@@ -133,7 +132,7 @@ public class UsersController implements InitializingBean {
     }
 
     @RequestMapping(value = "/users/delete", method = RequestMethod.GET)
-    public String deleteUser(@RequestParam("id") int id,
+    public String deleteUser(@RequestParam("id") long id,
                              @ModelAttribute("model") ModelMap model) {
         User u = userService.getById(id);
         if (u != null)
@@ -144,7 +143,7 @@ public class UsersController implements InitializingBean {
     }
 
     @RequestMapping(value = "/users/{id}/getTickets", method = RequestMethod.GET)
-    public ModelAndView getBookedTickets(@PathVariable(value = "id") int usrId, ModelAndView result) {
+    public ModelAndView getBookedTickets(@PathVariable(value = "id") long usrId, ModelAndView result) {
         User user = userService.getById(usrId);
         Collection<Ticket> tickets;
         Collection<String> ticketsView = new LinkedList<>();
@@ -161,9 +160,9 @@ public class UsersController implements InitializingBean {
     }
 
     @RequestMapping(value = "users/refill/{id}")
-    public String refillBallance(@PathVariable int id,@RequestParam String amount){
+    public String refillBallance(@PathVariable long id,@RequestParam String amount){
         User user = userService.getById(id);
-        accountService.refillAccount(user,Double.parseDouble(amount));
+        accountService.refillBalance(user,Double.parseDouble(amount));
         return "redirect:/users.html";
     }
 

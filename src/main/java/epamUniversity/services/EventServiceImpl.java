@@ -49,7 +49,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getById(@Nonnull Integer id) {
+    public Event getById(@Nonnull Long id) {
         return eventList.get(id);
     }
 

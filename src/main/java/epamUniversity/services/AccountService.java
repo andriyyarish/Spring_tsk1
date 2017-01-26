@@ -8,7 +8,7 @@ import epamUniversity.model.User;
  */
 public interface AccountService extends AbstractDomainObjectService<Account> {
 
-    double refillAccount(User user, double amount);
+    double refillBalance(User user, double amount);
 
-    double chargeAccount(User user, double amount);
+    double chargeBalance(User user, double amount);
 }

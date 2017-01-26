@@ -21,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Transactional
     @Override
-    public double refillAccount(User user, double amount) {
+    public double refillBalance(User user, double amount) {
         Account account = user.getAccount();
         double ballance = account.getBallance() + amount;
         account.setBallance(ballance);
@@ -29,7 +29,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public double chargeAccount(User user, double amount) {
+    public double chargeBalance(User user, double amount) {
         Account account = user.getAccount();
         double newBallance = account.getBallance() - amount;
         if (newBallance > 0)
@@ -50,8 +50,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Account getById(@Nonnull Integer id) {
-        return null;
+    public Account getById(@Nonnull Long id) {
+        return accountRepository.getOne(id);
     }
 
     @Nonnull
