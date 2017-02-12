@@ -46,7 +46,7 @@
     </authentication-manager>
 
 
-    <b:bean id="userDetailsServiceImp" class="epamUniversity.services.UserDetailsServiceImpl"/>
+    <b:bean id="userDetailsServiceImp" class="com.epamUniversity.services.UserDetailsServiceImpl"/>
     <b:bean id="daoAuthenticationProvider"
             class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
         <b:property name="userDetailsService" ref="userDetailsServiceImp"/>

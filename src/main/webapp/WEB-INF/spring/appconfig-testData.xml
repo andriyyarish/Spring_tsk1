@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd" >
     <context:annotation-config/>
-    <context:component-scan base-package="epamUniversity"/>
+    <context:component-scan base-package="com.epamUniversity"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -26,37 +26,37 @@
         </property>
     </bean>
 
-    <!--<bean id="newusr" class="epamUniversity.model.User" init-method="init" scope="prototype">-->
+    <!--<bean id="newusr" class="com.epamUniversity.model.User" init-method="init" scope="prototype">-->
         <!--<constructor-arg value="New user"/>-->
         <!--<constructor-arg value="New user"/>-->
         <!--<constructor-arg value="newUser@email.com"/>-->
     <!--</bean>-->
-    <!--<bean id="usr1" class="epamUniversity.model.User" init-method="init">-->
+    <!--<bean id="usr1" class="com.epamUniversity.model.User" init-method="init">-->
         <!--<constructor-arg value="Andriy"/>-->
         <!--<constructor-arg value="Yarish"/>-->
         <!--<constructor-arg value="andy@gmail.com"/>-->
         <!--<property name="password" value="password"/>-->
     <!--</bean>-->
-    <!--<bean id="usr2" class="epamUniversity.model.User" init-method="init">-->
+    <!--<bean id="usr2" class="com.epamUniversity.model.User" init-method="init">-->
         <!--<constructor-arg value="Ivan"/>-->
         <!--<constructor-arg value="Petrov"/>-->
         <!--<constructor-arg value="ivan@gmail.com"/>-->
         <!--<property name="password" value="password"/>-->
     <!--</bean>-->
-    <!--<bean id="usr3" class="epamUniversity.model.User" init-method="init">-->
+    <!--<bean id="usr3" class="com.epamUniversity.model.User" init-method="init">-->
         <!--<constructor-arg value="Petr"/>-->
         <!--<constructor-arg value="Ivanov"/>-->
         <!--<constructor-arg value="petr@gmail.com"/>-->
         <!--<property name="password" value="password"/>-->
     <!--</bean>-->
-    <!--<bean id="usr4" class="epamUniversity.model.User" init-method="init">-->
+    <!--<bean id="usr4" class="com.epamUniversity.model.User" init-method="init">-->
         <!--<constructor-arg value="John"/>-->
         <!--<constructor-arg value="Doe"/>-->
         <!--<constructor-arg value="john@gmail.com"/>-->
         <!--<property name="password" value="password"/>-->
     <!--</bean>-->
 
-    <bean id="event1" class="epamUniversity.model.Event" init-method="init">
+    <bean id="event1" class="com.epamUniversity.model.Event" init-method="init">
         <constructor-arg value="Matrix"/>
         <constructor-arg value="125.50"/>
         <constructor-arg value="MEDIUM"/>
@@ -64,7 +64,7 @@
             <bean class="org.joda.time.DateTime" scope="prototype"/>
         </constructor-arg>
     </bean>
-    <bean id="event2" class="epamUniversity.model.Event" init-method="init">
+    <bean id="event2" class="com.epamUniversity.model.Event" init-method="init">
         <constructor-arg value="James Bond"/>
         <constructor-arg value="250.50"/>
         <constructor-arg value="HIGH"/>
@@ -78,14 +78,14 @@
         </property>
     </bean>
 
-    <bean id="auditorium1" class="epamUniversity.model.Auditorium" init-method="init">
+    <bean id="auditorium1" class="com.epamUniversity.model.Auditorium" init-method="init">
         <constructor-arg value="${name1}"/>
         <constructor-arg value="${adress1}"/>
         <constructor-arg value="${seats1}"/>
         <constructor-arg value="${vipSeatsList1}"/>
     </bean>
 
-    <bean id="auditorium2" class="epamUniversity.model.Auditorium" init-method="init">
+    <bean id="auditorium2" class="com.epamUniversity.model.Auditorium" init-method="init">
         <constructor-arg value="${name2}"/>
         <constructor-arg value="${adress2}"/>
         <constructor-arg value="${seats2}"/>

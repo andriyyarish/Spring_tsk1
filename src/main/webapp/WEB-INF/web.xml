@@ -16,19 +16,22 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!--<welcome-file-list>-->
-         <!--<welcome-file>-->
-         <!--index.jsp-->
-         <!--</welcome-file>-->
-    <!--</welcome-file-list>-->
+    <!--<servlet>-->
+    <!--<servlet-name>soap</servlet-name>-->
+    <!--<servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>-->
+    <!--<init-param>-->
+        <!--<param-name>transformWsdlLocations</param-name>-->
+        <!--<param-value>true</param-value>-->
+    <!--</init-param>-->
+    <!--</servlet>-->
+
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>soap</servlet-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 
     <servlet-mapping>
         <servlet-name>epam</servlet-name>
-        <!--<url-pattern>/welcome.jsp</url-pattern>-->
-        <!--<url-pattern>/users.jsp</url-pattern>-->
-        <!--<url-pattern>/events.jsp</url-pattern>-->
-        <!--<url-pattern>/welcome.html</url-pattern>-->
-        <!--<url-pattern>/*.jsp</url-pattern>-->
         <url-pattern>/</url-pattern>
         <!--<url-pattern>*.html</url-pattern>-->
     </servlet-mapping>
@@ -41,7 +44,6 @@
         <filter-name>springSecurityFilterChain</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
 
 
     <context-param>

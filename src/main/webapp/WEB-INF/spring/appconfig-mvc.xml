@@ -2,16 +2,18 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="
- 		http://www.springframework.org/schema/beans
+       xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/cache"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context.xsd" >
+        http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
     <context:annotation-config/>
-    <context:component-scan base-package="epamUniversity"/>
+    <context:component-scan base-package="com.epamUniversity"/>
+
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -27,14 +29,14 @@
     </bean>
     <bean id = "gsonBuilder" class="com.google.gson.GsonBuilder"/>
 
-    <bean id="userServiceImpl" class="epamUniversity.services.UserServiceImpl"/>
-    <bean id="eventService" class="epamUniversity.services.EventServiceImpl"/>
-    <bean id="bookingService" class="epamUniversity.services.BookingServiceImpl"/>
-    <bean id="discountService" class="epamUniversity.services.discount.DiscountServiceImpl"/>
-    <bean id="auditoriumService" class="epamUniversity.services.AuditoriumServiceImpl"/>
-    <bean id="ticketService" class="epamUniversity.services.TicketsService"/>
+    <bean id="userServiceImpl" class="com.epamUniversity.services.UserServiceImpl"/>
+    <bean id="eventService" class="com.epamUniversity.services.EventServiceImpl"/>
+    <bean id="bookingService" class="com.epamUniversity.services.BookingServiceImpl"/>
+    <bean id="discountService" class="com.epamUniversity.services.discount.DiscountServiceImpl"/>
+    <bean id="auditoriumService" class="com.epamUniversity.services.AuditoriumServiceImpl"/>
+    <bean id="ticketService" class="com.epamUniversity.services.TicketsService"/>
 
-    <bean id = "ticket" class="epamUniversity.model.Ticket" scope="prototype"/>
+    <bean id = "ticket" class="com.epamUniversity.model.Ticket" scope="prototype"/>
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
