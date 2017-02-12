@@ -41,6 +41,7 @@ public class UserResource {
         return user;
     }
 
+    //{"userId":223, "ammount":2000000}
     @RequestMapping(value = "/refill", method = RequestMethod.POST)
     public ResponseEntity<String> refillBalance(@RequestBody RefillRequest request){
         User user = userService.getById(request.getUserId());
