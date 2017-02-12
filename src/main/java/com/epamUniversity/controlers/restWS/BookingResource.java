@@ -1,5 +1,7 @@
 package com.epamUniversity.controlers.restWS;
 
+import com.epamUniversity.controlers.restWS.dto.TicketRequest;
+import com.epamUniversity.controlers.restWS.dto.TicketResponse;
 import com.epamUniversity.model.Event;
 import com.epamUniversity.model.EventInstance;
 import com.epamUniversity.model.Ticket;
@@ -38,8 +40,10 @@ public class BookingResource {
         return event.getBasePrice();
     }
 
+    // {"eventId":1, "userId":2, "seat":1}
+
     @RequestMapping(value = "/buy", method = RequestMethod.POST)
-    public @ResponseBody Ticket buyTicket(@RequestBody TicketRequest request){
+    public @ResponseBody TicketResponse buyTicket(@RequestBody TicketRequest request){
         Event event = eventService.getById(request.getEventId());
         EventInstance eventInstance = new EventInstance(event
                 ,auditoriumService.getByName("Blockbaster")
@@ -47,6 +51,6 @@ public class BookingResource {
         User user = userService.getById(request.getUserId());
         Ticket ticket = new Ticket(user,eventInstance,request.getSeat().intValue());
         bookingService.bookTicket(ticket);
-        return ticket;
+        return new TicketResponse(ticket);
     }
 }

@@ -1,4 +1,4 @@
-package com.epamUniversity.controlers.restWS;
+package com.epamUniversity.controlers.restWS.dto;
 
 import java.io.Serializable;
 

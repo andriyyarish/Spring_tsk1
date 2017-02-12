@@ -8,6 +8,7 @@ com\epamUniversity\services\BookingService.class
 com\epamUniversity\services\AccountServiceImpl.class
 com\epamUniversity\services\discount\DiscountServiceImpl.class
 com\epamUniversity\dao\TicketRepository.class
+com\epamUniversity\controlers\restWS\dto\TicketResponse.class
 com\epamUniversity\dao\AccountRepository.class
 com\epamUniversity\controlers\LoginController.class
 com\epamUniversity\controlers\CustomExceptionHandler.class
@@ -15,6 +16,7 @@ com\epamUniversity\services\TicketsService.class
 com\epamUniversity\model\Ticket.class
 com\epamUniversity\services\AccountService.class
 com\epamUniversity\soapWS\GetUserRequest.class
+com\epamUniversity\controlers\restWS\dto\RefillRequest.class
 com\epamUniversity\services\EventServiceImpl.class
 com\epamUniversity\soapWS\GetUserResponse.class
 com\epamUniversity\views\UsersPDFBuilder.class
@@ -32,6 +34,7 @@ com\epamUniversity\controlers\EventsController.class
 com\epamUniversity\model\Auditorium.class
 com\epamUniversity\dao\EventRepository.class
 com\epamUniversity\controlers\BatchLoadingController.class
+com\epamUniversity\controlers\restWS\dto\TicketRequest.class
 com\epamUniversity\controlers\BatchLoadingController$1.class
 com\epamUniversity\controlers\TestController.class
 com\epamUniversity\soapWS\UserEndPoint.class
@@ -48,7 +51,6 @@ com\epamUniversity\services\discount\DiscountService.class
 com\epamUniversity\views\AbstractITextPdfView.class
 com\epamUniversity\controlers\UsersController.class
 com\epamUniversity\services\discount\strategy\DiscountStrategy.class
-com\epamUniversity\controlers\restWS\TicketRequest.class
 com\epamUniversity\model\EventInstance.class
 com\epamUniversity\dao\AuditoriumRepository.class
 com\epamUniversity\util\DatesHandling.class
